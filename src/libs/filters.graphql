@@ -1,0 +1,27 @@
+query GetCpuFilters($type: String) {
+  cpuFilters: findManyProduct(
+    where: { category: { equals: $type } }
+    distinct: processor
+  ) {
+    id
+    processor
+  }
+}
+query GetGpuFilters($type: String) {
+  gpuFilters: findManyProduct(
+    where: { category: { equals: $type } }
+    distinct: gpu
+  ) {
+    id
+    gpu
+  }
+}
+query GetManufacturerFilters($type: String) {
+  manufacturerFilters: findManyProduct(
+    where: { category: { equals: $type } }
+    distinct: manufacturer
+  ) {
+    id
+    manufacturer
+  }
+}

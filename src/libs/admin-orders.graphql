@@ -1,0 +1,53 @@
+query GetAllOrders($skip: Int = 0, $searchId: Int) {
+  orders: findManyOrder(
+    skip: $skip
+    orderBy: { date: desc }
+    where: { id: { equals: $searchId } }
+  ) {
+    id
+    date
+    type
+    OrderStatus
+    subtotal
+    address {
+      id
+      fullName
+    }
+  }
+}
+
+query GetAllOrdersCount {
+  totalOrders: findManyOrderCount
+}
+query GetOneOrder($id: Int!) {
+  order: findFirstOrder(where: { id: { equals: $id } }) {
+    id
+    date
+    type
+    OrderStatus
+    subtotal
+    address {
+      id
+      fullName
+      street
+      city
+      zipCode
+      country
+      phoneNumber
+    }
+    products {
+      id
+      img
+      name
+      price
+      quantity
+      discount
+    }
+  }
+}
+
+mutation DeleteOrder($id: Int!) {
+  deleteOneOrder(where: { id: $id }) {
+    id
+  }
+}

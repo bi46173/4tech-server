@@ -1,0 +1,65 @@
+{
+  "name": "toni",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "description": "toni",
+  "scripts": {
+    "start": "prisma generate && prisma db push && prisma db seed && ts-node-dev --no-notify --respawn --transpile-only src/app",
+    "clean": "rm -rf dist",
+    "build": "npm -s run clean && npm -s run generate && tsc",
+    "generate": "pal g && npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/nexusSchema",
+    "db-dev": "prisma migrate dev",
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
+    "dev2": "ts-node-dev --no-notify --respawn --transpile-only src/app"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.10",
+    "@apollo/server": "^4.5.0",
+    "@paljs/nexus": "5.2.0",
+    "@paljs/types": "^5.3.0",
+    "@prisma/client": "4.11.0",
+    "@types/multer": "^1.4.7",
+    "apollo-server": "3.12.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.36.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "graphql-middleware": "^6.1.33",
+    "graphql-shield": "^7.6.5",
+    "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
+    "nexus": "1.3.0",
+    "stripe": "^12.8.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/typescript": "^3.0.2",
+    "@graphql-codegen/typescript-operations": "^3.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
+    "@paljs/cli": "5.2.0",
+    "@types/node": "18.15.3",
+    "prettier": "2.8.4",
+    "prisma": "4.11.0",
+    "ts-node": "10.9.1",
+    "ts-node-dev": "2.0.0",
+    "typescript": "4.9.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
+  },
+  "repository": "",
+  "author": "toni"
+}

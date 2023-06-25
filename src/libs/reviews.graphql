@@ -1,0 +1,47 @@
+mutation LeaveReview(
+  $rating: Int!
+  $comment: String!
+  $userId: Int!
+  $productId: Int!
+) {
+  createOneReview(
+    data: {
+      rating: $rating
+      comment: $comment
+      User: { connect: { id: $userId } }
+      Product: { connect: { id: $productId } }
+    }
+  ) {
+    id
+    comment
+    rating
+    date
+    User {
+      id
+      firstName
+      lastName
+    }
+    Product {
+      id
+    }
+  }
+}
+
+query GetProductReviews($productId: Int!, $skip: Int = 0, $take: Int = 5) {
+  findManyReview(
+    where: { productId: { equals: $productId } }
+    skip: $skip
+    take: $take
+    orderBy: { date: desc }
+  ) {
+    id
+    comment
+    rating
+    date
+    User {
+      id
+      firstName
+      lastName
+    }
+  }
+}

@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int               @id @default(autoincrement())
+  email     String            @unique
+  password  String
+  firstName String
+  lastName  String
+  gender    String?
+  birthday  DateTime?
+  role      Role              @default(USER)
+  createdAt DateTime          @default(now())
+  address   Address?
+  orders    Order[]
+  reviews   Review[]
+  cart      ShoppingProduct[]
+}
+
+model Address {
+  id          Int    @id @default(autoincrement())
+  street      String
+  city        String
+  zipCode     String
+  country     String
+  phoneNumber String
+  userId      Int    @unique
+  User        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  description     String
+  price           Int               @default(0)
+  discount        Float             @default(0.0)
+  stock           Int               @default(0)
+  category        String
+  manufacturer    String
+  img             String
+  likes           Int               @default(0)
+  memory          String?
+  storage         String?
+  processor       String?
+  gpu             String?
+  os              String?
+  screen          String?
+  reviews         Review[]
+  ShoppingProduct ShoppingProduct[]
+}
+
+model Order {
+  id          Int            @id @default(autoincrement())
+  userId      Int
+  OrderStatus String         @default("Awaiting Payment")
+  date        DateTime       @default(now())
+  subtotal    Int            @default(0)
+  type        OrderType
+  User        User           @relation(fields: [userId], references: [id])
+  address     OrderAddress?
+  products    OrderProduct[]
+}
+
+model OrderAddress {
+  id          Int    @id @default(autoincrement())
+  orderId     Int    @unique
+  fullName    String
+  street      String
+  city        String
+  zipCode     String
+  country     String
+  phoneNumber String
+  order       Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model OrderProduct {
+  id       Int    @id @default(autoincrement())
+  orderId  Int
+  name     String
+  price    Int
+  img      String
+  discount Float  @default(0.0)
+  quantity Int
+  Order    Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model ShoppingProduct {
+  id        Int     @id @default(autoincrement())
+  quantity  Int
+  userId    Int
+  productId Int
+  Product   Product @relation(fields: [productId], references: [id])
+  User      User    @relation(fields: [userId], references: [id])
+
+  @@unique([productId, userId], name: "cartProduct")
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  comment   String   @default("Awesome")
+  rating    Int      @default(5)
+  date      DateTime @default(now())
+  Product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderType {
+  Online
+  Cash
+}

@@ -1,0 +1,68 @@
+query AllProducts(
+  $take: Int = 12
+  $skip: Int = 0
+  $where: ProductWhereInput
+  $orderBy: [ProductOrderByWithRelationInput]
+) {
+  findManyProduct(skip: $skip, take: $take, where: $where, orderBy: $orderBy) {
+    id
+    img
+    name
+    manufacturer
+    description
+    price
+    discount
+    processor
+    memory
+    storage
+    gpu
+    os
+    stock
+    avgRating
+    category
+  }
+}
+query GetSingleComputerDetails($name: String!) {
+  product: findFirstProduct(where: { name: { contains: $name } }) {
+    id
+    img
+    name
+    manufacturer
+    category
+    description
+    price
+    discount
+    processor
+    memory
+    storage
+    gpu
+    os
+    stock
+    avgRating
+    _count {
+      reviews
+    }
+  }
+}
+query ProductsCount($where: ProductWhereInput) {
+  findManyProductCount(where: $where)
+}
+
+query ProductsOnSale {
+  findManyProduct(take: 3, orderBy: { discount: desc }) {
+    id
+    img
+    name
+    category
+    price
+    discount
+    avgRating
+  }
+}
+query SearchProducts($search: String!) {
+  findManyProduct(where: { name: { contains: $search, mode: insensitive } }) {
+    id
+    name
+    category
+  }
+}

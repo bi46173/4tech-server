@@ -1,0 +1,69 @@
+query GetCart {
+  cart: findManyShoppingProduct {
+    id
+    quantity
+    productId
+    Product {
+      id
+      name
+      price
+      img
+      discount
+    }
+  }
+}
+mutation UpdateCart($userId: Int!, $productId: Int!, $quantity: Int = 1) {
+  upsertOneShoppingProduct(
+    where: { cartProduct: { productId: $productId, userId: $userId } }
+    create: {
+      User: { connect: { id: $userId } }
+      Product: { connect: { id: $productId } }
+      quantity: $quantity
+    }
+    update: { quantity: { set: $quantity } }
+  ) {
+    id
+    quantity
+    productId
+    Product {
+      id
+      name
+      price
+      img
+      discount
+    }
+  }
+}
+mutation DeleteCartProduct($userId: Int!, $productId: Int!) {
+  deleteOneShoppingProduct(
+    where: { cartProduct: { productId: $productId, userId: $userId } }
+  ) {
+    id
+  }
+}
+mutation SetCart($userId: Int!, $products: [CartProducts!]) {
+  setCart(userId: $userId, products: $products) {
+    id
+    quantity
+    productId
+    Product {
+      id
+      name
+      price
+      img
+      discount
+    }
+  }
+}
+
+query GetStripePaymentIntent($amount: Int!) {
+  getPaymentIntent(amount: $amount) {
+    clientSecret
+  }
+}
+
+mutation ClearCart($userId: Int!) {
+  deleteManyShoppingProduct(where: { userId: { equals: $userId } }) {
+    count
+  }
+}

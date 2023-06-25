@@ -1,0 +1,12 @@
+query AdminStats {
+  getAdminStats {
+    ordersCount
+    ordersSum
+    reviewsCount
+    usersCount
+    productsByCategory {
+      category
+      count
+    }
+  }
+}

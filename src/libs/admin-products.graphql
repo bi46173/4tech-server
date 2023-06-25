@@ -1,0 +1,79 @@
+mutation CreateProduct($data: ProductCreateInput!) {
+  createOneProduct(data: $data) {
+    id
+  }
+}
+query GetAllProducts(
+  $take: Int = 20
+  $skip: Int = 0
+  $search: String = ""
+  $type: String!
+) {
+  findManyProduct(
+    take: $take
+    skip: $skip
+    where: {
+      OR: [{ name: { contains: $search, mode: insensitive } }]
+      category: { equals: $type }
+    }
+  ) {
+    id
+    name
+    manufacturer
+    description
+    stock
+    price
+  }
+}
+
+mutation deleteProduct($id: Int!) {
+  deleteOneProduct(where: { id: $id }) {
+    id
+  }
+}
+
+query GetProductsCount($search: String = "", $type: String!) {
+  findManyProductCount(
+    where: {
+      OR: [{ name: { contains: $search, mode: insensitive } }]
+      category: { equals: $type }
+    }
+  )
+}
+
+query GetSingleProduct($id: Int!) {
+  findFirstProduct(where: { id: { equals: $id } }) {
+    name
+    manufacturer
+    description
+    processor
+    memory
+    storage
+    gpu
+    price
+    stock
+    discount
+    img
+    os
+    screen
+  }
+}
+mutation EditProduct(
+  $data: ProductUpdateInput!
+  $where: ProductWhereUniqueInput!
+) {
+  updateOneProduct(data: $data, where: $where) {
+    id
+    name
+    manufacturer
+    description
+    processor
+    memory
+    storage
+    gpu
+    price
+    stock
+    discount
+    img
+  }
+}

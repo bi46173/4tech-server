@@ -1,0 +1,212 @@
+mutation login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+    user {
+      id
+      firstName
+      lastName
+      email
+      role
+    }
+  }
+}
+mutation signup(
+  $email: String!
+  $password: String!
+  $firstName: String!
+  $lastName: String!
+  $gender: String!
+  $birthday: String!
+  $city: String!
+  $country: String!
+  $phoneNumber: String!
+  $street: String!
+  $zipCode: String!
+) {
+  signup(
+    email: $email
+    password: $password
+    firstName: $firstName
+    lastName: $lastName
+    gender: $gender
+    birthday: $birthday
+    city: $city
+    country: $country
+    phoneNumber: $phoneNumber
+    street: $street
+    zipCode: $zipCode
+  ) {
+    user {
+      id
+    }
+  }
+}
+
+query GetAllUsers($take: Int = 10, $skip: Int = 0, $search: String = "") {
+  findManyUser(
+    take: $take
+    skip: $skip
+    where: {
+      OR: [
+        { firstName: { contains: $search, mode: insensitive } }
+        { lastName: { contains: $search, mode: insensitive } }
+      ]
+    }
+  ) {
+    id
+    firstName
+    lastName
+    email
+    gender
+    birthday
+    role
+  }
+}
+query GetUsersCount($search: String = "") {
+  findManyUserCount(
+    where: {
+      OR: [
+        { firstName: { contains: $search, mode: insensitive } }
+        { lastName: { contains: $search, mode: insensitive } }
+      ]
+    }
+  )
+}
+mutation editUser(
+  $id: Int!
+  $firstName: String!
+  $lastName: String!
+  $email: String!
+  $gender: String
+  $birthday: DateTime!
+  $role: Role
+) {
+  updateOneUser(
+    where: { id: $id }
+    data: {
+      firstName: { set: $firstName }
+      lastName: { set: $lastName }
+      email: { set: $email }
+      gender: { set: $gender }
+      birthday: { set: $birthday }
+      role: { set: $role }
+    }
+  ) {
+    id
+    firstName
+    lastName
+    email
+    gender
+    birthday
+    role
+  }
+}
+mutation deleteUser($id: Int!) {
+  deleteOneUser(where: { id: $id }) {
+    id
+  }
+}
+
+query GetUserDetails($id: Int!) {
+  findFirstUser(where: { id: { equals: $id } }) {
+    id
+    firstName
+    lastName
+    birthday
+    gender
+    email
+    address {
+      id
+      phoneNumber
+      street
+      city
+      zipCode
+      country
+    }
+  }
+}
+mutation UpdateUserPersonalDetails(
+  $id: Int!
+  $firstName: String!
+  $lastName: String!
+  $birthday: DateTime!
+  $gender: String!
+  $phoneNumber: String!
+) {
+  updateOneUser(
+    where: { id: $id }
+    data: {
+      firstName: { set: $firstName }
+      lastName: { set: $lastName }
+      birthday: { set: $birthday }
+      gender: { set: $gender }
+      address: { update: { phoneNumber: { set: $phoneNumber } } }
+    }
+  ) {
+    id
+    firstName
+    lastName
+    birthday
+    gender
+    address {
+      id
+      phoneNumber
+    }
+  }
+}
+mutation UpdateUserAddress(
+  $userId: Int!
+  $street: String!
+  $city: String!
+  $zipCode: String!
+  $country: String!
+) {
+  updateOneAddress(
+    where: { userId: $userId }
+    data: {
+      street: { set: $street }
+      city: { set: $city }
+      zipCode: { set: $zipCode }
+      country: { set: $country }
+    }
+  ) {
+    id
+    street
+    city
+    zipCode
+    country
+  }
+}
+mutation UpdateUserEmail($id: Int!, $email: String!) {
+  updateOneUser(where: { id: $id }, data: { email: { set: $email } }) {
+    id
+    email
+  }
+}
+mutation ChangePassword(
+  $id: Int!
+  $currentPassword: String!
+  $password: String!
+) {
+  changePassword(
+    id: $id
+    currentPassword: $currentPassword
+    password: $password
+  )
+}
+
+query GetSavedAddress($id: Int!) {
+  address: findFirstUser(where: { id: { equals: $id } }) {
+    id
+    firstName
+    lastName
+    address {
+      id
+      city
+      country
+      phoneNumber
+      street
+      zipCode
+    }
+  }
+}

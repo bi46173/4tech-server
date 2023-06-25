@@ -1,0 +1,51 @@
+mutation CreateOrder($data: OrderCreateInput!) {
+  createOneOrder(data: $data) {
+    id
+  }
+}
+
+query GetMyOrders($userId: Int!, $skip: Int = 0) {
+  orders: findManyOrder(
+    skip: $skip
+    where: { userId: { equals: $userId } }
+    orderBy: { date: desc }
+  ) {
+    id
+    date
+    type
+    OrderStatus
+    subtotal
+  }
+}
+
+query GetMyOrdersCount($userId: Int!) {
+  totalOrders: findManyOrderCount(where: { userId: { equals: $userId } })
+}
+query GetSingleOrder($id: Int!, $userId: Int) {
+  order: findFirstOrder(
+    where: { id: { equals: $id }, userId: { equals: $userId } }
+  ) {
+    id
+    date
+    type
+    OrderStatus
+    subtotal
+    address {
+      id
+      fullName
+      street
+      city
+      zipCode
+      country
+      phoneNumber
+    }
+    products {
+      id
+      img
+      name
+      price
+      quantity
+      discount
+    }
+  }
+}
