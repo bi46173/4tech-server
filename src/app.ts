@@ -27,6 +27,9 @@ export async function createApp() {
   app.get('/', function ({ res }) {
     res.send('<h1>Private</h1>')
   })
+  app.get('/v1/graphql', function ({ res }) {
+    res.send('<h1>Private</h1>')
+  })
 
   const server = new ApolloServer({
     schema: applyMiddleware(schema, permissions),
@@ -44,6 +47,7 @@ export async function createApp() {
         'http://127.0.0.1:4200',
         'http://localhost:4200',
         'http://localhost:3000',
+        'https://4tech4.vercel.app',
       ],
       credentials: true,
     }),
