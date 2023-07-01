@@ -4,10 +4,10 @@ query GetAllReviews($take: Int = 20, $skip: Int = 0, $search: String = "") {
     skip: $skip
     where: {
       OR: [
-        { comment: { contains: $search, mode: insensitive } }
-        { Product: { name: { contains: $search, mode: insensitive } } }
-        { User: { firstName: { contains: $search, mode: insensitive } } }
-        { User: { lastName: { contains: $search, mode: insensitive } } }
+        { comment: { contains: $search } }
+        { Product: { name: { contains: $search } } }
+        { User: { firstName: { contains: $search } } }
+        { User: { lastName: { contains: $search } } }
       ]
     }
   ) {
@@ -29,10 +29,10 @@ query GetReviewsCount($search: String = "") {
   findManyReviewCount(
     where: {
       OR: [
-        { comment: { contains: $search, mode: insensitive } }
-        { Product: { name: { contains: $search, mode: insensitive } } }
-        { User: { firstName: { contains: $search, mode: insensitive } } }
-        { User: { lastName: { contains: $search, mode: insensitive } } }
+        { comment: { contains: $search } }
+        { Product: { name: { contains: $search } } }
+        { User: { firstName: { contains: $search } } }
+        { User: { lastName: { contains: $search } } }
       ]
     }
   )

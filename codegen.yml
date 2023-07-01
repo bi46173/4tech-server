@@ -2,7 +2,7 @@ overwrite: true
 schema: src/generated/schema.graphql
 documents: ['src/libs/**/*.graphql']
 generates:
-  ./webapp/libs/graphql.ts:
+  ./fortech-client/libs/graphql.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
