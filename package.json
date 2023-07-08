@@ -22,7 +22,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.10",
     "@apollo/server": "^4.5.0",
-    "@paljs/nexus": "5.2.0",
+    "@paljs/nexus": "^4.1.0",
     "@paljs/types": "^5.3.0",
     "@prisma/client": "^4.16.2",
     "@types/multer": "^1.4.7",
@@ -47,7 +47,7 @@
     "@graphql-codegen/typescript": "^3.0.2",
     "@graphql-codegen/typescript-operations": "^3.0.2",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
-    "@paljs/cli": "5.2.0",
+    "@paljs/cli": "^2.6.1",
     "@types/node": "18.15.3",
     "prettier": "2.8.4",
     "prisma": "^4.16.2",
