@@ -7,7 +7,6 @@
   "description": "toni",
   "scripts": {
     "start": "prisma generate && prisma db push && prisma db seed && ts-node-dev --no-notify --respawn --transpile-only src/app",
-    "build": "tsc",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "pal g && npm -s run generate:prisma && npm -s run generate:nexus",
