@@ -6,7 +6,7 @@
   "private": true,
   "description": "toni",
   "scripts": {
-    "start": "npm install && ts-node-dev --no-notify --respawn --transpile-only src/app",
+    "start": "node src/app",
     "start2": "ts-node-dev --no-notify --respawn --transpile-only src/app",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
