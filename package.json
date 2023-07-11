@@ -6,7 +6,8 @@
   "private": true,
   "description": "toni",
   "scripts": {
-    "start": "ts-node-dev --no-notify --respawn --transpile-only src/app",
+    "start": "tsc --watch --incremental --transpile-only --project src/app",
+    "start2": "ts-node-dev --no-notify --respawn --transpile-only src/app",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "pal g && npm -s run generate:prisma && npm -s run generate:nexus",
