@@ -6,10 +6,10 @@
   "private": true,
   "description": "toni",
   "scripts": {
-    "start": "node ./src/app",
+    "start": "node dist/app.js",
     "start2": "ts-node-dev --no-notify --respawn --transpile-only src/app",
     "clean": "rm -rf dist",
-    "build": "npm -s run clean && npm -s run generate && tsc",
+    "build": "rm -rf build && npm i && tsc",
     "generate": "pal g && npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/nexusSchema",
