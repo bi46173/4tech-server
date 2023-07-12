@@ -18,7 +18,18 @@
     "dev2": "ts-node-dev --no-notify --respawn --transpile-only src/app"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "generator": {
+      "client": {
+        "provider": "prisma-client-js",
+        "config": {
+          "binaryTargets": [
+            "native",
+            "rhel-openssl-1.0.x"
+          ]
+        }
+      }
+    }
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
