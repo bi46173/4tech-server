@@ -25,7 +25,7 @@
         "config": {
           "binaryTargets": [
             "native",
-            "rhel-openssl-1.0.x"
+            "rhel-openssl-1.1.x"
           ]
         }
       }
