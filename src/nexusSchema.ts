@@ -10,11 +10,11 @@ const schemaDefinition = makeSchema({
   types: [types, customTypes],
   plugins: [paljs()],
   outputs: {
-    schema: __dirname + '/generated/schema.graphql',
-    typegen: __dirname + '/generated/nexus.ts',
+    schema: join(process.cwd(), '/generated/schema.graphql'),
+    typegen: join(process.cwd(), '/generated/nexus.ts'),
   },
   contextType: {
-    module: join(__dirname, 'context.ts'),
+    module: join(process.cwd(), 'context.ts'),
     export: 'Context',
   },
 })
