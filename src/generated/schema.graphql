@@ -586,6 +586,7 @@ type Mutation {
   deleteOneUser(where: UserWhereUniqueInput!): User
   login(email: String!, password: String!): AuthPayload
   setCart(products: [CartProducts!], userId: Int!): [ShoppingProduct]
+  signout: Boolean
   signup(birthday: String, city: String, country: String, email: String!, firstName: String!, gender: String, lastName: String!, password: String!, phoneNumber: String, street: String, zipCode: String): AuthPayload
   updateOneAddress(data: AddressUpdateInput!, where: AddressWhereUniqueInput!): Address!
   updateOneProduct(data: ProductUpdateInput!, where: ProductWhereUniqueInput!): Product!

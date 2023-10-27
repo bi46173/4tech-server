@@ -3886,6 +3886,7 @@ export interface NexusGenFieldTypes {
     deleteOneUser: NexusGenRootTypes['User'] | null; // User
     login: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     setCart: Array<NexusGenRootTypes['ShoppingProduct'] | null> | null; // [ShoppingProduct]
+    signout: boolean | null; // Boolean
     signup: NexusGenRootTypes['AuthPayload'] | null; // AuthPayload
     updateOneAddress: NexusGenRootTypes['Address']; // Address!
     updateOneProduct: NexusGenRootTypes['Product']; // Product!
@@ -4449,6 +4450,7 @@ export interface NexusGenFieldTypeNames {
     deleteOneUser: 'User'
     login: 'AuthPayload'
     setCart: 'ShoppingProduct'
+    signout: 'Boolean'
     signup: 'AuthPayload'
     updateOneAddress: 'Address'
     updateOneProduct: 'Product'

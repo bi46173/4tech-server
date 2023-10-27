@@ -99,12 +99,26 @@ export const UserOperations = objectType({
         if (!passwordValid) {
           throw new Error('Invalid password')
         }
+        const token = sign({ userId: user.id, role: user.role }, APP_SECRET)
+        context.req.res.cookie('token', token, {
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60 * 24,
+          sameSite: 'none',
+          secure: true,
+        })
         return {
-          token: sign({ userId: user.id, role: user.role }, APP_SECRET),
+          token,
           user,
         }
       },
     }),
+      t.field('signout', {
+        type: 'Boolean',
+        resolve: async (_parent, args, context) => {
+          context.req.res.clearCookie('token')
+          return true
+        },
+      }),
       t.field('changePassword', {
         type: 'Boolean',
         args: {

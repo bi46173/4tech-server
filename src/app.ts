@@ -10,6 +10,8 @@ import { permissions } from './permissions'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import http from 'http'
 import { config } from 'dotenv-flow'
+import cookieParser from 'cookie-parser'
+
 require('dotenv').config()
 
 //rest apis
@@ -22,6 +24,7 @@ export async function createApp() {
 
   const app = express()
   const httpServer = http.createServer(app)
+  app.use(cookieParser())
 
   app.use(express.json({ limit: '50mb' }))
   app.get('/', function ({ res }) {
@@ -49,6 +52,7 @@ export async function createApp() {
         'http://localhost:3000',
         'https://4tech4.vercel.app',
       ],
+      methods: 'POST,GET',
       credentials: true,
     }),
   )

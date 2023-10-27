@@ -9,13 +9,16 @@ export interface Context {
   req: any
   select: any
   stripe: any
+  token: string
 }
 
 export function createContext(req: any): Context {
+  const { token } = req.req.cookies
   return {
     ...req,
     prisma,
     select: {},
     stripe,
+    token,
   }
 }
