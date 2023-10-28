@@ -160,10 +160,11 @@ export const UserOperations = objectType({
         type: 'ShoppingProduct',
         args: {
           products: list(nonNull('CartProducts')),
-          userId: nonNull(intArg()),
         },
         resolve: async (_parent, args, context: Context) => {
-          const { products, userId } = args
+          const { products } = args
+          const userId = getUserId(context)
+          if (!userId) return []
           let cart = []
 
           if (products.length === 0) {

@@ -12,11 +12,11 @@ query GetCart {
     }
   }
 }
-mutation UpdateCart($userId: Int!, $productId: Int!, $quantity: Int = 1) {
+mutation UpdateCart($productId: Int!, $quantity: Int = 1) {
   upsertOneShoppingProduct(
-    where: { cartProduct: { productId: $productId, userId: $userId } }
+    where: { cartProduct: { productId: $productId, userId: 0 } }
     create: {
-      User: { connect: { id: $userId } }
+      User: {}
       Product: { connect: { id: $productId } }
       quantity: $quantity
     }
@@ -34,15 +34,15 @@ mutation UpdateCart($userId: Int!, $productId: Int!, $quantity: Int = 1) {
     }
   }
 }
-mutation DeleteCartProduct($userId: Int!, $productId: Int!) {
+mutation DeleteCartProduct($productId: Int!) {
   deleteOneShoppingProduct(
-    where: { cartProduct: { productId: $productId, userId: $userId } }
+    where: { cartProduct: { productId: $productId, userId: 0 } }
   ) {
     id
   }
 }
-mutation SetCart($userId: Int!, $products: [CartProducts!]) {
-  setCart(userId: $userId, products: $products) {
+mutation SetCart($products: [CartProducts!]) {
+  setCart(products: $products) {
     id
     quantity
     productId
@@ -62,8 +62,8 @@ query GetStripePaymentIntent($amount: Int!) {
   }
 }
 
-mutation ClearCart($userId: Int!) {
-  deleteManyShoppingProduct(where: { userId: { equals: $userId } }) {
+mutation ClearCart {
+  deleteManyShoppingProduct(where: { userId: { equals: 0 } }) {
     count
   }
 }

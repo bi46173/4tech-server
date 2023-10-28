@@ -1,13 +1,6 @@
 mutation login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     token
-    user {
-      id
-      firstName
-      lastName
-      email
-      role
-    }
   }
 }
 mutation signup(
@@ -209,4 +202,39 @@ query GetSavedAddress($id: Int!) {
       zipCode
     }
   }
+}
+query GetUserId {
+  me {
+    id
+  }
+}
+query Me {
+  me {
+    id
+    firstName
+    lastName
+    birthday
+    gender
+    email
+    address {
+      id
+      phoneNumber
+      street
+      city
+      zipCode
+      country
+    }
+  }
+}
+query UserByJwt($token: String!) {
+  userByJwt(token: $token) {
+    id
+    firstName
+    lastName
+    email
+    role
+  }
+}
+mutation Logout {
+  signout
 }

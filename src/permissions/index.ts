@@ -1,4 +1,4 @@
-import { rule, shield, or } from 'graphql-shield'
+import { rule, shield, and } from 'graphql-shield'
 import { getUserId, isAdmin } from '../auth'
 import { Context } from '../context'
 
@@ -33,6 +33,42 @@ const rules = {
     }
     return true
   }),
+  interceptCartProductIndex: rule()((_parent, args, context: Context) => {
+    const adminRole = isAdmin(context)
+    if (adminRole) return true
+    const userId = getUserId(context)
+    console.log(args.where.cartProduct, 'cartProduct')
+    if (!userId || !args.where.cartProduct) return false
+    args.where = {
+      ...args.where,
+      cartProduct: {
+        ...args.where.cartProduct,
+        userId,
+      },
+    }
+    return true
+  }),
+  injectUserOnCreate: rule()((_parent, args, context: Context) => {
+    const adminRole = isAdmin(context)
+    if (adminRole) return true
+    const userId = getUserId(context)
+    if (!userId || !args.create.User) return false
+    args.create = {
+      ...args.create,
+      User: {
+        connect: {
+          id: userId,
+        },
+      },
+    }
+    return true
+  }),
+  interceptUserId: rule()((_parent, args, context: Context) => {
+    const userId = getUserId(context)
+    if (!userId) return false
+    args.where = { ...args.where, userId: { equals: userId } }
+    return true
+  }),
 }
 
 export const permissions = shield(
@@ -55,7 +91,12 @@ export const permissions = shield(
       deleteOneReview: rules.isAdmin,
       deleteOneOrder: rules.isAdmin,
       createOneOrder: rules.isAuthenticatedUser,
-      deleteManyShoppingProduct: rules.accessOwnData,
+      deleteManyShoppingProduct: rules.interceptUserId,
+      deleteOneShoppingProduct: rules.interceptCartProductIndex,
+      upsertOneShoppingProduct: and(
+        rules.interceptCartProductIndex,
+        rules.injectUserOnCreate,
+      ),
     },
   },
   {

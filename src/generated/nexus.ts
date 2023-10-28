@@ -4163,6 +4163,8 @@ export interface NexusGenFieldTypes {
     findManyUserCount: number; // Int!
     getAdminStats: NexusGenRootTypes['adminStats'] | null; // adminStats
     getPaymentIntent: NexusGenRootTypes['PaymentIntent'] | null; // PaymentIntent
+    me: NexusGenRootTypes['User'] | null; // User
+    userByJwt: NexusGenRootTypes['User'] | null; // User
   }
   Review: { // field return type
     Product: NexusGenRootTypes['Product']; // Product!
@@ -4727,6 +4729,8 @@ export interface NexusGenFieldTypeNames {
     findManyUserCount: 'Int'
     getAdminStats: 'adminStats'
     getPaymentIntent: 'PaymentIntent'
+    me: 'User'
+    userByJwt: 'User'
   }
   Review: { // field return type name
     Product: 'Product'
@@ -4933,7 +4937,6 @@ export interface NexusGenArgTypes {
     }
     setCart: { // args
       products?: NexusGenInputs['CartProducts'][] | null; // [CartProducts!]
-      userId: number; // Int!
     }
     signup: { // args
       birthday?: string | null; // String
@@ -5126,6 +5129,9 @@ export interface NexusGenArgTypes {
     }
     getPaymentIntent: { // args
       amount: number; // Int!
+    }
+    userByJwt: { // args
+      token: string; // String!
     }
   }
   User: {

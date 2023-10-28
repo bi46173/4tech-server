@@ -10,17 +10,16 @@ export interface Token {
 }
 
 export function getUserId(context: Context) {
-  const authHeader = context.req.get('Authorization')
-  if (authHeader) {
-    const token = authHeader.replace('Bearer ', '')
+  const token = context.token
+  if (token) {
     const verifiedToken = verify(token, APP_SECRET) as Token
     return verifiedToken && Number(verifiedToken.userId)
   }
 }
 export function isAdmin(context: Context) {
-  const authHeader = context.req.get('Authorization')
-  if (!authHeader) return false
-  const token = authHeader.replace('Bearer ', '')
+  const token = context.token
+  if (!token) return false
   const verifiedToken = verify(token, APP_SECRET) as Token
   return verifiedToken && verifiedToken.role === 'ADMIN'
 }
+export const verifyToken = (token: string) => verify(token, APP_SECRET) as Token

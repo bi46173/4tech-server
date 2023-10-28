@@ -60,7 +60,7 @@ query ProductsOnSale {
   }
 }
 query SearchProducts($search: String!) {
-  findManyProduct(where: { name: { contains: $search } }) {
+  findManyProduct(where: { name: { contains: $search, mode: insensitive } }) {
     id
     name
     category

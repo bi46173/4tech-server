@@ -585,7 +585,7 @@ type Mutation {
   deleteOneShoppingProduct(where: ShoppingProductWhereUniqueInput!): ShoppingProduct
   deleteOneUser(where: UserWhereUniqueInput!): User
   login(email: String!, password: String!): AuthPayload
-  setCart(products: [CartProducts!], userId: Int!): [ShoppingProduct]
+  setCart(products: [CartProducts!]): [ShoppingProduct]
   signout: Boolean
   signup(birthday: String, city: String, country: String, email: String!, firstName: String!, gender: String, lastName: String!, password: String!, phoneNumber: String, street: String, zipCode: String): AuthPayload
   updateOneAddress(data: AddressUpdateInput!, where: AddressWhereUniqueInput!): Address!
@@ -2691,6 +2691,8 @@ type Query {
   findManyUserCount(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): Int!
   getAdminStats: adminStats
   getPaymentIntent(amount: Int!): PaymentIntent
+  me: User
+  userByJwt(token: String!): User
 }
 
 enum QueryMode {
