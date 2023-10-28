@@ -43,14 +43,11 @@ const rules = {
         userId,
       },
     }
-    console.log(args.where, 'upsertShoppingProduct where')
     return true
   }),
   injectUserOnCreate: rule()((_parent, args, context: Context) => {
-    const adminRole = isAdmin(context)
-    if (adminRole) return true
     const userId = getUserId(context)
-    if (!userId || !args.create.User) return false
+    if (!userId) return false
     args.create = {
       ...args.create,
       User: {
@@ -59,7 +56,6 @@ const rules = {
         },
       },
     }
-    console.log(args.create, 'upsertShoppingProduct create')
     return true
   }),
   interceptUserId: rule()((_parent, args, context: Context) => {
