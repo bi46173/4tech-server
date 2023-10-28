@@ -43,6 +43,7 @@ const rules = {
         userId,
       },
     }
+    console.log(args.where, 'upsertShoppingProduct where')
     return true
   }),
   injectUserOnCreate: rule()((_parent, args, context: Context) => {
@@ -58,6 +59,7 @@ const rules = {
         },
       },
     }
+    console.log(args.create, 'upsertShoppingProduct create')
     return true
   }),
   interceptUserId: rule()((_parent, args, context: Context) => {
