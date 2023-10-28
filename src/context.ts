@@ -14,7 +14,6 @@ export interface Context {
 
 export function createContext(req: any): Context {
   const { token } = req.req.cookies
-  console.log(token, 'token')
   return {
     ...req,
     prisma,

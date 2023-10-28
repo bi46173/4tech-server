@@ -30,11 +30,10 @@ const NOT_AUTHORIZED = {
 }
 
 const checkAuthorization = (req, res, next) => {
-  const authHeader = req.headers.authorization
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  const { token } = req.cookies
+  if (!token) {
     return res.status(401).json(NOT_AUTHORIZED)
   }
-  const token = authHeader?.replace('Bearer ', '')
   const verifiedToken = verify(token, process.env.APP_SECRET) as Token
   if (!verifiedToken || verifiedToken.role !== 'ADMIN')
     return res.status(401).json(NOT_AUTHORIZED)
@@ -46,7 +45,6 @@ router.post(
   upload.single('file'),
   checkAuthorization,
   async (req, res) => {
-    if (!req.headers.authorization) return NOT_AUTHORIZED
     try {
       const b64 = Buffer.from(req.file.buffer).toString('base64')
       let dataURI = 'data:' + req.file.mimetype + ';base64,' + b64

@@ -34,10 +34,7 @@ const rules = {
     return true
   }),
   interceptCartProductIndex: rule()((_parent, args, context: Context) => {
-    const adminRole = isAdmin(context)
-    if (adminRole) return true
     const userId = getUserId(context)
-    console.log(args.where.cartProduct, 'cartProduct')
     if (!userId || !args.where.cartProduct) return false
     args.where = {
       ...args.where,
