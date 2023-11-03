@@ -4,11 +4,11 @@ mutation CreateOrder($data: OrderCreateInput!) {
   }
 }
 
-query GetMyOrders($userId: Int!, $skip: Int = 0) {
+query GetMyOrders($userId: Int!, $skip: Int = 0, $take: Int = 10) {
   orders: findManyOrder(
     skip: $skip
+    take: $take
     where: { userId: { equals: $userId } }
-    orderBy: { date: desc }
   ) {
     id
     date
@@ -17,7 +17,6 @@ query GetMyOrders($userId: Int!, $skip: Int = 0) {
     subtotal
   }
 }
-
 query GetMyOrdersCount($userId: Int!) {
   totalOrders: findManyOrderCount(where: { userId: { equals: $userId } })
 }
