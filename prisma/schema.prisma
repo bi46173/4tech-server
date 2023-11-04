@@ -32,7 +32,7 @@ model Address {
   country     String
   phoneNumber String
   userId      Int    @unique
-  User        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User        User   @relation(fields: [userId], references: [id])
 }
 
 model Product {
@@ -77,7 +77,7 @@ model OrderAddress {
   zipCode     String
   country     String
   phoneNumber String
-  order       Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order       Order  @relation(fields: [orderId], references: [id])
 }
 
 model OrderProduct {
@@ -88,7 +88,7 @@ model OrderProduct {
   img      String
   discount Float  @default(0.0)
   quantity Int
-  Order    Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Order    Order  @relation(fields: [orderId], references: [id])
 }
 
 model ShoppingProduct {
@@ -109,8 +109,8 @@ model Review {
   comment   String   @default("Awesome")
   rating    Int      @default(5)
   date      DateTime @default(now())
-  Product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Product   Product  @relation(fields: [productId], references: [id])
+  User      User     @relation(fields: [userId], references: [id])
 }
 
 enum Role {

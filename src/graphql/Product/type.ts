@@ -1,4 +1,4 @@
-import { objectType } from 'nexus'
+import { objectType, list } from 'nexus'
 
 export const Product = objectType({
   nonNullDefaults: {
@@ -27,11 +27,11 @@ export const Product = objectType({
       type: 'Review',
       args: {
         where: 'ReviewWhereInput',
-        orderBy: 'ReviewOrderByWithRelationInput',
+        orderBy: list('ReviewOrderByWithRelationInput'),
         cursor: 'ReviewWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'ReviewScalarFieldEnum',
+        distinct: list('ReviewScalarFieldEnum'),
       },
       resolve(root: any) {
         return root.reviews
@@ -41,11 +41,11 @@ export const Product = objectType({
       type: 'ShoppingProduct',
       args: {
         where: 'ShoppingProductWhereInput',
-        orderBy: 'ShoppingProductOrderByWithRelationInput',
+        orderBy: list('ShoppingProductOrderByWithRelationInput'),
         cursor: 'ShoppingProductWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'ShoppingProductScalarFieldEnum',
+        distinct: list('ShoppingProductScalarFieldEnum'),
       },
       resolve(root: any) {
         return root.ShoppingProduct

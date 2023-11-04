@@ -1,4 +1,4 @@
-import { objectType } from 'nexus'
+import { objectType, list } from 'nexus'
 
 export const User = objectType({
   nonNullDefaults: {
@@ -18,6 +18,9 @@ export const User = objectType({
     t.field('createdAt', { type: 'DateTime' })
     t.nullable.field('address', {
       type: 'Address',
+      args: {
+        where: 'AddressWhereInput',
+      },
       resolve(root: any) {
         return root.address
       },
@@ -26,11 +29,11 @@ export const User = objectType({
       type: 'Order',
       args: {
         where: 'OrderWhereInput',
-        orderBy: 'OrderOrderByWithRelationInput',
+        orderBy: list('OrderOrderByWithRelationInput'),
         cursor: 'OrderWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'OrderScalarFieldEnum',
+        distinct: list('OrderScalarFieldEnum'),
       },
       resolve(root: any) {
         return root.orders
@@ -40,11 +43,11 @@ export const User = objectType({
       type: 'Review',
       args: {
         where: 'ReviewWhereInput',
-        orderBy: 'ReviewOrderByWithRelationInput',
+        orderBy: list('ReviewOrderByWithRelationInput'),
         cursor: 'ReviewWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'ReviewScalarFieldEnum',
+        distinct: list('ReviewScalarFieldEnum'),
       },
       resolve(root: any) {
         return root.reviews
@@ -54,11 +57,11 @@ export const User = objectType({
       type: 'ShoppingProduct',
       args: {
         where: 'ShoppingProductWhereInput',
-        orderBy: 'ShoppingProductOrderByWithRelationInput',
+        orderBy: list('ShoppingProductOrderByWithRelationInput'),
         cursor: 'ShoppingProductWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'ShoppingProductScalarFieldEnum',
+        distinct: list('ShoppingProductScalarFieldEnum'),
       },
       resolve(root: any) {
         return root.cart

@@ -1,4 +1,4 @@
-import { objectType } from 'nexus'
+import { objectType, list } from 'nexus'
 
 export const Order = objectType({
   nonNullDefaults: {
@@ -21,6 +21,9 @@ export const Order = objectType({
     })
     t.nullable.field('address', {
       type: 'OrderAddress',
+      args: {
+        where: 'OrderAddressWhereInput',
+      },
       resolve(root: any) {
         return root.address
       },
@@ -29,11 +32,11 @@ export const Order = objectType({
       type: 'OrderProduct',
       args: {
         where: 'OrderProductWhereInput',
-        orderBy: 'OrderProductOrderByWithRelationInput',
+        orderBy: list('OrderProductOrderByWithRelationInput'),
         cursor: 'OrderProductWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'OrderProductScalarFieldEnum',
+        distinct: list('OrderProductScalarFieldEnum'),
       },
       resolve(root: any) {
         return root.products
