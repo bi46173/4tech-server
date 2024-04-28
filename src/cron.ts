@@ -1,9 +1,9 @@
 const cron = require('cron')
-const http = require('http')
+const https = require('https')
 const backendUrl = process.env.BACKEND_URL ?? 'http://localhost:3000'
 
 const job = new cron.CronJob('*/14 * * * *', () => {
-  http
+  https
     .get(backendUrl, (res) => {
       if (res.statusCode === 200) {
         console.log('Server restarted')
