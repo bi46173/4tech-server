@@ -11,8 +11,11 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import http from 'http'
 import { config } from 'dotenv-flow'
 import cookieParser from 'cookie-parser'
+const cronJob = require('./cron')
 
 require('dotenv').config()
+
+cronJob.job.start()
 
 //rest apis
 const cloudinaryApi = require('./rest-api/cloudinary')
