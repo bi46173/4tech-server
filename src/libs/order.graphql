@@ -9,6 +9,7 @@ query GetMyOrders($userId: Int!, $skip: Int = 0, $take: Int = 10) {
     skip: $skip
     take: $take
     where: { userId: { equals: $userId } }
+    orderBy: { date: desc }
   ) {
     id
     date

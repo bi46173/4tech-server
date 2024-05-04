@@ -133,7 +133,7 @@ mutation UpdateUserPersonalDetails(
       lastName: { set: $lastName }
       birthday: { set: $birthday }
       gender: { set: $gender }
-      address: { update: { phoneNumber: { set: $phoneNumber } } }
+      address: { update: { data: { phoneNumber: { set: $phoneNumber } } } }
     }
   ) {
     id

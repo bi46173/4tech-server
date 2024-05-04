@@ -5,9 +5,9 @@ query GetAllReviews($take: Int = 20, $skip: Int = 0, $search: String = "") {
     where: {
       OR: [
         { comment: { contains: $search } }
-        { Product: { name: { contains: $search } } }
-        { User: { firstName: { contains: $search } } }
-        { User: { lastName: { contains: $search } } }
+        { Product: { is: { name: { contains: $search } } } }
+        { User: { is: { firstName: { contains: $search } } } }
+        { User: { is: { lastName: { contains: $search } } } }
       ]
     }
   ) {
@@ -30,9 +30,9 @@ query GetReviewsCount($search: String = "") {
     where: {
       OR: [
         { comment: { contains: $search } }
-        { Product: { name: { contains: $search } } }
-        { User: { firstName: { contains: $search } } }
-        { User: { lastName: { contains: $search } } }
+        { Product: { is: { name: { contains: $search } } } }
+        { User: { is: { firstName: { contains: $search } } } }
+        { User: { is: { lastName: { contains: $search } } } }
       ]
     }
   )
