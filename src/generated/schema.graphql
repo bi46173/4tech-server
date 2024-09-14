@@ -2798,7 +2798,6 @@ type Query {
   findManyReviewCount(cursor: ReviewWhereUniqueInput, distinct: [ReviewScalarFieldEnum], orderBy: [ReviewOrderByWithRelationInput], skip: Int, take: Int, where: ReviewWhereInput): Int!
   findManyShoppingProduct(cursor: ShoppingProductWhereUniqueInput, distinct: [ShoppingProductScalarFieldEnum], orderBy: [ShoppingProductOrderByWithRelationInput], skip: Int, take: Int, where: ShoppingProductWhereInput): [ShoppingProduct!]!
   findManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): [User!]!
-  findManyUserCount(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): Int!
   getAdminStats: adminStats
   getPaymentIntent(amount: Int!): PaymentIntent
   me: User

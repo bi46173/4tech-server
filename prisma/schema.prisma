@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
@@ -22,6 +22,7 @@ model User {
   orders    Order[]
   reviews   Review[]
   cart      ShoppingProduct[]
+  // wishlist  WishlistProduct[]
 }
 
 model Address {
@@ -54,6 +55,7 @@ model Product {
   screen          String?
   reviews         Review[]
   ShoppingProduct ShoppingProduct[]
+  // wishlist        WishlistProduct[]
 }
 
 model Order {
@@ -112,6 +114,14 @@ model Review {
   Product   Product  @relation(fields: [productId], references: [id])
   User      User     @relation(fields: [userId], references: [id])
 }
+
+// model WishlistProduct {
+//   id        Int     @id @default(autoincrement())
+//   userId    Int?
+//   productId Int
+//   User      User?   @relation(fields: [userId], references: [id])
+//   wishlistedProduct   Product @relation(fields: [productId], references: [id])
+// }
 
 enum Role {
   USER
