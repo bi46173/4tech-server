@@ -1,0 +1,14 @@
+version: '3'
+services:
+  4tech-db:
+    image: postgres:latest
+    ports:
+      - '6544:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: 4tech-db
+volumes:
+  db_data:

@@ -15,7 +15,8 @@
     "generate:nexus": "ts-node --transpile-only src/nexusSchema",
     "db-dev": "prisma migrate dev",
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
-    "dev2": "ts-node-dev --no-notify --respawn --transpile-only src/app"
+    "start:db": "docker-compose up -d && yarn generate:prisma && yarn prisma db push && yarn prisma db seed",
+    "dev2": "yarn start:db && ts-node-dev --no-notify --respawn --transpile-only src/app"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",

@@ -66,3 +66,7 @@ query SearchProducts($search: String!) {
     category
   }
 }
+
+query AllProductsCount {
+  findManyProductCount
+}
