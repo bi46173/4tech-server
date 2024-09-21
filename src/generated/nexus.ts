@@ -4324,6 +4324,7 @@ export interface NexusGenFieldTypes {
     findManyReviewCount: number; // Int!
     findManyShoppingProduct: NexusGenRootTypes['ShoppingProduct'][]; // [ShoppingProduct!]!
     findManyUser: NexusGenRootTypes['User'][]; // [User!]!
+    findManyUserCount: number; // Int!
     getAdminStats: NexusGenRootTypes['adminStats'] | null; // adminStats
     getPaymentIntent: NexusGenRootTypes['PaymentIntent'] | null; // PaymentIntent
     me: NexusGenRootTypes['User'] | null; // User
@@ -4889,6 +4890,7 @@ export interface NexusGenFieldTypeNames {
     findManyReviewCount: 'Int'
     findManyShoppingProduct: 'ShoppingProduct'
     findManyUser: 'User'
+    findManyUserCount: 'Int'
     getAdminStats: 'adminStats'
     getPaymentIntent: 'PaymentIntent'
     me: 'User'
@@ -5277,6 +5279,14 @@ export interface NexusGenArgTypes {
       where?: NexusGenInputs['ShoppingProductWhereInput'] | null; // ShoppingProductWhereInput
     }
     findManyUser: { // args
+      cursor?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+      distinct?: Array<NexusGenEnums['UserScalarFieldEnum'] | null> | null; // [UserScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['UserOrderByWithRelationInput'] | null> | null; // [UserOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    }
+    findManyUserCount: { // args
       cursor?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
       distinct?: Array<NexusGenEnums['UserScalarFieldEnum'] | null> | null; // [UserScalarFieldEnum]
       orderBy?: Array<NexusGenInputs['UserOrderByWithRelationInput'] | null> | null; // [UserOrderByWithRelationInput]

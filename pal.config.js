@@ -22,7 +22,6 @@ const common = {
     ],
     User: [
       'findUnique',
-      'findCount',
       'aggregate',
       'createOne',
       'upsertOne',
