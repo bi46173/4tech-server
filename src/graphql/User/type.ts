@@ -64,6 +64,12 @@ export const User = objectType({
         return root.cart
       },
     })
+    t.nullable.field('Wishlist', {
+      type: 'Wishlist',
+      resolve(root: any) {
+        return root.Wishlist
+      },
+    })
     t.field('_count', {
       type: 'UserCountOutputType',
       resolve(root: any) {

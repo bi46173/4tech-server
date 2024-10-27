@@ -14,7 +14,12 @@ const schemaDefinition = makeSchema({
     typegen: join(process.cwd(), '/src/generated/nexus.ts'),
   },
   contextType: {
-    module: join(process.cwd(), process.env.NODE_ENVIRONTMENT !== "development" ? "/src/context.ts" : "/dist/context.js"),
+    module: join(
+      process.cwd(),
+      process.env.NODE_ENVIRONTMENT !== 'development'
+        ? '/src/context.ts'
+        : '/dist/context.js',
+    ),
     export: 'Context',
   },
 })

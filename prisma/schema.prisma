@@ -22,7 +22,7 @@ model User {
   orders    Order[]
   reviews   Review[]
   cart      ShoppingProduct[]
-  // Wishlist  Wishlist?
+  Wishlist  Wishlist?
 }
 
 model Address {
@@ -55,7 +55,7 @@ model Product {
   screen          String?
   reviews         Review[]
   ShoppingProduct ShoppingProduct[]
-  // WishlistProduct WishlistProduct[]
+  WishlistProduct WishlistProduct[]
 }
 
 model Order {
@@ -115,20 +115,20 @@ model Review {
   User      User     @relation(fields: [userId], references: [id])
 }
 
-// model Wishlist {
-//   id       Int               @id @default(autoincrement())
-//   userId   Int?              @unique
-//   User     User?             @relation(fields: [userId], references: [id])
-//   products WishlistProduct[]
-// }
+model Wishlist {
+  id       Int               @id @default(autoincrement())
+  userId   Int?              @unique
+  user     User?             @relation(fields: [userId], references: [id])
+  products WishlistProduct[]
+}
 
-// model WishlistProduct {
-//   id         Int       @id @default(autoincrement())
-//   productId  Int
-//   wishlistId Int
-//   wishlist   Wishlist? @relation(fields: [wishlistId], references: [id])
-//   product   Product? @relation(fields: [productId], references: [id])
-// }
+model WishlistProduct {
+  id         Int       @id @default(autoincrement())
+  productId  Int
+  wishlistId Int
+  wishlist   Wishlist? @relation(fields: [wishlistId], references: [id])
+  product   Product? @relation(fields: [productId], references: [id])
+}
 
 enum Role {
   USER

@@ -51,6 +51,20 @@ export const Product = objectType({
         return root.ShoppingProduct
       },
     })
+    t.list.field('WishlistProduct', {
+      type: 'WishlistProduct',
+      args: {
+        where: 'WishlistProductWhereInput',
+        orderBy: 'WishlistProductOrderByWithRelationInput',
+        cursor: 'WishlistProductWhereUniqueInput',
+        take: 'Int',
+        skip: 'Int',
+        distinct: 'WishlistProductScalarFieldEnum',
+      },
+      resolve(root: any) {
+        return root.WishlistProduct
+      },
+    })
     t.field('_count', {
       type: 'ProductCountOutputType',
       resolve(root: any) {

@@ -1,3 +1,5 @@
+export * from './WishlistProduct'
+export * from './Wishlist'
 export * from './InputTypes'
 export * from './Review'
 export * from './ShoppingProduct'

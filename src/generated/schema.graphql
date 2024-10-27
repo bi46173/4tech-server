@@ -373,6 +373,22 @@ type AggregateUser {
   _sum: UserSumAggregateOutputType
 }
 
+type AggregateWishlist {
+  _avg: WishlistAvgAggregateOutputType
+  _count: WishlistCountAggregateOutputType
+  _max: WishlistMaxAggregateOutputType
+  _min: WishlistMinAggregateOutputType
+  _sum: WishlistSumAggregateOutputType
+}
+
+type AggregateWishlistProduct {
+  _avg: WishlistProductAvgAggregateOutputType
+  _count: WishlistProductCountAggregateOutputType
+  _max: WishlistProductMaxAggregateOutputType
+  _min: WishlistProductMinAggregateOutputType
+  _sum: WishlistProductSumAggregateOutputType
+}
+
 type AuthPayload {
   token: String
   user: User
@@ -559,6 +575,33 @@ input IntFilter {
   notIn: [Int]
 }
 
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int]
+}
+
+input IntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
+  notIn: [Int]
+}
+
 input IntWithAggregatesFilter {
   _avg: NestedFloatFilter
   _count: NestedIntFilter
@@ -588,6 +631,8 @@ type Mutation {
   createOneProduct(data: ProductCreateInput!): Product!
   createOneReview(data: ReviewCreateInput!): Review!
   createOneShoppingProduct(data: ShoppingProductCreateInput!): ShoppingProduct!
+  createOneWishlist(data: WishlistCreateInput): Wishlist!
+  createOneWishlistProduct(data: WishlistProductCreateInput!): WishlistProduct!
   deleteManyShoppingProduct(where: ShoppingProductWhereInput): BatchPayload!
   deleteOneOrder(where: OrderWhereUniqueInput!): Order
   deleteOneProduct(where: ProductWhereUniqueInput!): Product
@@ -701,6 +746,17 @@ input NestedFloatFilter {
   notIn: [Float]
 }
 
+input NestedFloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float]
+  lt: Float
+  lte: Float
+  not: NestedFloatNullableFilter
+  notIn: [Float]
+}
+
 input NestedFloatWithAggregatesFilter {
   _avg: NestedFloatFilter
   _count: NestedIntFilter
@@ -736,6 +792,22 @@ input NestedIntNullableFilter {
   lt: Int
   lte: Int
   not: NestedIntNullableFilter
+  notIn: [Int]
+}
+
+input NestedIntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
   notIn: [Int]
 }
 
@@ -821,8 +893,21 @@ input NullableDateTimeFieldUpdateOperationsInput {
   set: DateTime
 }
 
+input NullableIntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
 input NullableStringFieldUpdateOperationsInput {
   set: String
+}
+
+enum NullsOrder {
+  first
+  last
 }
 
 type Order {
@@ -2048,6 +2133,7 @@ type PaymentIntent {
 
 type Product {
   ShoppingProduct(cursor: ShoppingProductWhereUniqueInput, distinct: ShoppingProductScalarFieldEnum, orderBy: ShoppingProductOrderByWithRelationInput, skip: Int, take: Int, where: ShoppingProductWhereInput): [ShoppingProduct!]!
+  WishlistProduct(cursor: WishlistProductWhereUniqueInput, distinct: WishlistProductScalarFieldEnum, orderBy: WishlistProductOrderByWithRelationInput, skip: Int, take: Int, where: WishlistProductWhereInput): [WishlistProduct!]!
   _count: ProductCountOutputType!
   avgRating: Float!
   category: String!
@@ -2126,11 +2212,13 @@ input ProductCountOrderByAggregateInput {
 
 type ProductCountOutputType {
   ShoppingProduct: Int!
+  WishlistProduct: Int!
   reviews: Int!
 }
 
 input ProductCreateInput {
   ShoppingProduct: ShoppingProductCreateNestedManyWithoutProductInput
+  WishlistProduct: WishlistProductCreateNestedManyWithoutProductInput
   category: String!
   description: String!
   discount: Float
@@ -2180,6 +2268,12 @@ input ProductCreateNestedOneWithoutShoppingProductInput {
   create: ProductUncheckedCreateWithoutShoppingProductInput
 }
 
+input ProductCreateNestedOneWithoutWishlistProductInput {
+  connect: ProductWhereUniqueInput
+  connectOrCreate: ProductCreateOrConnectWithoutWishlistProductInput
+  create: ProductUncheckedCreateWithoutWishlistProductInput
+}
+
 input ProductCreateOrConnectWithoutReviewsInput {
   create: ProductUncheckedCreateWithoutReviewsInput!
   where: ProductWhereUniqueInput!
@@ -2190,8 +2284,14 @@ input ProductCreateOrConnectWithoutShoppingProductInput {
   where: ProductWhereUniqueInput!
 }
 
+input ProductCreateOrConnectWithoutWishlistProductInput {
+  create: ProductUncheckedCreateWithoutWishlistProductInput!
+  where: ProductWhereUniqueInput!
+}
+
 input ProductCreateWithoutReviewsInput {
   ShoppingProduct: ShoppingProductCreateNestedManyWithoutProductInput
+  WishlistProduct: WishlistProductCreateNestedManyWithoutProductInput
   category: String!
   description: String!
   discount: Float
@@ -2210,6 +2310,27 @@ input ProductCreateWithoutReviewsInput {
 }
 
 input ProductCreateWithoutShoppingProductInput {
+  WishlistProduct: WishlistProductCreateNestedManyWithoutProductInput
+  category: String!
+  description: String!
+  discount: Float
+  gpu: String
+  img: String!
+  likes: Int
+  manufacturer: String!
+  memory: String
+  name: String!
+  os: String
+  price: Int
+  processor: String
+  reviews: ReviewCreateNestedManyWithoutProductInput
+  screen: String
+  stock: Int
+  storage: String
+}
+
+input ProductCreateWithoutWishlistProductInput {
+  ShoppingProduct: ShoppingProductCreateNestedManyWithoutProductInput
   category: String!
   description: String!
   discount: Float
@@ -2313,40 +2434,41 @@ input ProductOrderByWithAggregationInput {
   category: SortOrder
   description: SortOrder
   discount: SortOrder
-  gpu: SortOrder
+  gpu: SortOrderInput
   id: SortOrder
   img: SortOrder
   likes: SortOrder
   manufacturer: SortOrder
-  memory: SortOrder
+  memory: SortOrderInput
   name: SortOrder
-  os: SortOrder
+  os: SortOrderInput
   price: SortOrder
-  processor: SortOrder
-  screen: SortOrder
+  processor: SortOrderInput
+  screen: SortOrderInput
   stock: SortOrder
-  storage: SortOrder
+  storage: SortOrderInput
 }
 
 input ProductOrderByWithRelationInput {
   ShoppingProduct: ShoppingProductOrderByRelationAggregateInput
+  WishlistProduct: WishlistProductOrderByRelationAggregateInput
   category: SortOrder
   description: SortOrder
   discount: SortOrder
-  gpu: SortOrder
+  gpu: SortOrderInput
   id: SortOrder
   img: SortOrder
   likes: SortOrder
   manufacturer: SortOrder
-  memory: SortOrder
+  memory: SortOrderInput
   name: SortOrder
-  os: SortOrder
+  os: SortOrderInput
   price: SortOrder
-  processor: SortOrder
+  processor: SortOrderInput
   reviews: ReviewOrderByRelationAggregateInput
-  screen: SortOrder
+  screen: SortOrderInput
   stock: SortOrder
-  storage: SortOrder
+  storage: SortOrderInput
 }
 
 input ProductRelationFilter {
@@ -2413,6 +2535,7 @@ input ProductSumOrderByAggregateInput {
 
 input ProductUncheckedCreateInput {
   ShoppingProduct: ShoppingProductUncheckedCreateNestedManyWithoutProductInput
+  WishlistProduct: WishlistProductUncheckedCreateNestedManyWithoutProductInput
   category: String!
   description: String!
   discount: Float
@@ -2434,6 +2557,7 @@ input ProductUncheckedCreateInput {
 
 input ProductUncheckedCreateWithoutReviewsInput {
   ShoppingProduct: ShoppingProductUncheckedCreateNestedManyWithoutProductInput
+  WishlistProduct: WishlistProductUncheckedCreateNestedManyWithoutProductInput
   category: String!
   description: String!
   discount: Float
@@ -2453,6 +2577,28 @@ input ProductUncheckedCreateWithoutReviewsInput {
 }
 
 input ProductUncheckedCreateWithoutShoppingProductInput {
+  WishlistProduct: WishlistProductUncheckedCreateNestedManyWithoutProductInput
+  category: String!
+  description: String!
+  discount: Float
+  gpu: String
+  id: Int
+  img: String!
+  likes: Int
+  manufacturer: String!
+  memory: String
+  name: String!
+  os: String
+  price: Int
+  processor: String
+  reviews: ReviewUncheckedCreateNestedManyWithoutProductInput
+  screen: String
+  stock: Int
+  storage: String
+}
+
+input ProductUncheckedCreateWithoutWishlistProductInput {
+  ShoppingProduct: ShoppingProductUncheckedCreateNestedManyWithoutProductInput
   category: String!
   description: String!
   discount: Float
@@ -2474,6 +2620,7 @@ input ProductUncheckedCreateWithoutShoppingProductInput {
 
 input ProductUncheckedUpdateInput {
   ShoppingProduct: ShoppingProductUncheckedUpdateManyWithoutProductNestedInput
+  WishlistProduct: WishlistProductUncheckedUpdateManyWithoutProductNestedInput
   category: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   discount: FloatFieldUpdateOperationsInput
@@ -2514,6 +2661,7 @@ input ProductUncheckedUpdateManyInput {
 
 input ProductUncheckedUpdateWithoutReviewsInput {
   ShoppingProduct: ShoppingProductUncheckedUpdateManyWithoutProductNestedInput
+  WishlistProduct: WishlistProductUncheckedUpdateManyWithoutProductNestedInput
   category: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   discount: FloatFieldUpdateOperationsInput
@@ -2533,6 +2681,28 @@ input ProductUncheckedUpdateWithoutReviewsInput {
 }
 
 input ProductUncheckedUpdateWithoutShoppingProductInput {
+  WishlistProduct: WishlistProductUncheckedUpdateManyWithoutProductNestedInput
+  category: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  discount: FloatFieldUpdateOperationsInput
+  gpu: NullableStringFieldUpdateOperationsInput
+  id: IntFieldUpdateOperationsInput
+  img: StringFieldUpdateOperationsInput
+  likes: IntFieldUpdateOperationsInput
+  manufacturer: StringFieldUpdateOperationsInput
+  memory: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  os: NullableStringFieldUpdateOperationsInput
+  price: IntFieldUpdateOperationsInput
+  processor: NullableStringFieldUpdateOperationsInput
+  reviews: ReviewUncheckedUpdateManyWithoutProductNestedInput
+  screen: NullableStringFieldUpdateOperationsInput
+  stock: IntFieldUpdateOperationsInput
+  storage: NullableStringFieldUpdateOperationsInput
+}
+
+input ProductUncheckedUpdateWithoutWishlistProductInput {
+  ShoppingProduct: ShoppingProductUncheckedUpdateManyWithoutProductNestedInput
   category: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   discount: FloatFieldUpdateOperationsInput
@@ -2554,6 +2724,7 @@ input ProductUncheckedUpdateWithoutShoppingProductInput {
 
 input ProductUpdateInput {
   ShoppingProduct: ShoppingProductUpdateManyWithoutProductNestedInput
+  WishlistProduct: WishlistProductUpdateManyWithoutProductNestedInput
   category: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   discount: FloatFieldUpdateOperationsInput
@@ -2606,8 +2777,19 @@ input ProductUpdateOneRequiredWithoutShoppingProductNestedInput {
   upsert: ProductUpsertWithoutShoppingProductInput
 }
 
+input ProductUpdateOneWithoutWishlistProductNestedInput {
+  connect: ProductWhereUniqueInput
+  connectOrCreate: ProductCreateOrConnectWithoutWishlistProductInput
+  create: ProductUncheckedCreateWithoutWishlistProductInput
+  delete: Boolean
+  disconnect: Boolean
+  update: ProductUncheckedUpdateWithoutWishlistProductInput
+  upsert: ProductUpsertWithoutWishlistProductInput
+}
+
 input ProductUpdateWithoutReviewsInput {
   ShoppingProduct: ShoppingProductUpdateManyWithoutProductNestedInput
+  WishlistProduct: WishlistProductUpdateManyWithoutProductNestedInput
   category: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   discount: FloatFieldUpdateOperationsInput
@@ -2626,6 +2808,27 @@ input ProductUpdateWithoutReviewsInput {
 }
 
 input ProductUpdateWithoutShoppingProductInput {
+  WishlistProduct: WishlistProductUpdateManyWithoutProductNestedInput
+  category: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  discount: FloatFieldUpdateOperationsInput
+  gpu: NullableStringFieldUpdateOperationsInput
+  img: StringFieldUpdateOperationsInput
+  likes: IntFieldUpdateOperationsInput
+  manufacturer: StringFieldUpdateOperationsInput
+  memory: NullableStringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  os: NullableStringFieldUpdateOperationsInput
+  price: IntFieldUpdateOperationsInput
+  processor: NullableStringFieldUpdateOperationsInput
+  reviews: ReviewUpdateManyWithoutProductNestedInput
+  screen: NullableStringFieldUpdateOperationsInput
+  stock: IntFieldUpdateOperationsInput
+  storage: NullableStringFieldUpdateOperationsInput
+}
+
+input ProductUpdateWithoutWishlistProductInput {
+  ShoppingProduct: ShoppingProductUpdateManyWithoutProductNestedInput
   category: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   discount: FloatFieldUpdateOperationsInput
@@ -2654,11 +2857,17 @@ input ProductUpsertWithoutShoppingProductInput {
   update: ProductUncheckedUpdateWithoutShoppingProductInput!
 }
 
+input ProductUpsertWithoutWishlistProductInput {
+  create: ProductUncheckedCreateWithoutWishlistProductInput!
+  update: ProductUncheckedUpdateWithoutWishlistProductInput!
+}
+
 input ProductWhereInput {
   AND: [ProductWhereInput]
   NOT: [ProductWhereInput]
   OR: [ProductWhereInput]
   ShoppingProduct: ShoppingProductListRelationFilter
+  WishlistProduct: WishlistProductListRelationFilter
   category: StringFilter
   description: StringFilter
   discount: FloatFilter
@@ -2689,6 +2898,8 @@ type Query {
   findFirstOrderAddress(cursor: OrderAddressWhereUniqueInput, distinct: [OrderAddressScalarFieldEnum], orderBy: [OrderAddressOrderByWithRelationInput], skip: Int, take: Int, where: OrderAddressWhereInput): OrderAddress
   findFirstProduct(cursor: ProductWhereUniqueInput, distinct: [ProductScalarFieldEnum], orderBy: [ProductOrderByWithRelationInput], skip: Int, take: Int, where: ProductWhereInput): Product
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): User
+  findFirstWishlist(cursor: WishlistWhereUniqueInput, distinct: WishlistScalarFieldEnum, orderBy: [WishlistOrderByWithRelationInput], skip: Int, take: Int, where: WishlistWhereInput): Wishlist
+  findFirstWishlistProduct(cursor: WishlistProductWhereUniqueInput, distinct: WishlistProductScalarFieldEnum, orderBy: [WishlistProductOrderByWithRelationInput], skip: Int, take: Int, where: WishlistProductWhereInput): WishlistProduct
   findManyOrder(cursor: OrderWhereUniqueInput, distinct: [OrderScalarFieldEnum], orderBy: [OrderOrderByWithRelationInput], skip: Int, take: Int, where: OrderWhereInput): [Order!]!
   findManyOrderCount(cursor: OrderWhereUniqueInput, distinct: [OrderScalarFieldEnum], orderBy: [OrderOrderByWithRelationInput], skip: Int, take: Int, where: OrderWhereInput): Int!
   findManyOrderProduct(cursor: OrderProductWhereUniqueInput, distinct: [OrderProductScalarFieldEnum], orderBy: [OrderProductOrderByWithRelationInput], skip: Int, take: Int, where: OrderProductWhereInput): [OrderProduct!]!
@@ -3586,6 +3797,11 @@ enum SortOrder {
   desc
 }
 
+input SortOrderInput {
+  nulls: NullsOrder
+  sort: SortOrder!
+}
+
 input StringFieldUpdateOperationsInput {
   set: String
 }
@@ -3664,6 +3880,7 @@ enum TransactionIsolationLevel {
 }
 
 type User {
+  Wishlist: Wishlist
   _count: UserCountOutputType!
   address: Address
   birthday: DateTime
@@ -3720,6 +3937,7 @@ type UserCountOutputType {
 }
 
 input UserCreateInput {
+  Wishlist: WishlistCreateNestedOneWithoutUserInput
   address: AddressCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductCreateNestedManyWithoutUserInput
@@ -3770,6 +3988,12 @@ input UserCreateNestedOneWithoutReviewsInput {
   create: UserUncheckedCreateWithoutReviewsInput
 }
 
+input UserCreateNestedOneWithoutWishlistInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutWishlistInput
+  create: UserUncheckedCreateWithoutWishlistInput
+}
+
 input UserCreateOrConnectWithoutAddressInput {
   create: UserUncheckedCreateWithoutAddressInput!
   where: UserWhereUniqueInput!
@@ -3790,7 +4014,13 @@ input UserCreateOrConnectWithoutReviewsInput {
   where: UserWhereUniqueInput!
 }
 
+input UserCreateOrConnectWithoutWishlistInput {
+  create: UserUncheckedCreateWithoutWishlistInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateWithoutAddressInput {
+  Wishlist: WishlistCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductCreateNestedManyWithoutUserInput
   createdAt: DateTime
@@ -3805,6 +4035,7 @@ input UserCreateWithoutAddressInput {
 }
 
 input UserCreateWithoutCartInput {
+  Wishlist: WishlistCreateNestedOneWithoutUserInput
   address: AddressCreateNestedOneWithoutUserInput
   birthday: DateTime
   createdAt: DateTime
@@ -3819,6 +4050,7 @@ input UserCreateWithoutCartInput {
 }
 
 input UserCreateWithoutOrdersInput {
+  Wishlist: WishlistCreateNestedOneWithoutUserInput
   address: AddressCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductCreateNestedManyWithoutUserInput
@@ -3833,6 +4065,7 @@ input UserCreateWithoutOrdersInput {
 }
 
 input UserCreateWithoutReviewsInput {
+  Wishlist: WishlistCreateNestedOneWithoutUserInput
   address: AddressCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductCreateNestedManyWithoutUserInput
@@ -3843,6 +4076,21 @@ input UserCreateWithoutReviewsInput {
   lastName: String!
   orders: OrderCreateNestedManyWithoutUserInput
   password: String!
+  role: Role
+}
+
+input UserCreateWithoutWishlistInput {
+  address: AddressCreateNestedOneWithoutUserInput
+  birthday: DateTime
+  cart: ShoppingProductCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  firstName: String!
+  gender: String
+  lastName: String!
+  orders: OrderCreateNestedManyWithoutUserInput
+  password: String!
+  reviews: ReviewCreateNestedManyWithoutUserInput
   role: Role
 }
 
@@ -3900,11 +4148,11 @@ input UserOrderByWithAggregationInput {
   _max: UserMaxOrderByAggregateInput
   _min: UserMinOrderByAggregateInput
   _sum: UserSumOrderByAggregateInput
-  birthday: SortOrder
+  birthday: SortOrderInput
   createdAt: SortOrder
   email: SortOrder
   firstName: SortOrder
-  gender: SortOrder
+  gender: SortOrderInput
   id: SortOrder
   lastName: SortOrder
   password: SortOrder
@@ -3912,13 +4160,14 @@ input UserOrderByWithAggregationInput {
 }
 
 input UserOrderByWithRelationInput {
+  Wishlist: WishlistOrderByWithRelationInput
   address: AddressOrderByWithRelationInput
-  birthday: SortOrder
+  birthday: SortOrderInput
   cart: ShoppingProductOrderByRelationAggregateInput
   createdAt: SortOrder
   email: SortOrder
   firstName: SortOrder
-  gender: SortOrder
+  gender: SortOrderInput
   id: SortOrder
   lastName: SortOrder
   orders: OrderOrderByRelationAggregateInput
@@ -3968,6 +4217,7 @@ input UserSumOrderByAggregateInput {
 }
 
 input UserUncheckedCreateInput {
+  Wishlist: WishlistUncheckedCreateNestedOneWithoutUserInput
   address: AddressUncheckedCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductUncheckedCreateNestedManyWithoutUserInput
@@ -3984,6 +4234,7 @@ input UserUncheckedCreateInput {
 }
 
 input UserUncheckedCreateWithoutAddressInput {
+  Wishlist: WishlistUncheckedCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductUncheckedCreateNestedManyWithoutUserInput
   createdAt: DateTime
@@ -3999,6 +4250,7 @@ input UserUncheckedCreateWithoutAddressInput {
 }
 
 input UserUncheckedCreateWithoutCartInput {
+  Wishlist: WishlistUncheckedCreateNestedOneWithoutUserInput
   address: AddressUncheckedCreateNestedOneWithoutUserInput
   birthday: DateTime
   createdAt: DateTime
@@ -4014,6 +4266,7 @@ input UserUncheckedCreateWithoutCartInput {
 }
 
 input UserUncheckedCreateWithoutOrdersInput {
+  Wishlist: WishlistUncheckedCreateNestedOneWithoutUserInput
   address: AddressUncheckedCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductUncheckedCreateNestedManyWithoutUserInput
@@ -4029,6 +4282,7 @@ input UserUncheckedCreateWithoutOrdersInput {
 }
 
 input UserUncheckedCreateWithoutReviewsInput {
+  Wishlist: WishlistUncheckedCreateNestedOneWithoutUserInput
   address: AddressUncheckedCreateNestedOneWithoutUserInput
   birthday: DateTime
   cart: ShoppingProductUncheckedCreateNestedManyWithoutUserInput
@@ -4043,7 +4297,24 @@ input UserUncheckedCreateWithoutReviewsInput {
   role: Role
 }
 
+input UserUncheckedCreateWithoutWishlistInput {
+  address: AddressUncheckedCreateNestedOneWithoutUserInput
+  birthday: DateTime
+  cart: ShoppingProductUncheckedCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  firstName: String!
+  gender: String
+  id: Int
+  lastName: String!
+  orders: OrderUncheckedCreateNestedManyWithoutUserInput
+  password: String!
+  reviews: ReviewUncheckedCreateNestedManyWithoutUserInput
+  role: Role
+}
+
 input UserUncheckedUpdateInput {
+  Wishlist: WishlistUncheckedUpdateOneWithoutUserNestedInput
   address: AddressUncheckedUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
@@ -4072,6 +4343,7 @@ input UserUncheckedUpdateManyInput {
 }
 
 input UserUncheckedUpdateWithoutAddressInput {
+  Wishlist: WishlistUncheckedUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -4087,6 +4359,7 @@ input UserUncheckedUpdateWithoutAddressInput {
 }
 
 input UserUncheckedUpdateWithoutCartInput {
+  Wishlist: WishlistUncheckedUpdateOneWithoutUserNestedInput
   address: AddressUncheckedUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -4102,6 +4375,7 @@ input UserUncheckedUpdateWithoutCartInput {
 }
 
 input UserUncheckedUpdateWithoutOrdersInput {
+  Wishlist: WishlistUncheckedUpdateOneWithoutUserNestedInput
   address: AddressUncheckedUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
@@ -4117,6 +4391,7 @@ input UserUncheckedUpdateWithoutOrdersInput {
 }
 
 input UserUncheckedUpdateWithoutReviewsInput {
+  Wishlist: WishlistUncheckedUpdateOneWithoutUserNestedInput
   address: AddressUncheckedUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
@@ -4131,7 +4406,24 @@ input UserUncheckedUpdateWithoutReviewsInput {
   role: EnumRoleFieldUpdateOperationsInput
 }
 
+input UserUncheckedUpdateWithoutWishlistInput {
+  address: AddressUncheckedUpdateOneWithoutUserNestedInput
+  birthday: NullableDateTimeFieldUpdateOperationsInput
+  cart: ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  firstName: StringFieldUpdateOperationsInput
+  gender: NullableStringFieldUpdateOperationsInput
+  id: IntFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
+  orders: OrderUncheckedUpdateManyWithoutUserNestedInput
+  password: StringFieldUpdateOperationsInput
+  reviews: ReviewUncheckedUpdateManyWithoutUserNestedInput
+  role: EnumRoleFieldUpdateOperationsInput
+}
+
 input UserUpdateInput {
+  Wishlist: WishlistUpdateOneWithoutUserNestedInput
   address: AddressUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUpdateManyWithoutUserNestedInput
@@ -4189,7 +4481,18 @@ input UserUpdateOneRequiredWithoutReviewsNestedInput {
   upsert: UserUpsertWithoutReviewsInput
 }
 
+input UserUpdateOneWithoutWishlistNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutWishlistInput
+  create: UserUncheckedCreateWithoutWishlistInput
+  delete: Boolean
+  disconnect: Boolean
+  update: UserUncheckedUpdateWithoutWishlistInput
+  upsert: UserUpsertWithoutWishlistInput
+}
+
 input UserUpdateWithoutAddressInput {
+  Wishlist: WishlistUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUpdateManyWithoutUserNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -4204,6 +4507,7 @@ input UserUpdateWithoutAddressInput {
 }
 
 input UserUpdateWithoutCartInput {
+  Wishlist: WishlistUpdateOneWithoutUserNestedInput
   address: AddressUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -4218,6 +4522,7 @@ input UserUpdateWithoutCartInput {
 }
 
 input UserUpdateWithoutOrdersInput {
+  Wishlist: WishlistUpdateOneWithoutUserNestedInput
   address: AddressUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUpdateManyWithoutUserNestedInput
@@ -4232,6 +4537,7 @@ input UserUpdateWithoutOrdersInput {
 }
 
 input UserUpdateWithoutReviewsInput {
+  Wishlist: WishlistUpdateOneWithoutUserNestedInput
   address: AddressUpdateOneWithoutUserNestedInput
   birthday: NullableDateTimeFieldUpdateOperationsInput
   cart: ShoppingProductUpdateManyWithoutUserNestedInput
@@ -4242,6 +4548,21 @@ input UserUpdateWithoutReviewsInput {
   lastName: StringFieldUpdateOperationsInput
   orders: OrderUpdateManyWithoutUserNestedInput
   password: StringFieldUpdateOperationsInput
+  role: EnumRoleFieldUpdateOperationsInput
+}
+
+input UserUpdateWithoutWishlistInput {
+  address: AddressUpdateOneWithoutUserNestedInput
+  birthday: NullableDateTimeFieldUpdateOperationsInput
+  cart: ShoppingProductUpdateManyWithoutUserNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  firstName: StringFieldUpdateOperationsInput
+  gender: NullableStringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
+  orders: OrderUpdateManyWithoutUserNestedInput
+  password: StringFieldUpdateOperationsInput
+  reviews: ReviewUpdateManyWithoutUserNestedInput
   role: EnumRoleFieldUpdateOperationsInput
 }
 
@@ -4265,10 +4586,16 @@ input UserUpsertWithoutReviewsInput {
   update: UserUncheckedUpdateWithoutReviewsInput!
 }
 
+input UserUpsertWithoutWishlistInput {
+  create: UserUncheckedCreateWithoutWishlistInput!
+  update: UserUncheckedUpdateWithoutWishlistInput!
+}
+
 input UserWhereInput {
   AND: [UserWhereInput]
   NOT: [UserWhereInput]
   OR: [UserWhereInput]
+  Wishlist: WishlistWhereInput
   address: AddressWhereInput
   birthday: DateTimeNullableFilter
   cart: ShoppingProductListRelationFilter
@@ -4287,6 +4614,618 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   email: String
   id: Int
+}
+
+type Wishlist {
+  _count: WishlistCountOutputType!
+  id: Int!
+  products(cursor: WishlistProductWhereUniqueInput, distinct: WishlistProductScalarFieldEnum, orderBy: WishlistProductOrderByWithRelationInput, skip: Int, take: Int, where: WishlistProductWhereInput): [WishlistProduct!]!
+  user: User
+  userId: Int
+}
+
+type WishlistAvgAggregateOutputType {
+  id: Float
+  userId: Float
+}
+
+input WishlistAvgOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+type WishlistCountAggregateOutputType {
+  _all: Int!
+  id: Int!
+  userId: Int!
+}
+
+input WishlistCountOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+type WishlistCountOutputType {
+  products: Int!
+}
+
+input WishlistCreateInput {
+  products: WishlistProductCreateNestedManyWithoutWishlistInput
+  user: UserCreateNestedOneWithoutWishlistInput
+}
+
+input WishlistCreateManyInput {
+  id: Int
+  userId: Int
+}
+
+input WishlistCreateNestedOneWithoutProductsInput {
+  connect: WishlistWhereUniqueInput
+  connectOrCreate: WishlistCreateOrConnectWithoutProductsInput
+  create: WishlistUncheckedCreateWithoutProductsInput
+}
+
+input WishlistCreateNestedOneWithoutUserInput {
+  connect: WishlistWhereUniqueInput
+  connectOrCreate: WishlistCreateOrConnectWithoutUserInput
+  create: WishlistUncheckedCreateWithoutUserInput
+}
+
+input WishlistCreateOrConnectWithoutProductsInput {
+  create: WishlistUncheckedCreateWithoutProductsInput!
+  where: WishlistWhereUniqueInput!
+}
+
+input WishlistCreateOrConnectWithoutUserInput {
+  create: WishlistUncheckedCreateWithoutUserInput!
+  where: WishlistWhereUniqueInput!
+}
+
+input WishlistCreateWithoutProductsInput {
+  user: UserCreateNestedOneWithoutWishlistInput
+}
+
+input WishlistCreateWithoutUserInput {
+  products: WishlistProductCreateNestedManyWithoutWishlistInput
+}
+
+type WishlistMaxAggregateOutputType {
+  id: Int
+  userId: Int
+}
+
+input WishlistMaxOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+type WishlistMinAggregateOutputType {
+  id: Int
+  userId: Int
+}
+
+input WishlistMinOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+input WishlistOrderByWithAggregationInput {
+  _avg: WishlistAvgOrderByAggregateInput
+  _count: WishlistCountOrderByAggregateInput
+  _max: WishlistMaxOrderByAggregateInput
+  _min: WishlistMinOrderByAggregateInput
+  _sum: WishlistSumOrderByAggregateInput
+  id: SortOrder
+  userId: SortOrderInput
+}
+
+input WishlistOrderByWithRelationInput {
+  id: SortOrder
+  products: WishlistProductOrderByRelationAggregateInput
+  user: UserOrderByWithRelationInput
+  userId: SortOrderInput
+}
+
+type WishlistProduct {
+  id: Int!
+  product: Product
+  productId: Int!
+  wishlist: Wishlist
+  wishlistId: Int!
+}
+
+type WishlistProductAvgAggregateOutputType {
+  id: Float
+  productId: Float
+  wishlistId: Float
+}
+
+input WishlistProductAvgOrderByAggregateInput {
+  id: SortOrder
+  productId: SortOrder
+  wishlistId: SortOrder
+}
+
+type WishlistProductCountAggregateOutputType {
+  _all: Int!
+  id: Int!
+  productId: Int!
+  wishlistId: Int!
+}
+
+input WishlistProductCountOrderByAggregateInput {
+  id: SortOrder
+  productId: SortOrder
+  wishlistId: SortOrder
+}
+
+input WishlistProductCreateInput {
+  product: ProductCreateNestedOneWithoutWishlistProductInput
+  wishlist: WishlistCreateNestedOneWithoutProductsInput
+}
+
+input WishlistProductCreateManyInput {
+  id: Int
+  productId: Int!
+  wishlistId: Int!
+}
+
+input WishlistProductCreateManyProductInput {
+  id: Int
+  wishlistId: Int!
+}
+
+input WishlistProductCreateManyProductInputEnvelope {
+  data: WishlistProductCreateManyProductInput!
+  skipDuplicates: Boolean
+}
+
+input WishlistProductCreateManyWishlistInput {
+  id: Int
+  productId: Int!
+}
+
+input WishlistProductCreateManyWishlistInputEnvelope {
+  data: WishlistProductCreateManyWishlistInput!
+  skipDuplicates: Boolean
+}
+
+input WishlistProductCreateNestedManyWithoutProductInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutProductInput]
+  create: [WishlistProductCreateWithoutProductInput]
+  createMany: WishlistProductCreateManyProductInputEnvelope
+}
+
+input WishlistProductCreateNestedManyWithoutWishlistInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutWishlistInput]
+  create: [WishlistProductCreateWithoutWishlistInput]
+  createMany: WishlistProductCreateManyWishlistInputEnvelope
+}
+
+input WishlistProductCreateOrConnectWithoutProductInput {
+  create: WishlistProductUncheckedCreateWithoutProductInput!
+  where: WishlistProductWhereUniqueInput!
+}
+
+input WishlistProductCreateOrConnectWithoutWishlistInput {
+  create: WishlistProductUncheckedCreateWithoutWishlistInput!
+  where: WishlistProductWhereUniqueInput!
+}
+
+input WishlistProductCreateWithoutProductInput {
+  wishlist: WishlistCreateNestedOneWithoutProductsInput
+}
+
+input WishlistProductCreateWithoutWishlistInput {
+  product: ProductCreateNestedOneWithoutWishlistProductInput
+}
+
+input WishlistProductListRelationFilter {
+  every: WishlistProductWhereInput
+  none: WishlistProductWhereInput
+  some: WishlistProductWhereInput
+}
+
+type WishlistProductMaxAggregateOutputType {
+  id: Int
+  productId: Int
+  wishlistId: Int
+}
+
+input WishlistProductMaxOrderByAggregateInput {
+  id: SortOrder
+  productId: SortOrder
+  wishlistId: SortOrder
+}
+
+type WishlistProductMinAggregateOutputType {
+  id: Int
+  productId: Int
+  wishlistId: Int
+}
+
+input WishlistProductMinOrderByAggregateInput {
+  id: SortOrder
+  productId: SortOrder
+  wishlistId: SortOrder
+}
+
+input WishlistProductOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input WishlistProductOrderByWithAggregationInput {
+  _avg: WishlistProductAvgOrderByAggregateInput
+  _count: WishlistProductCountOrderByAggregateInput
+  _max: WishlistProductMaxOrderByAggregateInput
+  _min: WishlistProductMinOrderByAggregateInput
+  _sum: WishlistProductSumOrderByAggregateInput
+  id: SortOrder
+  productId: SortOrder
+  wishlistId: SortOrder
+}
+
+input WishlistProductOrderByWithRelationInput {
+  id: SortOrder
+  product: ProductOrderByWithRelationInput
+  productId: SortOrder
+  wishlist: WishlistOrderByWithRelationInput
+  wishlistId: SortOrder
+}
+
+enum WishlistProductScalarFieldEnum {
+  id
+  productId
+  wishlistId
+}
+
+input WishlistProductScalarWhereInput {
+  AND: [WishlistProductScalarWhereInput]
+  NOT: [WishlistProductScalarWhereInput]
+  OR: [WishlistProductScalarWhereInput]
+  id: IntFilter
+  productId: IntFilter
+  wishlistId: IntFilter
+}
+
+input WishlistProductScalarWhereWithAggregatesInput {
+  AND: [WishlistProductScalarWhereWithAggregatesInput]
+  NOT: [WishlistProductScalarWhereWithAggregatesInput]
+  OR: [WishlistProductScalarWhereWithAggregatesInput]
+  id: IntWithAggregatesFilter
+  productId: IntWithAggregatesFilter
+  wishlistId: IntWithAggregatesFilter
+}
+
+type WishlistProductSumAggregateOutputType {
+  id: Int
+  productId: Int
+  wishlistId: Int
+}
+
+input WishlistProductSumOrderByAggregateInput {
+  id: SortOrder
+  productId: SortOrder
+  wishlistId: SortOrder
+}
+
+input WishlistProductUncheckedCreateInput {
+  id: Int
+  productId: Int!
+  wishlistId: Int!
+}
+
+input WishlistProductUncheckedCreateNestedManyWithoutProductInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutProductInput]
+  create: [WishlistProductCreateWithoutProductInput]
+  createMany: WishlistProductCreateManyProductInputEnvelope
+}
+
+input WishlistProductUncheckedCreateNestedManyWithoutWishlistInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutWishlistInput]
+  create: [WishlistProductCreateWithoutWishlistInput]
+  createMany: WishlistProductCreateManyWishlistInputEnvelope
+}
+
+input WishlistProductUncheckedCreateWithoutProductInput {
+  id: Int
+  wishlistId: Int!
+}
+
+input WishlistProductUncheckedCreateWithoutWishlistInput {
+  id: Int
+  productId: Int!
+}
+
+input WishlistProductUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  productId: IntFieldUpdateOperationsInput
+  wishlistId: IntFieldUpdateOperationsInput
+}
+
+input WishlistProductUncheckedUpdateManyInput {
+  id: IntFieldUpdateOperationsInput
+  productId: IntFieldUpdateOperationsInput
+  wishlistId: IntFieldUpdateOperationsInput
+}
+
+input WishlistProductUncheckedUpdateManyWithoutProductNestedInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutProductInput]
+  create: [WishlistProductCreateWithoutProductInput]
+  createMany: WishlistProductCreateManyProductInputEnvelope
+  delete: [WishlistProductWhereUniqueInput]
+  deleteMany: [WishlistProductScalarWhereInput]
+  disconnect: [WishlistProductWhereUniqueInput]
+  set: [WishlistProductWhereUniqueInput]
+  update: [WishlistProductUpdateWithWhereUniqueWithoutProductInput]
+  updateMany: [WishlistProductUpdateManyWithWhereWithoutProductInput]
+  upsert: [WishlistProductUpsertWithWhereUniqueWithoutProductInput]
+}
+
+input WishlistProductUncheckedUpdateManyWithoutProductsInput {
+  id: IntFieldUpdateOperationsInput
+  productId: IntFieldUpdateOperationsInput
+}
+
+input WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutWishlistInput]
+  create: [WishlistProductCreateWithoutWishlistInput]
+  createMany: WishlistProductCreateManyWishlistInputEnvelope
+  delete: [WishlistProductWhereUniqueInput]
+  deleteMany: [WishlistProductScalarWhereInput]
+  disconnect: [WishlistProductWhereUniqueInput]
+  set: [WishlistProductWhereUniqueInput]
+  update: [WishlistProductUpdateWithWhereUniqueWithoutWishlistInput]
+  updateMany: [WishlistProductUpdateManyWithWhereWithoutWishlistInput]
+  upsert: [WishlistProductUpsertWithWhereUniqueWithoutWishlistInput]
+}
+
+input WishlistProductUncheckedUpdateManyWithoutWishlistProductInput {
+  id: IntFieldUpdateOperationsInput
+  wishlistId: IntFieldUpdateOperationsInput
+}
+
+input WishlistProductUncheckedUpdateWithoutProductInput {
+  id: IntFieldUpdateOperationsInput
+  wishlistId: IntFieldUpdateOperationsInput
+}
+
+input WishlistProductUncheckedUpdateWithoutWishlistInput {
+  id: IntFieldUpdateOperationsInput
+  productId: IntFieldUpdateOperationsInput
+}
+
+input WishlistProductUpdateInput {
+  product: ProductUpdateOneWithoutWishlistProductNestedInput
+  wishlist: WishlistUpdateOneWithoutProductsNestedInput
+}
+
+input WishlistProductUpdateManyWithWhereWithoutProductInput {
+  data: WishlistProductUncheckedUpdateManyWithoutWishlistProductInput!
+  where: WishlistProductScalarWhereInput!
+}
+
+input WishlistProductUpdateManyWithWhereWithoutWishlistInput {
+  data: WishlistProductUncheckedUpdateManyWithoutProductsInput!
+  where: WishlistProductScalarWhereInput!
+}
+
+input WishlistProductUpdateManyWithoutProductNestedInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutProductInput]
+  create: [WishlistProductCreateWithoutProductInput]
+  createMany: WishlistProductCreateManyProductInputEnvelope
+  delete: [WishlistProductWhereUniqueInput]
+  deleteMany: [WishlistProductScalarWhereInput]
+  disconnect: [WishlistProductWhereUniqueInput]
+  set: [WishlistProductWhereUniqueInput]
+  update: [WishlistProductUpdateWithWhereUniqueWithoutProductInput]
+  updateMany: [WishlistProductUpdateManyWithWhereWithoutProductInput]
+  upsert: [WishlistProductUpsertWithWhereUniqueWithoutProductInput]
+}
+
+input WishlistProductUpdateManyWithoutWishlistNestedInput {
+  connect: [WishlistProductWhereUniqueInput]
+  connectOrCreate: [WishlistProductCreateOrConnectWithoutWishlistInput]
+  create: [WishlistProductCreateWithoutWishlistInput]
+  createMany: WishlistProductCreateManyWishlistInputEnvelope
+  delete: [WishlistProductWhereUniqueInput]
+  deleteMany: [WishlistProductScalarWhereInput]
+  disconnect: [WishlistProductWhereUniqueInput]
+  set: [WishlistProductWhereUniqueInput]
+  update: [WishlistProductUpdateWithWhereUniqueWithoutWishlistInput]
+  updateMany: [WishlistProductUpdateManyWithWhereWithoutWishlistInput]
+  upsert: [WishlistProductUpsertWithWhereUniqueWithoutWishlistInput]
+}
+
+input WishlistProductUpdateWithWhereUniqueWithoutProductInput {
+  data: WishlistProductUncheckedUpdateWithoutProductInput!
+  where: WishlistProductWhereUniqueInput!
+}
+
+input WishlistProductUpdateWithWhereUniqueWithoutWishlistInput {
+  data: WishlistProductUncheckedUpdateWithoutWishlistInput!
+  where: WishlistProductWhereUniqueInput!
+}
+
+input WishlistProductUpdateWithoutProductInput {
+  wishlist: WishlistUpdateOneWithoutProductsNestedInput
+}
+
+input WishlistProductUpdateWithoutWishlistInput {
+  product: ProductUpdateOneWithoutWishlistProductNestedInput
+}
+
+input WishlistProductUpsertWithWhereUniqueWithoutProductInput {
+  create: WishlistProductUncheckedCreateWithoutProductInput!
+  update: WishlistProductUncheckedUpdateWithoutProductInput!
+  where: WishlistProductWhereUniqueInput!
+}
+
+input WishlistProductUpsertWithWhereUniqueWithoutWishlistInput {
+  create: WishlistProductUncheckedCreateWithoutWishlistInput!
+  update: WishlistProductUncheckedUpdateWithoutWishlistInput!
+  where: WishlistProductWhereUniqueInput!
+}
+
+input WishlistProductWhereInput {
+  AND: [WishlistProductWhereInput]
+  NOT: [WishlistProductWhereInput]
+  OR: [WishlistProductWhereInput]
+  id: IntFilter
+  product: ProductWhereInput
+  productId: IntFilter
+  wishlist: WishlistWhereInput
+  wishlistId: IntFilter
+}
+
+input WishlistProductWhereUniqueInput {
+  id: Int
+}
+
+input WishlistRelationFilter {
+  is: WishlistWhereInput
+  isNot: WishlistWhereInput
+}
+
+enum WishlistScalarFieldEnum {
+  id
+  userId
+}
+
+input WishlistScalarWhereWithAggregatesInput {
+  AND: [WishlistScalarWhereWithAggregatesInput]
+  NOT: [WishlistScalarWhereWithAggregatesInput]
+  OR: [WishlistScalarWhereWithAggregatesInput]
+  id: IntWithAggregatesFilter
+  userId: IntNullableWithAggregatesFilter
+}
+
+type WishlistSumAggregateOutputType {
+  id: Int
+  userId: Int
+}
+
+input WishlistSumOrderByAggregateInput {
+  id: SortOrder
+  userId: SortOrder
+}
+
+input WishlistUncheckedCreateInput {
+  id: Int
+  products: WishlistProductUncheckedCreateNestedManyWithoutWishlistInput
+  userId: Int
+}
+
+input WishlistUncheckedCreateNestedOneWithoutUserInput {
+  connect: WishlistWhereUniqueInput
+  connectOrCreate: WishlistCreateOrConnectWithoutUserInput
+  create: WishlistUncheckedCreateWithoutUserInput
+}
+
+input WishlistUncheckedCreateWithoutProductsInput {
+  id: Int
+  userId: Int
+}
+
+input WishlistUncheckedCreateWithoutUserInput {
+  id: Int
+  products: WishlistProductUncheckedCreateNestedManyWithoutWishlistInput
+}
+
+input WishlistUncheckedUpdateInput {
+  id: IntFieldUpdateOperationsInput
+  products: WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput
+  userId: NullableIntFieldUpdateOperationsInput
+}
+
+input WishlistUncheckedUpdateManyInput {
+  id: IntFieldUpdateOperationsInput
+  userId: NullableIntFieldUpdateOperationsInput
+}
+
+input WishlistUncheckedUpdateOneWithoutUserNestedInput {
+  connect: WishlistWhereUniqueInput
+  connectOrCreate: WishlistCreateOrConnectWithoutUserInput
+  create: WishlistUncheckedCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: WishlistUncheckedUpdateWithoutUserInput
+  upsert: WishlistUpsertWithoutUserInput
+}
+
+input WishlistUncheckedUpdateWithoutProductsInput {
+  id: IntFieldUpdateOperationsInput
+  userId: NullableIntFieldUpdateOperationsInput
+}
+
+input WishlistUncheckedUpdateWithoutUserInput {
+  id: IntFieldUpdateOperationsInput
+  products: WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput
+}
+
+input WishlistUpdateInput {
+  products: WishlistProductUpdateManyWithoutWishlistNestedInput
+  user: UserUpdateOneWithoutWishlistNestedInput
+}
+
+input WishlistUpdateOneWithoutProductsNestedInput {
+  connect: WishlistWhereUniqueInput
+  connectOrCreate: WishlistCreateOrConnectWithoutProductsInput
+  create: WishlistUncheckedCreateWithoutProductsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: WishlistUncheckedUpdateWithoutProductsInput
+  upsert: WishlistUpsertWithoutProductsInput
+}
+
+input WishlistUpdateOneWithoutUserNestedInput {
+  connect: WishlistWhereUniqueInput
+  connectOrCreate: WishlistCreateOrConnectWithoutUserInput
+  create: WishlistUncheckedCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: WishlistUncheckedUpdateWithoutUserInput
+  upsert: WishlistUpsertWithoutUserInput
+}
+
+input WishlistUpdateWithoutProductsInput {
+  user: UserUpdateOneWithoutWishlistNestedInput
+}
+
+input WishlistUpdateWithoutUserInput {
+  products: WishlistProductUpdateManyWithoutWishlistNestedInput
+}
+
+input WishlistUpsertWithoutProductsInput {
+  create: WishlistUncheckedCreateWithoutProductsInput!
+  update: WishlistUncheckedUpdateWithoutProductsInput!
+}
+
+input WishlistUpsertWithoutUserInput {
+  create: WishlistUncheckedCreateWithoutUserInput!
+  update: WishlistUncheckedUpdateWithoutUserInput!
+}
+
+input WishlistWhereInput {
+  AND: [WishlistWhereInput]
+  NOT: [WishlistWhereInput]
+  OR: [WishlistWhereInput]
+  id: IntFilter
+  products: WishlistProductListRelationFilter
+  user: UserWhereInput
+  userId: IntNullableFilter
+}
+
+input WishlistWhereUniqueInput {
+  id: Int
+  userId: Int
 }
 
 type adminStats {

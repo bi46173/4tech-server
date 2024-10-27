@@ -1,84 +1,5 @@
 import { enumType, inputObjectType, objectType } from 'nexus'
 
-export const AddressScalarFieldEnum = enumType({
-  name: 'AddressScalarFieldEnum',
-  members: [
-    'id',
-    'street',
-    'city',
-    'zipCode',
-    'country',
-    'phoneNumber',
-    'userId',
-  ],
-})
-
-export const OrderAddressScalarFieldEnum = enumType({
-  name: 'OrderAddressScalarFieldEnum',
-  members: [
-    'id',
-    'orderId',
-    'fullName',
-    'street',
-    'city',
-    'zipCode',
-    'country',
-    'phoneNumber',
-  ],
-})
-
-export const OrderProductScalarFieldEnum = enumType({
-  name: 'OrderProductScalarFieldEnum',
-  members: ['id', 'orderId', 'name', 'price', 'img', 'discount', 'quantity'],
-})
-
-export const OrderScalarFieldEnum = enumType({
-  name: 'OrderScalarFieldEnum',
-  members: ['id', 'userId', 'OrderStatus', 'date', 'subtotal', 'type'],
-})
-
-export const ProductScalarFieldEnum = enumType({
-  name: 'ProductScalarFieldEnum',
-  members: [
-    'id',
-    'name',
-    'description',
-    'price',
-    'discount',
-    'stock',
-    'category',
-    'manufacturer',
-    'img',
-    'likes',
-    'memory',
-    'storage',
-    'processor',
-    'gpu',
-    'os',
-    'screen',
-  ],
-})
-
-export const QueryMode = enumType({
-  name: 'QueryMode',
-  members: ['default', 'insensitive'],
-})
-
-export const ReviewScalarFieldEnum = enumType({
-  name: 'ReviewScalarFieldEnum',
-  members: ['id', 'userId', 'productId', 'comment', 'rating', 'date'],
-})
-
-export const ShoppingProductScalarFieldEnum = enumType({
-  name: 'ShoppingProductScalarFieldEnum',
-  members: ['id', 'quantity', 'userId', 'productId'],
-})
-
-export const SortOrder = enumType({
-  name: 'SortOrder',
-  members: ['asc', 'desc'],
-})
-
 export const TransactionIsolationLevel = enumType({
   name: 'TransactionIsolationLevel',
   members: [
@@ -104,14 +25,108 @@ export const UserScalarFieldEnum = enumType({
   ],
 })
 
-export const OrderType = enumType({
-  name: 'OrderType',
-  members: ['Online', 'Cash'],
+export const AddressScalarFieldEnum = enumType({
+  name: 'AddressScalarFieldEnum',
+  members: [
+    'id',
+    'street',
+    'city',
+    'zipCode',
+    'country',
+    'phoneNumber',
+    'userId',
+  ],
+})
+
+export const ProductScalarFieldEnum = enumType({
+  name: 'ProductScalarFieldEnum',
+  members: [
+    'id',
+    'name',
+    'description',
+    'price',
+    'discount',
+    'stock',
+    'category',
+    'manufacturer',
+    'img',
+    'likes',
+    'memory',
+    'storage',
+    'processor',
+    'gpu',
+    'os',
+    'screen',
+  ],
+})
+
+export const OrderScalarFieldEnum = enumType({
+  name: 'OrderScalarFieldEnum',
+  members: ['id', 'userId', 'OrderStatus', 'date', 'subtotal', 'type'],
+})
+
+export const OrderAddressScalarFieldEnum = enumType({
+  name: 'OrderAddressScalarFieldEnum',
+  members: [
+    'id',
+    'orderId',
+    'fullName',
+    'street',
+    'city',
+    'zipCode',
+    'country',
+    'phoneNumber',
+  ],
+})
+
+export const OrderProductScalarFieldEnum = enumType({
+  name: 'OrderProductScalarFieldEnum',
+  members: ['id', 'orderId', 'name', 'price', 'img', 'discount', 'quantity'],
+})
+
+export const ShoppingProductScalarFieldEnum = enumType({
+  name: 'ShoppingProductScalarFieldEnum',
+  members: ['id', 'quantity', 'userId', 'productId'],
+})
+
+export const ReviewScalarFieldEnum = enumType({
+  name: 'ReviewScalarFieldEnum',
+  members: ['id', 'userId', 'productId', 'comment', 'rating', 'date'],
+})
+
+export const WishlistScalarFieldEnum = enumType({
+  name: 'WishlistScalarFieldEnum',
+  members: ['id', 'userId'],
+})
+
+export const WishlistProductScalarFieldEnum = enumType({
+  name: 'WishlistProductScalarFieldEnum',
+  members: ['id', 'productId', 'wishlistId'],
+})
+
+export const SortOrder = enumType({
+  name: 'SortOrder',
+  members: ['asc', 'desc'],
+})
+
+export const QueryMode = enumType({
+  name: 'QueryMode',
+  members: ['default', 'insensitive'],
+})
+
+export const NullsOrder = enumType({
+  name: 'NullsOrder',
+  members: ['first', 'last'],
 })
 
 export const Role = enumType({
   name: 'Role',
   members: ['USER', 'ADMIN'],
+})
+
+export const OrderType = enumType({
+  name: 'OrderType',
+  members: ['Online', 'Cash'],
 })
 
 export const UserWhereInput = inputObjectType({
@@ -136,6 +151,7 @@ export const UserWhereInput = inputObjectType({
     t.field('orders', { type: 'OrderListRelationFilter' })
     t.field('reviews', { type: 'ReviewListRelationFilter' })
     t.field('cart', { type: 'ShoppingProductListRelationFilter' })
+    t.field('Wishlist', { type: 'WishlistWhereInput' })
   },
 })
 
@@ -150,14 +166,15 @@ export const UserOrderByWithRelationInput = inputObjectType({
     t.field('password', { type: 'SortOrder' })
     t.field('firstName', { type: 'SortOrder' })
     t.field('lastName', { type: 'SortOrder' })
-    t.field('gender', { type: 'SortOrder' })
-    t.field('birthday', { type: 'SortOrder' })
+    t.field('gender', { type: 'SortOrderInput' })
+    t.field('birthday', { type: 'SortOrderInput' })
     t.field('role', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('address', { type: 'AddressOrderByWithRelationInput' })
     t.field('orders', { type: 'OrderOrderByRelationAggregateInput' })
     t.field('reviews', { type: 'ReviewOrderByRelationAggregateInput' })
     t.field('cart', { type: 'ShoppingProductOrderByRelationAggregateInput' })
+    t.field('Wishlist', { type: 'WishlistOrderByWithRelationInput' })
   },
 })
 
@@ -183,8 +200,8 @@ export const UserOrderByWithAggregationInput = inputObjectType({
     t.field('password', { type: 'SortOrder' })
     t.field('firstName', { type: 'SortOrder' })
     t.field('lastName', { type: 'SortOrder' })
-    t.field('gender', { type: 'SortOrder' })
-    t.field('birthday', { type: 'SortOrder' })
+    t.field('gender', { type: 'SortOrderInput' })
+    t.field('birthday', { type: 'SortOrderInput' })
     t.field('role', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('_count', { type: 'UserCountOrderByAggregateInput' })
@@ -331,6 +348,7 @@ export const ProductWhereInput = inputObjectType({
     t.field('screen', { type: 'StringNullableFilter' })
     t.field('reviews', { type: 'ReviewListRelationFilter' })
     t.field('ShoppingProduct', { type: 'ShoppingProductListRelationFilter' })
+    t.field('WishlistProduct', { type: 'WishlistProductListRelationFilter' })
   },
 })
 
@@ -350,15 +368,18 @@ export const ProductOrderByWithRelationInput = inputObjectType({
     t.field('manufacturer', { type: 'SortOrder' })
     t.field('img', { type: 'SortOrder' })
     t.field('likes', { type: 'SortOrder' })
-    t.field('memory', { type: 'SortOrder' })
-    t.field('storage', { type: 'SortOrder' })
-    t.field('processor', { type: 'SortOrder' })
-    t.field('gpu', { type: 'SortOrder' })
-    t.field('os', { type: 'SortOrder' })
-    t.field('screen', { type: 'SortOrder' })
+    t.field('memory', { type: 'SortOrderInput' })
+    t.field('storage', { type: 'SortOrderInput' })
+    t.field('processor', { type: 'SortOrderInput' })
+    t.field('gpu', { type: 'SortOrderInput' })
+    t.field('os', { type: 'SortOrderInput' })
+    t.field('screen', { type: 'SortOrderInput' })
     t.field('reviews', { type: 'ReviewOrderByRelationAggregateInput' })
     t.field('ShoppingProduct', {
       type: 'ShoppingProductOrderByRelationAggregateInput',
+    })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductOrderByRelationAggregateInput',
     })
   },
 })
@@ -390,12 +411,12 @@ export const ProductOrderByWithAggregationInput = inputObjectType({
     t.field('manufacturer', { type: 'SortOrder' })
     t.field('img', { type: 'SortOrder' })
     t.field('likes', { type: 'SortOrder' })
-    t.field('memory', { type: 'SortOrder' })
-    t.field('storage', { type: 'SortOrder' })
-    t.field('processor', { type: 'SortOrder' })
-    t.field('gpu', { type: 'SortOrder' })
-    t.field('os', { type: 'SortOrder' })
-    t.field('screen', { type: 'SortOrder' })
+    t.field('memory', { type: 'SortOrderInput' })
+    t.field('storage', { type: 'SortOrderInput' })
+    t.field('processor', { type: 'SortOrderInput' })
+    t.field('gpu', { type: 'SortOrderInput' })
+    t.field('os', { type: 'SortOrderInput' })
+    t.field('screen', { type: 'SortOrderInput' })
     t.field('_count', { type: 'ProductCountOrderByAggregateInput' })
     t.field('_avg', { type: 'ProductAvgOrderByAggregateInput' })
     t.field('_max', { type: 'ProductMaxOrderByAggregateInput' })
@@ -869,6 +890,157 @@ export const ReviewScalarWhereWithAggregatesInput = inputObjectType({
   },
 })
 
+export const WishlistWhereInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistWhereInput',
+  definition(t) {
+    t.list.field('AND', { type: 'WishlistWhereInput' })
+    t.list.field('OR', { type: 'WishlistWhereInput' })
+    t.list.field('NOT', { type: 'WishlistWhereInput' })
+    t.field('id', { type: 'IntFilter' })
+    t.field('userId', { type: 'IntNullableFilter' })
+    t.field('user', { type: 'UserWhereInput' })
+    t.field('products', { type: 'WishlistProductListRelationFilter' })
+  },
+})
+
+export const WishlistOrderByWithRelationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistOrderByWithRelationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('userId', { type: 'SortOrderInput' })
+    t.field('user', { type: 'UserOrderByWithRelationInput' })
+    t.field('products', {
+      type: 'WishlistProductOrderByRelationAggregateInput',
+    })
+  },
+})
+
+export const WishlistWhereUniqueInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistWhereUniqueInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('userId', { type: 'Int' })
+  },
+})
+
+export const WishlistOrderByWithAggregationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistOrderByWithAggregationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('userId', { type: 'SortOrderInput' })
+    t.field('_count', { type: 'WishlistCountOrderByAggregateInput' })
+    t.field('_avg', { type: 'WishlistAvgOrderByAggregateInput' })
+    t.field('_max', { type: 'WishlistMaxOrderByAggregateInput' })
+    t.field('_min', { type: 'WishlistMinOrderByAggregateInput' })
+    t.field('_sum', { type: 'WishlistSumOrderByAggregateInput' })
+  },
+})
+
+export const WishlistScalarWhereWithAggregatesInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistScalarWhereWithAggregatesInput',
+  definition(t) {
+    t.list.field('AND', { type: 'WishlistScalarWhereWithAggregatesInput' })
+    t.list.field('OR', { type: 'WishlistScalarWhereWithAggregatesInput' })
+    t.list.field('NOT', { type: 'WishlistScalarWhereWithAggregatesInput' })
+    t.field('id', { type: 'IntWithAggregatesFilter' })
+    t.field('userId', { type: 'IntNullableWithAggregatesFilter' })
+  },
+})
+
+export const WishlistProductWhereInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductWhereInput',
+  definition(t) {
+    t.list.field('AND', { type: 'WishlistProductWhereInput' })
+    t.list.field('OR', { type: 'WishlistProductWhereInput' })
+    t.list.field('NOT', { type: 'WishlistProductWhereInput' })
+    t.field('id', { type: 'IntFilter' })
+    t.field('productId', { type: 'IntFilter' })
+    t.field('wishlistId', { type: 'IntFilter' })
+    t.field('wishlist', { type: 'WishlistWhereInput' })
+    t.field('product', { type: 'ProductWhereInput' })
+  },
+})
+
+export const WishlistProductOrderByWithRelationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductOrderByWithRelationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('productId', { type: 'SortOrder' })
+    t.field('wishlistId', { type: 'SortOrder' })
+    t.field('wishlist', { type: 'WishlistOrderByWithRelationInput' })
+    t.field('product', { type: 'ProductOrderByWithRelationInput' })
+  },
+})
+
+export const WishlistProductWhereUniqueInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductWhereUniqueInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+  },
+})
+
+export const WishlistProductOrderByWithAggregationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductOrderByWithAggregationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('productId', { type: 'SortOrder' })
+    t.field('wishlistId', { type: 'SortOrder' })
+    t.field('_count', { type: 'WishlistProductCountOrderByAggregateInput' })
+    t.field('_avg', { type: 'WishlistProductAvgOrderByAggregateInput' })
+    t.field('_max', { type: 'WishlistProductMaxOrderByAggregateInput' })
+    t.field('_min', { type: 'WishlistProductMinOrderByAggregateInput' })
+    t.field('_sum', { type: 'WishlistProductSumOrderByAggregateInput' })
+  },
+})
+
+export const WishlistProductScalarWhereWithAggregatesInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductScalarWhereWithAggregatesInput',
+  definition(t) {
+    t.list.field('AND', {
+      type: 'WishlistProductScalarWhereWithAggregatesInput',
+    })
+    t.list.field('OR', {
+      type: 'WishlistProductScalarWhereWithAggregatesInput',
+    })
+    t.list.field('NOT', {
+      type: 'WishlistProductScalarWhereWithAggregatesInput',
+    })
+    t.field('id', { type: 'IntWithAggregatesFilter' })
+    t.field('productId', { type: 'IntWithAggregatesFilter' })
+    t.field('wishlistId', { type: 'IntWithAggregatesFilter' })
+  },
+})
+
 export const UserCreateInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -887,6 +1059,7 @@ export const UserCreateInput = inputObjectType({
     t.field('orders', { type: 'OrderCreateNestedManyWithoutUserInput' })
     t.field('reviews', { type: 'ReviewCreateNestedManyWithoutUserInput' })
     t.field('cart', { type: 'ShoppingProductCreateNestedManyWithoutUserInput' })
+    t.field('Wishlist', { type: 'WishlistCreateNestedOneWithoutUserInput' })
   },
 })
 
@@ -917,6 +1090,9 @@ export const UserUncheckedCreateInput = inputObjectType({
     t.field('cart', {
       type: 'ShoppingProductUncheckedCreateNestedManyWithoutUserInput',
     })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedCreateNestedOneWithoutUserInput',
+    })
   },
 })
 
@@ -938,6 +1114,7 @@ export const UserUpdateInput = inputObjectType({
     t.field('orders', { type: 'OrderUpdateManyWithoutUserNestedInput' })
     t.field('reviews', { type: 'ReviewUpdateManyWithoutUserNestedInput' })
     t.field('cart', { type: 'ShoppingProductUpdateManyWithoutUserNestedInput' })
+    t.field('Wishlist', { type: 'WishlistUpdateOneWithoutUserNestedInput' })
   },
 })
 
@@ -967,6 +1144,9 @@ export const UserUncheckedUpdateInput = inputObjectType({
     })
     t.field('cart', {
       type: 'ShoppingProductUncheckedUpdateManyWithoutUserNestedInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedUpdateOneWithoutUserNestedInput',
     })
   },
 })
@@ -1157,6 +1337,9 @@ export const ProductCreateInput = inputObjectType({
     t.field('ShoppingProduct', {
       type: 'ShoppingProductCreateNestedManyWithoutProductInput',
     })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductCreateNestedManyWithoutProductInput',
+    })
   },
 })
 
@@ -1188,6 +1371,9 @@ export const ProductUncheckedCreateInput = inputObjectType({
     t.field('ShoppingProduct', {
       type: 'ShoppingProductUncheckedCreateNestedManyWithoutProductInput',
     })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductUncheckedCreateNestedManyWithoutProductInput',
+    })
   },
 })
 
@@ -1215,6 +1401,9 @@ export const ProductUpdateInput = inputObjectType({
     t.field('reviews', { type: 'ReviewUpdateManyWithoutProductNestedInput' })
     t.field('ShoppingProduct', {
       type: 'ShoppingProductUpdateManyWithoutProductNestedInput',
+    })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductUpdateManyWithoutProductNestedInput',
     })
   },
 })
@@ -1246,6 +1435,9 @@ export const ProductUncheckedUpdateInput = inputObjectType({
     })
     t.field('ShoppingProduct', {
       type: 'ShoppingProductUncheckedUpdateManyWithoutProductNestedInput',
+    })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductUncheckedUpdateManyWithoutProductNestedInput',
     })
   },
 })
@@ -1870,6 +2062,156 @@ export const ReviewUncheckedUpdateManyInput = inputObjectType({
   },
 })
 
+export const WishlistCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateInput',
+  definition(t) {
+    t.field('user', { type: 'UserCreateNestedOneWithoutWishlistInput' })
+    t.field('products', {
+      type: 'WishlistProductCreateNestedManyWithoutWishlistInput',
+    })
+  },
+})
+
+export const WishlistUncheckedCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUncheckedCreateInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('userId', { type: 'Int' })
+    t.field('products', {
+      type: 'WishlistProductUncheckedCreateNestedManyWithoutWishlistInput',
+    })
+  },
+})
+
+export const WishlistUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUpdateInput',
+  definition(t) {
+    t.field('user', { type: 'UserUpdateOneWithoutWishlistNestedInput' })
+    t.field('products', {
+      type: 'WishlistProductUpdateManyWithoutWishlistNestedInput',
+    })
+  },
+})
+
+export const WishlistUncheckedUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUncheckedUpdateInput',
+  definition(t) {
+    t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('userId', { type: 'NullableIntFieldUpdateOperationsInput' })
+    t.field('products', {
+      type: 'WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput',
+    })
+  },
+})
+
+export const WishlistCreateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateManyInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('userId', { type: 'Int' })
+  },
+})
+
+export const WishlistUncheckedUpdateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUncheckedUpdateManyInput',
+  definition(t) {
+    t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('userId', { type: 'NullableIntFieldUpdateOperationsInput' })
+  },
+})
+
+export const WishlistProductCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateInput',
+  definition(t) {
+    t.field('wishlist', { type: 'WishlistCreateNestedOneWithoutProductsInput' })
+    t.field('product', {
+      type: 'ProductCreateNestedOneWithoutWishlistProductInput',
+    })
+  },
+})
+
+export const WishlistProductUncheckedCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductUncheckedCreateInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.nonNull.field('productId', { type: 'Int' })
+    t.nonNull.field('wishlistId', { type: 'Int' })
+  },
+})
+
+export const WishlistProductUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductUpdateInput',
+  definition(t) {
+    t.field('wishlist', { type: 'WishlistUpdateOneWithoutProductsNestedInput' })
+    t.field('product', {
+      type: 'ProductUpdateOneWithoutWishlistProductNestedInput',
+    })
+  },
+})
+
+export const WishlistProductUncheckedUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductUncheckedUpdateInput',
+  definition(t) {
+    t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('productId', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('wishlistId', { type: 'IntFieldUpdateOperationsInput' })
+  },
+})
+
+export const WishlistProductCreateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateManyInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.nonNull.field('productId', { type: 'Int' })
+    t.nonNull.field('wishlistId', { type: 'Int' })
+  },
+})
+
+export const WishlistProductUncheckedUpdateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductUncheckedUpdateManyInput',
+  definition(t) {
+    t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('productId', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('wishlistId', { type: 'IntFieldUpdateOperationsInput' })
+  },
+})
+
 export const IntFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -2020,6 +2362,28 @@ export const ShoppingProductListRelationFilter = inputObjectType({
     t.field('every', { type: 'ShoppingProductWhereInput' })
     t.field('some', { type: 'ShoppingProductWhereInput' })
     t.field('none', { type: 'ShoppingProductWhereInput' })
+  },
+})
+
+export const WishlistRelationFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistRelationFilter',
+  definition(t) {
+    t.field('is', { type: 'WishlistWhereInput' })
+    t.field('isNot', { type: 'WishlistWhereInput' })
+  },
+})
+
+export const SortOrderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'SortOrderInput',
+  definition(t) {
+    t.nonNull.field('sort', { type: 'SortOrder' })
+    t.field('nulls', { type: 'NullsOrder' })
   },
 })
 
@@ -2348,6 +2712,28 @@ export const FloatFilter = inputObjectType({
     t.field('gt', { type: 'Float' })
     t.field('gte', { type: 'Float' })
     t.field('not', { type: 'NestedFloatFilter' })
+  },
+})
+
+export const WishlistProductListRelationFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductListRelationFilter',
+  definition(t) {
+    t.field('every', { type: 'WishlistProductWhereInput' })
+    t.field('some', { type: 'WishlistProductWhereInput' })
+    t.field('none', { type: 'WishlistProductWhereInput' })
+  },
+})
+
+export const WishlistProductOrderByRelationAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductOrderByRelationAggregateInput',
+  definition(t) {
+    t.field('_count', { type: 'SortOrder' })
   },
 })
 
@@ -2925,6 +3311,160 @@ export const ReviewSumOrderByAggregateInput = inputObjectType({
   },
 })
 
+export const IntNullableFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'IntNullableFilter',
+  definition(t) {
+    t.field('equals', { type: 'Int' })
+    t.list.field('in', { type: 'Int' })
+    t.list.field('notIn', { type: 'Int' })
+    t.field('lt', { type: 'Int' })
+    t.field('lte', { type: 'Int' })
+    t.field('gt', { type: 'Int' })
+    t.field('gte', { type: 'Int' })
+    t.field('not', { type: 'NestedIntNullableFilter' })
+  },
+})
+
+export const WishlistCountOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCountOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('userId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistAvgOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistAvgOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('userId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistMaxOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistMaxOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('userId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistMinOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistMinOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('userId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistSumOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistSumOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('userId', { type: 'SortOrder' })
+  },
+})
+
+export const IntNullableWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'IntNullableWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'Int' })
+    t.list.field('in', { type: 'Int' })
+    t.list.field('notIn', { type: 'Int' })
+    t.field('lt', { type: 'Int' })
+    t.field('lte', { type: 'Int' })
+    t.field('gt', { type: 'Int' })
+    t.field('gte', { type: 'Int' })
+    t.field('not', { type: 'NestedIntNullableWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntNullableFilter' })
+    t.field('_avg', { type: 'NestedFloatNullableFilter' })
+    t.field('_sum', { type: 'NestedIntNullableFilter' })
+    t.field('_min', { type: 'NestedIntNullableFilter' })
+    t.field('_max', { type: 'NestedIntNullableFilter' })
+  },
+})
+
+export const WishlistProductCountOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCountOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('productId', { type: 'SortOrder' })
+    t.field('wishlistId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistProductAvgOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductAvgOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('productId', { type: 'SortOrder' })
+    t.field('wishlistId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistProductMaxOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductMaxOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('productId', { type: 'SortOrder' })
+    t.field('wishlistId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistProductMinOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductMinOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('productId', { type: 'SortOrder' })
+    t.field('wishlistId', { type: 'SortOrder' })
+  },
+})
+
+export const WishlistProductSumOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductSumOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('productId', { type: 'SortOrder' })
+    t.field('wishlistId', { type: 'SortOrder' })
+  },
+})
+
 export const AddressCreateNestedOneWithoutUserInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -2983,6 +3523,20 @@ export const ShoppingProductCreateNestedManyWithoutUserInput = inputObjectType({
       type: 'ShoppingProductCreateManyUserInputEnvelope',
     })
     t.list.field('connect', { type: 'ShoppingProductWhereUniqueInput' })
+  },
+})
+
+export const WishlistCreateNestedOneWithoutUserInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateNestedOneWithoutUserInput',
+  definition(t) {
+    t.field('create', { type: 'WishlistUncheckedCreateWithoutUserInput' })
+    t.field('connectOrCreate', {
+      type: 'WishlistCreateOrConnectWithoutUserInput',
+    })
+    t.field('connect', { type: 'WishlistWhereUniqueInput' })
   },
 })
 
@@ -3047,6 +3601,22 @@ export const ShoppingProductUncheckedCreateNestedManyWithoutUserInput =
       t.list.field('connect', { type: 'ShoppingProductWhereUniqueInput' })
     },
   })
+
+export const WishlistUncheckedCreateNestedOneWithoutUserInput = inputObjectType(
+  {
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistUncheckedCreateNestedOneWithoutUserInput',
+    definition(t) {
+      t.field('create', { type: 'WishlistUncheckedCreateWithoutUserInput' })
+      t.field('connectOrCreate', {
+        type: 'WishlistCreateOrConnectWithoutUserInput',
+      })
+      t.field('connect', { type: 'WishlistWhereUniqueInput' })
+    },
+  },
+)
 
 export const StringFieldUpdateOperationsInput = inputObjectType({
   nonNullDefaults: {
@@ -3202,6 +3772,24 @@ export const ShoppingProductUpdateManyWithoutUserNestedInput = inputObjectType({
   },
 })
 
+export const WishlistUpdateOneWithoutUserNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUpdateOneWithoutUserNestedInput',
+  definition(t) {
+    t.field('create', { type: 'WishlistUncheckedCreateWithoutUserInput' })
+    t.field('connectOrCreate', {
+      type: 'WishlistCreateOrConnectWithoutUserInput',
+    })
+    t.field('upsert', { type: 'WishlistUpsertWithoutUserInput' })
+    t.field('disconnect', { type: 'Boolean' })
+    t.field('delete', { type: 'Boolean' })
+    t.field('connect', { type: 'WishlistWhereUniqueInput' })
+    t.field('update', { type: 'WishlistUncheckedUpdateWithoutUserInput' })
+  },
+})
+
 export const IntFieldUpdateOperationsInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -3321,6 +3909,26 @@ export const ShoppingProductUncheckedUpdateManyWithoutUserNestedInput =
     },
   })
 
+export const WishlistUncheckedUpdateOneWithoutUserNestedInput = inputObjectType(
+  {
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistUncheckedUpdateOneWithoutUserNestedInput',
+    definition(t) {
+      t.field('create', { type: 'WishlistUncheckedCreateWithoutUserInput' })
+      t.field('connectOrCreate', {
+        type: 'WishlistCreateOrConnectWithoutUserInput',
+      })
+      t.field('upsert', { type: 'WishlistUpsertWithoutUserInput' })
+      t.field('disconnect', { type: 'Boolean' })
+      t.field('delete', { type: 'Boolean' })
+      t.field('connect', { type: 'WishlistWhereUniqueInput' })
+      t.field('update', { type: 'WishlistUncheckedUpdateWithoutUserInput' })
+    },
+  },
+)
+
 export const UserCreateNestedOneWithoutAddressInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -3386,6 +3994,26 @@ export const ShoppingProductCreateNestedManyWithoutProductInput =
     },
   })
 
+export const WishlistProductCreateNestedManyWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductCreateNestedManyWithoutProductInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutProductInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutProductInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyProductInputEnvelope',
+      })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
+    },
+  })
+
 export const ReviewUncheckedCreateNestedManyWithoutProductInput =
   inputObjectType({
     nonNullDefaults: {
@@ -3419,6 +4047,26 @@ export const ShoppingProductUncheckedCreateNestedManyWithoutProductInput =
         type: 'ShoppingProductCreateManyProductInputEnvelope',
       })
       t.list.field('connect', { type: 'ShoppingProductWhereUniqueInput' })
+    },
+  })
+
+export const WishlistProductUncheckedCreateNestedManyWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedCreateNestedManyWithoutProductInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutProductInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutProductInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyProductInputEnvelope',
+      })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
     },
   })
 
@@ -3497,6 +4145,39 @@ export const ShoppingProductUpdateManyWithoutProductNestedInput =
     },
   })
 
+export const WishlistProductUpdateManyWithoutProductNestedInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpdateManyWithoutProductNestedInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutProductInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutProductInput',
+      })
+      t.list.field('upsert', {
+        type: 'WishlistProductUpsertWithWhereUniqueWithoutProductInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyProductInputEnvelope',
+      })
+      t.list.field('set', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('disconnect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('delete', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('update', {
+        type: 'WishlistProductUpdateWithWhereUniqueWithoutProductInput',
+      })
+      t.list.field('updateMany', {
+        type: 'WishlistProductUpdateManyWithWhereWithoutProductInput',
+      })
+      t.list.field('deleteMany', { type: 'WishlistProductScalarWhereInput' })
+    },
+  })
+
 export const ReviewUncheckedUpdateManyWithoutProductNestedInput =
   inputObjectType({
     nonNullDefaults: {
@@ -3556,6 +4237,39 @@ export const ShoppingProductUncheckedUpdateManyWithoutProductNestedInput =
         type: 'ShoppingProductUpdateManyWithWhereWithoutProductInput',
       })
       t.list.field('deleteMany', { type: 'ShoppingProductScalarWhereInput' })
+    },
+  })
+
+export const WishlistProductUncheckedUpdateManyWithoutProductNestedInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedUpdateManyWithoutProductNestedInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutProductInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutProductInput',
+      })
+      t.list.field('upsert', {
+        type: 'WishlistProductUpsertWithWhereUniqueWithoutProductInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyProductInputEnvelope',
+      })
+      t.list.field('set', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('disconnect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('delete', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('update', {
+        type: 'WishlistProductUpdateWithWhereUniqueWithoutProductInput',
+      })
+      t.list.field('updateMany', {
+        type: 'WishlistProductUpdateManyWithWhereWithoutProductInput',
+      })
+      t.list.field('deleteMany', { type: 'WishlistProductScalarWhereInput' })
     },
   })
 
@@ -3950,6 +4664,230 @@ export const UserUpdateOneRequiredWithoutReviewsNestedInput = inputObjectType({
   },
 })
 
+export const UserCreateNestedOneWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserCreateNestedOneWithoutWishlistInput',
+  definition(t) {
+    t.field('create', { type: 'UserUncheckedCreateWithoutWishlistInput' })
+    t.field('connectOrCreate', {
+      type: 'UserCreateOrConnectWithoutWishlistInput',
+    })
+    t.field('connect', { type: 'UserWhereUniqueInput' })
+  },
+})
+
+export const WishlistProductCreateNestedManyWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductCreateNestedManyWithoutWishlistInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutWishlistInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutWishlistInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyWishlistInputEnvelope',
+      })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
+    },
+  })
+
+export const WishlistProductUncheckedCreateNestedManyWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedCreateNestedManyWithoutWishlistInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutWishlistInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutWishlistInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyWishlistInputEnvelope',
+      })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
+    },
+  })
+
+export const UserUpdateOneWithoutWishlistNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserUpdateOneWithoutWishlistNestedInput',
+  definition(t) {
+    t.field('create', { type: 'UserUncheckedCreateWithoutWishlistInput' })
+    t.field('connectOrCreate', {
+      type: 'UserCreateOrConnectWithoutWishlistInput',
+    })
+    t.field('upsert', { type: 'UserUpsertWithoutWishlistInput' })
+    t.field('disconnect', { type: 'Boolean' })
+    t.field('delete', { type: 'Boolean' })
+    t.field('connect', { type: 'UserWhereUniqueInput' })
+    t.field('update', { type: 'UserUncheckedUpdateWithoutWishlistInput' })
+  },
+})
+
+export const WishlistProductUpdateManyWithoutWishlistNestedInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpdateManyWithoutWishlistNestedInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutWishlistInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutWishlistInput',
+      })
+      t.list.field('upsert', {
+        type: 'WishlistProductUpsertWithWhereUniqueWithoutWishlistInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyWishlistInputEnvelope',
+      })
+      t.list.field('set', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('disconnect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('delete', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('update', {
+        type: 'WishlistProductUpdateWithWhereUniqueWithoutWishlistInput',
+      })
+      t.list.field('updateMany', {
+        type: 'WishlistProductUpdateManyWithWhereWithoutWishlistInput',
+      })
+      t.list.field('deleteMany', { type: 'WishlistProductScalarWhereInput' })
+    },
+  })
+
+export const NullableIntFieldUpdateOperationsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NullableIntFieldUpdateOperationsInput',
+  definition(t) {
+    t.field('set', { type: 'Int' })
+    t.field('increment', { type: 'Int' })
+    t.field('decrement', { type: 'Int' })
+    t.field('multiply', { type: 'Int' })
+    t.field('divide', { type: 'Int' })
+  },
+})
+
+export const WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput',
+    definition(t) {
+      t.list.field('create', {
+        type: 'WishlistProductCreateWithoutWishlistInput',
+      })
+      t.list.field('connectOrCreate', {
+        type: 'WishlistProductCreateOrConnectWithoutWishlistInput',
+      })
+      t.list.field('upsert', {
+        type: 'WishlistProductUpsertWithWhereUniqueWithoutWishlistInput',
+      })
+      t.field('createMany', {
+        type: 'WishlistProductCreateManyWishlistInputEnvelope',
+      })
+      t.list.field('set', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('disconnect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('delete', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('connect', { type: 'WishlistProductWhereUniqueInput' })
+      t.list.field('update', {
+        type: 'WishlistProductUpdateWithWhereUniqueWithoutWishlistInput',
+      })
+      t.list.field('updateMany', {
+        type: 'WishlistProductUpdateManyWithWhereWithoutWishlistInput',
+      })
+      t.list.field('deleteMany', { type: 'WishlistProductScalarWhereInput' })
+    },
+  })
+
+export const WishlistCreateNestedOneWithoutProductsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateNestedOneWithoutProductsInput',
+  definition(t) {
+    t.field('create', { type: 'WishlistUncheckedCreateWithoutProductsInput' })
+    t.field('connectOrCreate', {
+      type: 'WishlistCreateOrConnectWithoutProductsInput',
+    })
+    t.field('connect', { type: 'WishlistWhereUniqueInput' })
+  },
+})
+
+export const ProductCreateNestedOneWithoutWishlistProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'ProductCreateNestedOneWithoutWishlistProductInput',
+    definition(t) {
+      t.field('create', {
+        type: 'ProductUncheckedCreateWithoutWishlistProductInput',
+      })
+      t.field('connectOrCreate', {
+        type: 'ProductCreateOrConnectWithoutWishlistProductInput',
+      })
+      t.field('connect', { type: 'ProductWhereUniqueInput' })
+    },
+  })
+
+export const WishlistUpdateOneWithoutProductsNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUpdateOneWithoutProductsNestedInput',
+  definition(t) {
+    t.field('create', { type: 'WishlistUncheckedCreateWithoutProductsInput' })
+    t.field('connectOrCreate', {
+      type: 'WishlistCreateOrConnectWithoutProductsInput',
+    })
+    t.field('upsert', { type: 'WishlistUpsertWithoutProductsInput' })
+    t.field('disconnect', { type: 'Boolean' })
+    t.field('delete', { type: 'Boolean' })
+    t.field('connect', { type: 'WishlistWhereUniqueInput' })
+    t.field('update', { type: 'WishlistUncheckedUpdateWithoutProductsInput' })
+  },
+})
+
+export const ProductUpdateOneWithoutWishlistProductNestedInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'ProductUpdateOneWithoutWishlistProductNestedInput',
+    definition(t) {
+      t.field('create', {
+        type: 'ProductUncheckedCreateWithoutWishlistProductInput',
+      })
+      t.field('connectOrCreate', {
+        type: 'ProductCreateOrConnectWithoutWishlistProductInput',
+      })
+      t.field('upsert', { type: 'ProductUpsertWithoutWishlistProductInput' })
+      t.field('disconnect', { type: 'Boolean' })
+      t.field('delete', { type: 'Boolean' })
+      t.field('connect', { type: 'ProductWhereUniqueInput' })
+      t.field('update', {
+        type: 'ProductUncheckedUpdateWithoutWishlistProductInput',
+      })
+    },
+  })
+
 export const NestedIntFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -4263,6 +5201,45 @@ export const NestedEnumOrderTypeWithAggregatesFilter = inputObjectType({
   },
 })
 
+export const NestedIntNullableWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedIntNullableWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'Int' })
+    t.list.field('in', { type: 'Int' })
+    t.list.field('notIn', { type: 'Int' })
+    t.field('lt', { type: 'Int' })
+    t.field('lte', { type: 'Int' })
+    t.field('gt', { type: 'Int' })
+    t.field('gte', { type: 'Int' })
+    t.field('not', { type: 'NestedIntNullableWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntNullableFilter' })
+    t.field('_avg', { type: 'NestedFloatNullableFilter' })
+    t.field('_sum', { type: 'NestedIntNullableFilter' })
+    t.field('_min', { type: 'NestedIntNullableFilter' })
+    t.field('_max', { type: 'NestedIntNullableFilter' })
+  },
+})
+
+export const NestedFloatNullableFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedFloatNullableFilter',
+  definition(t) {
+    t.field('equals', { type: 'Float' })
+    t.list.field('in', { type: 'Float' })
+    t.list.field('notIn', { type: 'Float' })
+    t.field('lt', { type: 'Float' })
+    t.field('lte', { type: 'Float' })
+    t.field('gt', { type: 'Float' })
+    t.field('gte', { type: 'Float' })
+    t.field('not', { type: 'NestedFloatNullableFilter' })
+  },
+})
+
 export const AddressCreateWithoutUserInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -4461,6 +5438,44 @@ export const ShoppingProductCreateManyUserInputEnvelope = inputObjectType({
   definition(t) {
     t.nonNull.field('data', { type: 'ShoppingProductCreateManyUserInput' })
     t.field('skipDuplicates', { type: 'Boolean' })
+  },
+})
+
+export const WishlistCreateWithoutUserInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateWithoutUserInput',
+  definition(t) {
+    t.field('products', {
+      type: 'WishlistProductCreateNestedManyWithoutWishlistInput',
+    })
+  },
+})
+
+export const WishlistUncheckedCreateWithoutUserInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUncheckedCreateWithoutUserInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('products', {
+      type: 'WishlistProductUncheckedCreateNestedManyWithoutWishlistInput',
+    })
+  },
+})
+
+export const WishlistCreateOrConnectWithoutUserInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateOrConnectWithoutUserInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'WishlistWhereUniqueInput' })
+    t.nonNull.field('create', {
+      type: 'WishlistUncheckedCreateWithoutUserInput',
+    })
   },
 })
 
@@ -4677,6 +5692,46 @@ export const ShoppingProductScalarWhereInput = inputObjectType({
   },
 })
 
+export const WishlistUpsertWithoutUserInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUpsertWithoutUserInput',
+  definition(t) {
+    t.nonNull.field('update', {
+      type: 'WishlistUncheckedUpdateWithoutUserInput',
+    })
+    t.nonNull.field('create', {
+      type: 'WishlistUncheckedCreateWithoutUserInput',
+    })
+  },
+})
+
+export const WishlistUpdateWithoutUserInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUpdateWithoutUserInput',
+  definition(t) {
+    t.field('products', {
+      type: 'WishlistProductUpdateManyWithoutWishlistNestedInput',
+    })
+  },
+})
+
+export const WishlistUncheckedUpdateWithoutUserInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUncheckedUpdateWithoutUserInput',
+  definition(t) {
+    t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('products', {
+      type: 'WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput',
+    })
+  },
+})
+
 export const UserCreateWithoutAddressInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -4694,6 +5749,7 @@ export const UserCreateWithoutAddressInput = inputObjectType({
     t.field('orders', { type: 'OrderCreateNestedManyWithoutUserInput' })
     t.field('reviews', { type: 'ReviewCreateNestedManyWithoutUserInput' })
     t.field('cart', { type: 'ShoppingProductCreateNestedManyWithoutUserInput' })
+    t.field('Wishlist', { type: 'WishlistCreateNestedOneWithoutUserInput' })
   },
 })
 
@@ -4720,6 +5776,9 @@ export const UserUncheckedCreateWithoutAddressInput = inputObjectType({
     })
     t.field('cart', {
       type: 'ShoppingProductUncheckedCreateNestedManyWithoutUserInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedCreateNestedOneWithoutUserInput',
     })
   },
 })
@@ -4769,6 +5828,7 @@ export const UserUpdateWithoutAddressInput = inputObjectType({
     t.field('orders', { type: 'OrderUpdateManyWithoutUserNestedInput' })
     t.field('reviews', { type: 'ReviewUpdateManyWithoutUserNestedInput' })
     t.field('cart', { type: 'ShoppingProductUpdateManyWithoutUserNestedInput' })
+    t.field('Wishlist', { type: 'WishlistUpdateOneWithoutUserNestedInput' })
   },
 })
 
@@ -4795,6 +5855,9 @@ export const UserUncheckedUpdateWithoutAddressInput = inputObjectType({
     })
     t.field('cart', {
       type: 'ShoppingProductUncheckedUpdateManyWithoutUserNestedInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedUpdateOneWithoutUserNestedInput',
     })
   },
 })
@@ -4899,6 +5962,53 @@ export const ShoppingProductCreateManyProductInputEnvelope = inputObjectType({
   },
 })
 
+export const WishlistProductCreateWithoutProductInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateWithoutProductInput',
+  definition(t) {
+    t.field('wishlist', { type: 'WishlistCreateNestedOneWithoutProductsInput' })
+  },
+})
+
+export const WishlistProductUncheckedCreateWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedCreateWithoutProductInput',
+    definition(t) {
+      t.field('id', { type: 'Int' })
+      t.nonNull.field('wishlistId', { type: 'Int' })
+    },
+  })
+
+export const WishlistProductCreateOrConnectWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductCreateOrConnectWithoutProductInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductWhereUniqueInput' })
+      t.nonNull.field('create', {
+        type: 'WishlistProductUncheckedCreateWithoutProductInput',
+      })
+    },
+  })
+
+export const WishlistProductCreateManyProductInputEnvelope = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateManyProductInputEnvelope',
+  definition(t) {
+    t.nonNull.field('data', { type: 'WishlistProductCreateManyProductInput' })
+    t.field('skipDuplicates', { type: 'Boolean' })
+  },
+})
+
 export const ReviewUpsertWithWhereUniqueWithoutProductInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -4986,6 +6096,66 @@ export const ShoppingProductUpdateManyWithWhereWithoutProductInput =
     },
   })
 
+export const WishlistProductUpsertWithWhereUniqueWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpsertWithWhereUniqueWithoutProductInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductWhereUniqueInput' })
+      t.nonNull.field('update', {
+        type: 'WishlistProductUncheckedUpdateWithoutProductInput',
+      })
+      t.nonNull.field('create', {
+        type: 'WishlistProductUncheckedCreateWithoutProductInput',
+      })
+    },
+  })
+
+export const WishlistProductUpdateWithWhereUniqueWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpdateWithWhereUniqueWithoutProductInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductWhereUniqueInput' })
+      t.nonNull.field('data', {
+        type: 'WishlistProductUncheckedUpdateWithoutProductInput',
+      })
+    },
+  })
+
+export const WishlistProductUpdateManyWithWhereWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpdateManyWithWhereWithoutProductInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductScalarWhereInput' })
+      t.nonNull.field('data', {
+        type: 'WishlistProductUncheckedUpdateManyWithoutWishlistProductInput',
+      })
+    },
+  })
+
+export const WishlistProductScalarWhereInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductScalarWhereInput',
+  definition(t) {
+    t.list.field('AND', { type: 'WishlistProductScalarWhereInput' })
+    t.list.field('OR', { type: 'WishlistProductScalarWhereInput' })
+    t.list.field('NOT', { type: 'WishlistProductScalarWhereInput' })
+    t.field('id', { type: 'IntFilter' })
+    t.field('productId', { type: 'IntFilter' })
+    t.field('wishlistId', { type: 'IntFilter' })
+  },
+})
+
 export const UserCreateWithoutOrdersInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -5003,6 +6173,7 @@ export const UserCreateWithoutOrdersInput = inputObjectType({
     t.field('address', { type: 'AddressCreateNestedOneWithoutUserInput' })
     t.field('reviews', { type: 'ReviewCreateNestedManyWithoutUserInput' })
     t.field('cart', { type: 'ShoppingProductCreateNestedManyWithoutUserInput' })
+    t.field('Wishlist', { type: 'WishlistCreateNestedOneWithoutUserInput' })
   },
 })
 
@@ -5029,6 +6200,9 @@ export const UserUncheckedCreateWithoutOrdersInput = inputObjectType({
     })
     t.field('cart', {
       type: 'ShoppingProductUncheckedCreateNestedManyWithoutUserInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedCreateNestedOneWithoutUserInput',
     })
   },
 })
@@ -5169,6 +6343,7 @@ export const UserUpdateWithoutOrdersInput = inputObjectType({
     t.field('address', { type: 'AddressUpdateOneWithoutUserNestedInput' })
     t.field('reviews', { type: 'ReviewUpdateManyWithoutUserNestedInput' })
     t.field('cart', { type: 'ShoppingProductUpdateManyWithoutUserNestedInput' })
+    t.field('Wishlist', { type: 'WishlistUpdateOneWithoutUserNestedInput' })
   },
 })
 
@@ -5195,6 +6370,9 @@ export const UserUncheckedUpdateWithoutOrdersInput = inputObjectType({
     })
     t.field('cart', {
       type: 'ShoppingProductUncheckedUpdateManyWithoutUserNestedInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedUpdateOneWithoutUserNestedInput',
     })
   },
 })
@@ -5524,6 +6702,9 @@ export const ProductCreateWithoutShoppingProductInput = inputObjectType({
     t.field('os', { type: 'String' })
     t.field('screen', { type: 'String' })
     t.field('reviews', { type: 'ReviewCreateNestedManyWithoutProductInput' })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductCreateNestedManyWithoutProductInput',
+    })
   },
 })
 
@@ -5552,6 +6733,9 @@ export const ProductUncheckedCreateWithoutShoppingProductInput =
       t.field('screen', { type: 'String' })
       t.field('reviews', {
         type: 'ReviewUncheckedCreateNestedManyWithoutProductInput',
+      })
+      t.field('WishlistProduct', {
+        type: 'WishlistProductUncheckedCreateNestedManyWithoutProductInput',
       })
     },
   })
@@ -5587,6 +6771,7 @@ export const UserCreateWithoutCartInput = inputObjectType({
     t.field('address', { type: 'AddressCreateNestedOneWithoutUserInput' })
     t.field('orders', { type: 'OrderCreateNestedManyWithoutUserInput' })
     t.field('reviews', { type: 'ReviewCreateNestedManyWithoutUserInput' })
+    t.field('Wishlist', { type: 'WishlistCreateNestedOneWithoutUserInput' })
   },
 })
 
@@ -5613,6 +6798,9 @@ export const UserUncheckedCreateWithoutCartInput = inputObjectType({
     })
     t.field('reviews', {
       type: 'ReviewUncheckedCreateNestedManyWithoutUserInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedCreateNestedOneWithoutUserInput',
     })
   },
 })
@@ -5665,6 +6853,9 @@ export const ProductUpdateWithoutShoppingProductInput = inputObjectType({
     t.field('os', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('screen', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('reviews', { type: 'ReviewUpdateManyWithoutProductNestedInput' })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductUpdateManyWithoutProductNestedInput',
+    })
   },
 })
 
@@ -5693,6 +6884,9 @@ export const ProductUncheckedUpdateWithoutShoppingProductInput =
       t.field('screen', { type: 'NullableStringFieldUpdateOperationsInput' })
       t.field('reviews', {
         type: 'ReviewUncheckedUpdateManyWithoutProductNestedInput',
+      })
+      t.field('WishlistProduct', {
+        type: 'WishlistProductUncheckedUpdateManyWithoutProductNestedInput',
       })
     },
   })
@@ -5725,6 +6919,7 @@ export const UserUpdateWithoutCartInput = inputObjectType({
     t.field('address', { type: 'AddressUpdateOneWithoutUserNestedInput' })
     t.field('orders', { type: 'OrderUpdateManyWithoutUserNestedInput' })
     t.field('reviews', { type: 'ReviewUpdateManyWithoutUserNestedInput' })
+    t.field('Wishlist', { type: 'WishlistUpdateOneWithoutUserNestedInput' })
   },
 })
 
@@ -5751,6 +6946,9 @@ export const UserUncheckedUpdateWithoutCartInput = inputObjectType({
     })
     t.field('reviews', {
       type: 'ReviewUncheckedUpdateManyWithoutUserNestedInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedUpdateOneWithoutUserNestedInput',
     })
   },
 })
@@ -5779,6 +6977,9 @@ export const ProductCreateWithoutReviewsInput = inputObjectType({
     t.field('ShoppingProduct', {
       type: 'ShoppingProductCreateNestedManyWithoutProductInput',
     })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductCreateNestedManyWithoutProductInput',
+    })
   },
 })
 
@@ -5806,6 +7007,9 @@ export const ProductUncheckedCreateWithoutReviewsInput = inputObjectType({
     t.field('screen', { type: 'String' })
     t.field('ShoppingProduct', {
       type: 'ShoppingProductUncheckedCreateNestedManyWithoutProductInput',
+    })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductUncheckedCreateNestedManyWithoutProductInput',
     })
   },
 })
@@ -5840,6 +7044,7 @@ export const UserCreateWithoutReviewsInput = inputObjectType({
     t.field('address', { type: 'AddressCreateNestedOneWithoutUserInput' })
     t.field('orders', { type: 'OrderCreateNestedManyWithoutUserInput' })
     t.field('cart', { type: 'ShoppingProductCreateNestedManyWithoutUserInput' })
+    t.field('Wishlist', { type: 'WishlistCreateNestedOneWithoutUserInput' })
   },
 })
 
@@ -5866,6 +7071,9 @@ export const UserUncheckedCreateWithoutReviewsInput = inputObjectType({
     })
     t.field('cart', {
       type: 'ShoppingProductUncheckedCreateNestedManyWithoutUserInput',
+    })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedCreateNestedOneWithoutUserInput',
     })
   },
 })
@@ -5922,6 +7130,9 @@ export const ProductUpdateWithoutReviewsInput = inputObjectType({
     t.field('ShoppingProduct', {
       type: 'ShoppingProductUpdateManyWithoutProductNestedInput',
     })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductUpdateManyWithoutProductNestedInput',
+    })
   },
 })
 
@@ -5949,6 +7160,9 @@ export const ProductUncheckedUpdateWithoutReviewsInput = inputObjectType({
     t.field('screen', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('ShoppingProduct', {
       type: 'ShoppingProductUncheckedUpdateManyWithoutProductNestedInput',
+    })
+    t.field('WishlistProduct', {
+      type: 'WishlistProductUncheckedUpdateManyWithoutProductNestedInput',
     })
   },
 })
@@ -5985,6 +7199,7 @@ export const UserUpdateWithoutReviewsInput = inputObjectType({
     t.field('address', { type: 'AddressUpdateOneWithoutUserNestedInput' })
     t.field('orders', { type: 'OrderUpdateManyWithoutUserNestedInput' })
     t.field('cart', { type: 'ShoppingProductUpdateManyWithoutUserNestedInput' })
+    t.field('Wishlist', { type: 'WishlistUpdateOneWithoutUserNestedInput' })
   },
 })
 
@@ -6012,8 +7227,454 @@ export const UserUncheckedUpdateWithoutReviewsInput = inputObjectType({
     t.field('cart', {
       type: 'ShoppingProductUncheckedUpdateManyWithoutUserNestedInput',
     })
+    t.field('Wishlist', {
+      type: 'WishlistUncheckedUpdateOneWithoutUserNestedInput',
+    })
   },
 })
+
+export const UserCreateWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserCreateWithoutWishlistInput',
+  definition(t) {
+    t.nonNull.field('email', { type: 'String' })
+    t.nonNull.field('password', { type: 'String' })
+    t.nonNull.field('firstName', { type: 'String' })
+    t.nonNull.field('lastName', { type: 'String' })
+    t.field('gender', { type: 'String' })
+    t.field('birthday', { type: 'DateTime' })
+    t.field('role', { type: 'Role' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('address', { type: 'AddressCreateNestedOneWithoutUserInput' })
+    t.field('orders', { type: 'OrderCreateNestedManyWithoutUserInput' })
+    t.field('reviews', { type: 'ReviewCreateNestedManyWithoutUserInput' })
+    t.field('cart', { type: 'ShoppingProductCreateNestedManyWithoutUserInput' })
+  },
+})
+
+export const UserUncheckedCreateWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserUncheckedCreateWithoutWishlistInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.nonNull.field('email', { type: 'String' })
+    t.nonNull.field('password', { type: 'String' })
+    t.nonNull.field('firstName', { type: 'String' })
+    t.nonNull.field('lastName', { type: 'String' })
+    t.field('gender', { type: 'String' })
+    t.field('birthday', { type: 'DateTime' })
+    t.field('role', { type: 'Role' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('address', {
+      type: 'AddressUncheckedCreateNestedOneWithoutUserInput',
+    })
+    t.field('orders', {
+      type: 'OrderUncheckedCreateNestedManyWithoutUserInput',
+    })
+    t.field('reviews', {
+      type: 'ReviewUncheckedCreateNestedManyWithoutUserInput',
+    })
+    t.field('cart', {
+      type: 'ShoppingProductUncheckedCreateNestedManyWithoutUserInput',
+    })
+  },
+})
+
+export const UserCreateOrConnectWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserCreateOrConnectWithoutWishlistInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'UserWhereUniqueInput' })
+    t.nonNull.field('create', {
+      type: 'UserUncheckedCreateWithoutWishlistInput',
+    })
+  },
+})
+
+export const WishlistProductCreateWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateWithoutWishlistInput',
+  definition(t) {
+    t.field('product', {
+      type: 'ProductCreateNestedOneWithoutWishlistProductInput',
+    })
+  },
+})
+
+export const WishlistProductUncheckedCreateWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedCreateWithoutWishlistInput',
+    definition(t) {
+      t.field('id', { type: 'Int' })
+      t.nonNull.field('productId', { type: 'Int' })
+    },
+  })
+
+export const WishlistProductCreateOrConnectWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductCreateOrConnectWithoutWishlistInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductWhereUniqueInput' })
+      t.nonNull.field('create', {
+        type: 'WishlistProductUncheckedCreateWithoutWishlistInput',
+      })
+    },
+  })
+
+export const WishlistProductCreateManyWishlistInputEnvelope = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateManyWishlistInputEnvelope',
+  definition(t) {
+    t.nonNull.field('data', { type: 'WishlistProductCreateManyWishlistInput' })
+    t.field('skipDuplicates', { type: 'Boolean' })
+  },
+})
+
+export const UserUpsertWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserUpsertWithoutWishlistInput',
+  definition(t) {
+    t.nonNull.field('update', {
+      type: 'UserUncheckedUpdateWithoutWishlistInput',
+    })
+    t.nonNull.field('create', {
+      type: 'UserUncheckedCreateWithoutWishlistInput',
+    })
+  },
+})
+
+export const UserUpdateWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserUpdateWithoutWishlistInput',
+  definition(t) {
+    t.field('email', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('password', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('firstName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('lastName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('gender', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('birthday', { type: 'NullableDateTimeFieldUpdateOperationsInput' })
+    t.field('role', { type: 'EnumRoleFieldUpdateOperationsInput' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('address', { type: 'AddressUpdateOneWithoutUserNestedInput' })
+    t.field('orders', { type: 'OrderUpdateManyWithoutUserNestedInput' })
+    t.field('reviews', { type: 'ReviewUpdateManyWithoutUserNestedInput' })
+    t.field('cart', { type: 'ShoppingProductUpdateManyWithoutUserNestedInput' })
+  },
+})
+
+export const UserUncheckedUpdateWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'UserUncheckedUpdateWithoutWishlistInput',
+  definition(t) {
+    t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('email', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('password', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('firstName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('lastName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('gender', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('birthday', { type: 'NullableDateTimeFieldUpdateOperationsInput' })
+    t.field('role', { type: 'EnumRoleFieldUpdateOperationsInput' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('address', {
+      type: 'AddressUncheckedUpdateOneWithoutUserNestedInput',
+    })
+    t.field('orders', {
+      type: 'OrderUncheckedUpdateManyWithoutUserNestedInput',
+    })
+    t.field('reviews', {
+      type: 'ReviewUncheckedUpdateManyWithoutUserNestedInput',
+    })
+    t.field('cart', {
+      type: 'ShoppingProductUncheckedUpdateManyWithoutUserNestedInput',
+    })
+  },
+})
+
+export const WishlistProductUpsertWithWhereUniqueWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpsertWithWhereUniqueWithoutWishlistInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductWhereUniqueInput' })
+      t.nonNull.field('update', {
+        type: 'WishlistProductUncheckedUpdateWithoutWishlistInput',
+      })
+      t.nonNull.field('create', {
+        type: 'WishlistProductUncheckedCreateWithoutWishlistInput',
+      })
+    },
+  })
+
+export const WishlistProductUpdateWithWhereUniqueWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpdateWithWhereUniqueWithoutWishlistInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductWhereUniqueInput' })
+      t.nonNull.field('data', {
+        type: 'WishlistProductUncheckedUpdateWithoutWishlistInput',
+      })
+    },
+  })
+
+export const WishlistProductUpdateManyWithWhereWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUpdateManyWithWhereWithoutWishlistInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'WishlistProductScalarWhereInput' })
+      t.nonNull.field('data', {
+        type: 'WishlistProductUncheckedUpdateManyWithoutProductsInput',
+      })
+    },
+  })
+
+export const WishlistCreateWithoutProductsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateWithoutProductsInput',
+  definition(t) {
+    t.field('user', { type: 'UserCreateNestedOneWithoutWishlistInput' })
+  },
+})
+
+export const WishlistUncheckedCreateWithoutProductsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUncheckedCreateWithoutProductsInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('userId', { type: 'Int' })
+  },
+})
+
+export const WishlistCreateOrConnectWithoutProductsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistCreateOrConnectWithoutProductsInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'WishlistWhereUniqueInput' })
+    t.nonNull.field('create', {
+      type: 'WishlistUncheckedCreateWithoutProductsInput',
+    })
+  },
+})
+
+export const ProductCreateWithoutWishlistProductInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'ProductCreateWithoutWishlistProductInput',
+  definition(t) {
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('description', { type: 'String' })
+    t.field('price', { type: 'Int' })
+    t.field('discount', { type: 'Float' })
+    t.field('stock', { type: 'Int' })
+    t.nonNull.field('category', { type: 'String' })
+    t.nonNull.field('manufacturer', { type: 'String' })
+    t.nonNull.field('img', { type: 'String' })
+    t.field('likes', { type: 'Int' })
+    t.field('memory', { type: 'String' })
+    t.field('storage', { type: 'String' })
+    t.field('processor', { type: 'String' })
+    t.field('gpu', { type: 'String' })
+    t.field('os', { type: 'String' })
+    t.field('screen', { type: 'String' })
+    t.field('reviews', { type: 'ReviewCreateNestedManyWithoutProductInput' })
+    t.field('ShoppingProduct', {
+      type: 'ShoppingProductCreateNestedManyWithoutProductInput',
+    })
+  },
+})
+
+export const ProductUncheckedCreateWithoutWishlistProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'ProductUncheckedCreateWithoutWishlistProductInput',
+    definition(t) {
+      t.field('id', { type: 'Int' })
+      t.nonNull.field('name', { type: 'String' })
+      t.nonNull.field('description', { type: 'String' })
+      t.field('price', { type: 'Int' })
+      t.field('discount', { type: 'Float' })
+      t.field('stock', { type: 'Int' })
+      t.nonNull.field('category', { type: 'String' })
+      t.nonNull.field('manufacturer', { type: 'String' })
+      t.nonNull.field('img', { type: 'String' })
+      t.field('likes', { type: 'Int' })
+      t.field('memory', { type: 'String' })
+      t.field('storage', { type: 'String' })
+      t.field('processor', { type: 'String' })
+      t.field('gpu', { type: 'String' })
+      t.field('os', { type: 'String' })
+      t.field('screen', { type: 'String' })
+      t.field('reviews', {
+        type: 'ReviewUncheckedCreateNestedManyWithoutProductInput',
+      })
+      t.field('ShoppingProduct', {
+        type: 'ShoppingProductUncheckedCreateNestedManyWithoutProductInput',
+      })
+    },
+  })
+
+export const ProductCreateOrConnectWithoutWishlistProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'ProductCreateOrConnectWithoutWishlistProductInput',
+    definition(t) {
+      t.nonNull.field('where', { type: 'ProductWhereUniqueInput' })
+      t.nonNull.field('create', {
+        type: 'ProductUncheckedCreateWithoutWishlistProductInput',
+      })
+    },
+  })
+
+export const WishlistUpsertWithoutProductsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUpsertWithoutProductsInput',
+  definition(t) {
+    t.nonNull.field('update', {
+      type: 'WishlistUncheckedUpdateWithoutProductsInput',
+    })
+    t.nonNull.field('create', {
+      type: 'WishlistUncheckedCreateWithoutProductsInput',
+    })
+  },
+})
+
+export const WishlistUpdateWithoutProductsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUpdateWithoutProductsInput',
+  definition(t) {
+    t.field('user', { type: 'UserUpdateOneWithoutWishlistNestedInput' })
+  },
+})
+
+export const WishlistUncheckedUpdateWithoutProductsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistUncheckedUpdateWithoutProductsInput',
+  definition(t) {
+    t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('userId', { type: 'NullableIntFieldUpdateOperationsInput' })
+  },
+})
+
+export const ProductUpsertWithoutWishlistProductInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'ProductUpsertWithoutWishlistProductInput',
+  definition(t) {
+    t.nonNull.field('update', {
+      type: 'ProductUncheckedUpdateWithoutWishlistProductInput',
+    })
+    t.nonNull.field('create', {
+      type: 'ProductUncheckedCreateWithoutWishlistProductInput',
+    })
+  },
+})
+
+export const ProductUpdateWithoutWishlistProductInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'ProductUpdateWithoutWishlistProductInput',
+  definition(t) {
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('description', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('price', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('discount', { type: 'FloatFieldUpdateOperationsInput' })
+    t.field('stock', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('category', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('manufacturer', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('img', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('likes', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('memory', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('storage', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('processor', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('gpu', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('os', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('screen', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('reviews', { type: 'ReviewUpdateManyWithoutProductNestedInput' })
+    t.field('ShoppingProduct', {
+      type: 'ShoppingProductUpdateManyWithoutProductNestedInput',
+    })
+  },
+})
+
+export const ProductUncheckedUpdateWithoutWishlistProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'ProductUncheckedUpdateWithoutWishlistProductInput',
+    definition(t) {
+      t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+      t.field('description', { type: 'StringFieldUpdateOperationsInput' })
+      t.field('price', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('discount', { type: 'FloatFieldUpdateOperationsInput' })
+      t.field('stock', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('category', { type: 'StringFieldUpdateOperationsInput' })
+      t.field('manufacturer', { type: 'StringFieldUpdateOperationsInput' })
+      t.field('img', { type: 'StringFieldUpdateOperationsInput' })
+      t.field('likes', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('memory', { type: 'NullableStringFieldUpdateOperationsInput' })
+      t.field('storage', { type: 'NullableStringFieldUpdateOperationsInput' })
+      t.field('processor', { type: 'NullableStringFieldUpdateOperationsInput' })
+      t.field('gpu', { type: 'NullableStringFieldUpdateOperationsInput' })
+      t.field('os', { type: 'NullableStringFieldUpdateOperationsInput' })
+      t.field('screen', { type: 'NullableStringFieldUpdateOperationsInput' })
+      t.field('reviews', {
+        type: 'ReviewUncheckedUpdateManyWithoutProductNestedInput',
+      })
+      t.field('ShoppingProduct', {
+        type: 'ShoppingProductUncheckedUpdateManyWithoutProductNestedInput',
+      })
+    },
+  })
 
 export const OrderCreateManyUserInput = inputObjectType({
   nonNullDefaults: {
@@ -6213,6 +7874,17 @@ export const ShoppingProductCreateManyProductInput = inputObjectType({
   },
 })
 
+export const WishlistProductCreateManyProductInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateManyProductInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.nonNull.field('wishlistId', { type: 'Int' })
+  },
+})
+
 export const ReviewUpdateWithoutProductInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -6277,6 +7949,40 @@ export const ShoppingProductUncheckedUpdateManyWithoutShoppingProductInput =
     },
   })
 
+export const WishlistProductUpdateWithoutProductInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductUpdateWithoutProductInput',
+  definition(t) {
+    t.field('wishlist', { type: 'WishlistUpdateOneWithoutProductsNestedInput' })
+  },
+})
+
+export const WishlistProductUncheckedUpdateWithoutProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedUpdateWithoutProductInput',
+    definition(t) {
+      t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('wishlistId', { type: 'IntFieldUpdateOperationsInput' })
+    },
+  })
+
+export const WishlistProductUncheckedUpdateManyWithoutWishlistProductInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedUpdateManyWithoutWishlistProductInput',
+    definition(t) {
+      t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('wishlistId', { type: 'IntFieldUpdateOperationsInput' })
+    },
+  })
+
 export const OrderProductCreateManyOrderInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -6334,6 +8040,53 @@ export const OrderProductUncheckedUpdateManyWithoutProductsInput =
       t.field('img', { type: 'StringFieldUpdateOperationsInput' })
       t.field('discount', { type: 'FloatFieldUpdateOperationsInput' })
       t.field('quantity', { type: 'IntFieldUpdateOperationsInput' })
+    },
+  })
+
+export const WishlistProductCreateManyWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductCreateManyWishlistInput',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.nonNull.field('productId', { type: 'Int' })
+  },
+})
+
+export const WishlistProductUpdateWithoutWishlistInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'WishlistProductUpdateWithoutWishlistInput',
+  definition(t) {
+    t.field('product', {
+      type: 'ProductUpdateOneWithoutWishlistProductNestedInput',
+    })
+  },
+})
+
+export const WishlistProductUncheckedUpdateWithoutWishlistInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedUpdateWithoutWishlistInput',
+    definition(t) {
+      t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('productId', { type: 'IntFieldUpdateOperationsInput' })
+    },
+  })
+
+export const WishlistProductUncheckedUpdateManyWithoutProductsInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'WishlistProductUncheckedUpdateManyWithoutProductsInput',
+    definition(t) {
+      t.field('id', { type: 'IntFieldUpdateOperationsInput' })
+      t.field('productId', { type: 'IntFieldUpdateOperationsInput' })
     },
   })
 
@@ -6448,6 +8201,36 @@ export const AggregateReview = objectType({
     t.nullable.field('_sum', { type: 'ReviewSumAggregateOutputType' })
     t.nullable.field('_min', { type: 'ReviewMinAggregateOutputType' })
     t.nullable.field('_max', { type: 'ReviewMaxAggregateOutputType' })
+  },
+})
+
+export const AggregateWishlist = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'AggregateWishlist',
+  definition(t) {
+    t.nullable.field('_count', { type: 'WishlistCountAggregateOutputType' })
+    t.nullable.field('_avg', { type: 'WishlistAvgAggregateOutputType' })
+    t.nullable.field('_sum', { type: 'WishlistSumAggregateOutputType' })
+    t.nullable.field('_min', { type: 'WishlistMinAggregateOutputType' })
+    t.nullable.field('_max', { type: 'WishlistMaxAggregateOutputType' })
+  },
+})
+
+export const AggregateWishlistProduct = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'AggregateWishlistProduct',
+  definition(t) {
+    t.nullable.field('_count', {
+      type: 'WishlistProductCountAggregateOutputType',
+    })
+    t.nullable.field('_avg', { type: 'WishlistProductAvgAggregateOutputType' })
+    t.nullable.field('_sum', { type: 'WishlistProductSumAggregateOutputType' })
+    t.nullable.field('_min', { type: 'WishlistProductMinAggregateOutputType' })
+    t.nullable.field('_max', { type: 'WishlistProductMaxAggregateOutputType' })
   },
 })
 
@@ -6617,6 +8400,7 @@ export const ProductCountOutputType = objectType({
   definition(t) {
     t.field('reviews', { type: 'Int' })
     t.field('ShoppingProduct', { type: 'Int' })
+    t.field('WishlistProduct', { type: 'Int' })
   },
 })
 
@@ -7090,5 +8874,132 @@ export const ReviewMaxAggregateOutputType = objectType({
     t.nullable.field('comment', { type: 'String' })
     t.nullable.field('rating', { type: 'Int' })
     t.nullable.field('date', { type: 'DateTime' })
+  },
+})
+
+export const WishlistCountOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistCountOutputType',
+  definition(t) {
+    t.field('products', { type: 'Int' })
+  },
+})
+
+export const WishlistCountAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistCountAggregateOutputType',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('userId', { type: 'Int' })
+    t.field('_all', { type: 'Int' })
+  },
+})
+
+export const WishlistAvgAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistAvgAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Float' })
+    t.nullable.field('userId', { type: 'Float' })
+  },
+})
+
+export const WishlistSumAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistSumAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Int' })
+    t.nullable.field('userId', { type: 'Int' })
+  },
+})
+
+export const WishlistMinAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistMinAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Int' })
+    t.nullable.field('userId', { type: 'Int' })
+  },
+})
+
+export const WishlistMaxAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistMaxAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Int' })
+    t.nullable.field('userId', { type: 'Int' })
+  },
+})
+
+export const WishlistProductCountAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistProductCountAggregateOutputType',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('productId', { type: 'Int' })
+    t.field('wishlistId', { type: 'Int' })
+    t.field('_all', { type: 'Int' })
+  },
+})
+
+export const WishlistProductAvgAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistProductAvgAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Float' })
+    t.nullable.field('productId', { type: 'Float' })
+    t.nullable.field('wishlistId', { type: 'Float' })
+  },
+})
+
+export const WishlistProductSumAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistProductSumAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Int' })
+    t.nullable.field('productId', { type: 'Int' })
+    t.nullable.field('wishlistId', { type: 'Int' })
+  },
+})
+
+export const WishlistProductMinAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistProductMinAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Int' })
+    t.nullable.field('productId', { type: 'Int' })
+    t.nullable.field('wishlistId', { type: 'Int' })
+  },
+})
+
+export const WishlistProductMaxAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'WishlistProductMaxAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'Int' })
+    t.nullable.field('productId', { type: 'Int' })
+    t.nullable.field('wishlistId', { type: 'Int' })
   },
 })

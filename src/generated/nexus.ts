@@ -418,6 +418,31 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
     notIn?: Array<number | null> | null; // [Int]
   }
+  IntNullableFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
+  IntNullableWithAggregatesFilter: { // input type
+    _avg?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    _count?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _max?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _min?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _sum?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableWithAggregatesFilter'] | null; // NestedIntNullableWithAggregatesFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
   IntWithAggregatesFilter: { // input type
     _avg?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     _count?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
@@ -519,6 +544,16 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     notIn?: Array<number | null> | null; // [Float]
   }
+  NestedFloatNullableFilter: { // input type
+    equals?: number | null; // Float
+    gt?: number | null; // Float
+    gte?: number | null; // Float
+    in?: Array<number | null> | null; // [Float]
+    lt?: number | null; // Float
+    lte?: number | null; // Float
+    not?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    notIn?: Array<number | null> | null; // [Float]
+  }
   NestedFloatWithAggregatesFilter: { // input type
     _avg?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     _count?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
@@ -552,6 +587,21 @@ export interface NexusGenInputs {
     lt?: number | null; // Int
     lte?: number | null; // Int
     not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
+  NestedIntNullableWithAggregatesFilter: { // input type
+    _avg?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    _count?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _max?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _min?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _sum?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableWithAggregatesFilter'] | null; // NestedIntNullableWithAggregatesFilter
     notIn?: Array<number | null> | null; // [Int]
   }
   NestedIntWithAggregatesFilter: { // input type
@@ -629,6 +679,13 @@ export interface NexusGenInputs {
   }
   NullableDateTimeFieldUpdateOperationsInput: { // input type
     set?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  NullableIntFieldUpdateOperationsInput: { // input type
+    decrement?: number | null; // Int
+    divide?: number | null; // Int
+    increment?: number | null; // Int
+    multiply?: number | null; // Int
+    set?: number | null; // Int
   }
   NullableStringFieldUpdateOperationsInput: { // input type
     set?: string | null; // String
@@ -1556,6 +1613,7 @@ export interface NexusGenInputs {
   }
   ProductCreateInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutProductInput'] | null; // ShoppingProductCreateNestedManyWithoutProductInput
+    WishlistProduct?: NexusGenInputs['WishlistProductCreateNestedManyWithoutProductInput'] | null; // WishlistProductCreateNestedManyWithoutProductInput
     category: string; // String!
     description: string; // String!
     discount?: number | null; // Float
@@ -1601,6 +1659,11 @@ export interface NexusGenInputs {
     connectOrCreate?: NexusGenInputs['ProductCreateOrConnectWithoutShoppingProductInput'] | null; // ProductCreateOrConnectWithoutShoppingProductInput
     create?: NexusGenInputs['ProductUncheckedCreateWithoutShoppingProductInput'] | null; // ProductUncheckedCreateWithoutShoppingProductInput
   }
+  ProductCreateNestedOneWithoutWishlistProductInput: { // input type
+    connect?: NexusGenInputs['ProductWhereUniqueInput'] | null; // ProductWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductCreateOrConnectWithoutWishlistProductInput'] | null; // ProductCreateOrConnectWithoutWishlistProductInput
+    create?: NexusGenInputs['ProductUncheckedCreateWithoutWishlistProductInput'] | null; // ProductUncheckedCreateWithoutWishlistProductInput
+  }
   ProductCreateOrConnectWithoutReviewsInput: { // input type
     create: NexusGenInputs['ProductUncheckedCreateWithoutReviewsInput']; // ProductUncheckedCreateWithoutReviewsInput!
     where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
@@ -1609,8 +1672,13 @@ export interface NexusGenInputs {
     create: NexusGenInputs['ProductUncheckedCreateWithoutShoppingProductInput']; // ProductUncheckedCreateWithoutShoppingProductInput!
     where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
   }
+  ProductCreateOrConnectWithoutWishlistProductInput: { // input type
+    create: NexusGenInputs['ProductUncheckedCreateWithoutWishlistProductInput']; // ProductUncheckedCreateWithoutWishlistProductInput!
+    where: NexusGenInputs['ProductWhereUniqueInput']; // ProductWhereUniqueInput!
+  }
   ProductCreateWithoutReviewsInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutProductInput'] | null; // ShoppingProductCreateNestedManyWithoutProductInput
+    WishlistProduct?: NexusGenInputs['WishlistProductCreateNestedManyWithoutProductInput'] | null; // WishlistProductCreateNestedManyWithoutProductInput
     category: string; // String!
     description: string; // String!
     discount?: number | null; // Float
@@ -1628,6 +1696,26 @@ export interface NexusGenInputs {
     storage?: string | null; // String
   }
   ProductCreateWithoutShoppingProductInput: { // input type
+    WishlistProduct?: NexusGenInputs['WishlistProductCreateNestedManyWithoutProductInput'] | null; // WishlistProductCreateNestedManyWithoutProductInput
+    category: string; // String!
+    description: string; // String!
+    discount?: number | null; // Float
+    gpu?: string | null; // String
+    img: string; // String!
+    likes?: number | null; // Int
+    manufacturer: string; // String!
+    memory?: string | null; // String
+    name: string; // String!
+    os?: string | null; // String
+    price?: number | null; // Int
+    processor?: string | null; // String
+    reviews?: NexusGenInputs['ReviewCreateNestedManyWithoutProductInput'] | null; // ReviewCreateNestedManyWithoutProductInput
+    screen?: string | null; // String
+    stock?: number | null; // Int
+    storage?: string | null; // String
+  }
+  ProductCreateWithoutWishlistProductInput: { // input type
+    ShoppingProduct?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutProductInput'] | null; // ShoppingProductCreateNestedManyWithoutProductInput
     category: string; // String!
     description: string; // String!
     discount?: number | null; // Float
@@ -1690,39 +1778,40 @@ export interface NexusGenInputs {
     category?: NexusGenEnums['SortOrder'] | null; // SortOrder
     description?: NexusGenEnums['SortOrder'] | null; // SortOrder
     discount?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    gpu?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    gpu?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     img?: NexusGenEnums['SortOrder'] | null; // SortOrder
     likes?: NexusGenEnums['SortOrder'] | null; // SortOrder
     manufacturer?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    memory?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    memory?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    os?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    os?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     price?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    processor?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    screen?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    processor?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+    screen?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     stock?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    storage?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    storage?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
   }
   ProductOrderByWithRelationInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductOrderByRelationAggregateInput'] | null; // ShoppingProductOrderByRelationAggregateInput
+    WishlistProduct?: NexusGenInputs['WishlistProductOrderByRelationAggregateInput'] | null; // WishlistProductOrderByRelationAggregateInput
     category?: NexusGenEnums['SortOrder'] | null; // SortOrder
     description?: NexusGenEnums['SortOrder'] | null; // SortOrder
     discount?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    gpu?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    gpu?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     img?: NexusGenEnums['SortOrder'] | null; // SortOrder
     likes?: NexusGenEnums['SortOrder'] | null; // SortOrder
     manufacturer?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    memory?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    memory?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    os?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    os?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     price?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    processor?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    processor?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     reviews?: NexusGenInputs['ReviewOrderByRelationAggregateInput'] | null; // ReviewOrderByRelationAggregateInput
-    screen?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    screen?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     stock?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    storage?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    storage?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
   }
   ProductRelationFilter: { // input type
     is?: NexusGenInputs['ProductWhereInput'] | null; // ProductWhereInput
@@ -1758,6 +1847,7 @@ export interface NexusGenInputs {
   }
   ProductUncheckedCreateInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutProductInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutProductInput
+    WishlistProduct?: NexusGenInputs['WishlistProductUncheckedCreateNestedManyWithoutProductInput'] | null; // WishlistProductUncheckedCreateNestedManyWithoutProductInput
     category: string; // String!
     description: string; // String!
     discount?: number | null; // Float
@@ -1778,6 +1868,7 @@ export interface NexusGenInputs {
   }
   ProductUncheckedCreateWithoutReviewsInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutProductInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutProductInput
+    WishlistProduct?: NexusGenInputs['WishlistProductUncheckedCreateNestedManyWithoutProductInput'] | null; // WishlistProductUncheckedCreateNestedManyWithoutProductInput
     category: string; // String!
     description: string; // String!
     discount?: number | null; // Float
@@ -1796,6 +1887,27 @@ export interface NexusGenInputs {
     storage?: string | null; // String
   }
   ProductUncheckedCreateWithoutShoppingProductInput: { // input type
+    WishlistProduct?: NexusGenInputs['WishlistProductUncheckedCreateNestedManyWithoutProductInput'] | null; // WishlistProductUncheckedCreateNestedManyWithoutProductInput
+    category: string; // String!
+    description: string; // String!
+    discount?: number | null; // Float
+    gpu?: string | null; // String
+    id?: number | null; // Int
+    img: string; // String!
+    likes?: number | null; // Int
+    manufacturer: string; // String!
+    memory?: string | null; // String
+    name: string; // String!
+    os?: string | null; // String
+    price?: number | null; // Int
+    processor?: string | null; // String
+    reviews?: NexusGenInputs['ReviewUncheckedCreateNestedManyWithoutProductInput'] | null; // ReviewUncheckedCreateNestedManyWithoutProductInput
+    screen?: string | null; // String
+    stock?: number | null; // Int
+    storage?: string | null; // String
+  }
+  ProductUncheckedCreateWithoutWishlistProductInput: { // input type
+    ShoppingProduct?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutProductInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutProductInput
     category: string; // String!
     description: string; // String!
     discount?: number | null; // Float
@@ -1816,6 +1928,7 @@ export interface NexusGenInputs {
   }
   ProductUncheckedUpdateInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutProductNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutProductNestedInput
+    WishlistProduct?: NexusGenInputs['WishlistProductUncheckedUpdateManyWithoutProductNestedInput'] | null; // WishlistProductUncheckedUpdateManyWithoutProductNestedInput
     category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -1854,6 +1967,7 @@ export interface NexusGenInputs {
   }
   ProductUncheckedUpdateWithoutReviewsInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutProductNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutProductNestedInput
+    WishlistProduct?: NexusGenInputs['WishlistProductUncheckedUpdateManyWithoutProductNestedInput'] | null; // WishlistProductUncheckedUpdateManyWithoutProductNestedInput
     category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -1872,6 +1986,27 @@ export interface NexusGenInputs {
     storage?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
   }
   ProductUncheckedUpdateWithoutShoppingProductInput: { // input type
+    WishlistProduct?: NexusGenInputs['WishlistProductUncheckedUpdateManyWithoutProductNestedInput'] | null; // WishlistProductUncheckedUpdateManyWithoutProductNestedInput
+    category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    gpu?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    img?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    likes?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    manufacturer?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    memory?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    os?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    price?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    processor?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    reviews?: NexusGenInputs['ReviewUncheckedUpdateManyWithoutProductNestedInput'] | null; // ReviewUncheckedUpdateManyWithoutProductNestedInput
+    screen?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    stock?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    storage?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  ProductUncheckedUpdateWithoutWishlistProductInput: { // input type
+    ShoppingProduct?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutProductNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutProductNestedInput
     category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -1892,6 +2027,7 @@ export interface NexusGenInputs {
   }
   ProductUpdateInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductUpdateManyWithoutProductNestedInput'] | null; // ShoppingProductUpdateManyWithoutProductNestedInput
+    WishlistProduct?: NexusGenInputs['WishlistProductUpdateManyWithoutProductNestedInput'] | null; // WishlistProductUpdateManyWithoutProductNestedInput
     category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -1940,8 +2076,18 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['ProductUncheckedUpdateWithoutShoppingProductInput'] | null; // ProductUncheckedUpdateWithoutShoppingProductInput
     upsert?: NexusGenInputs['ProductUpsertWithoutShoppingProductInput'] | null; // ProductUpsertWithoutShoppingProductInput
   }
+  ProductUpdateOneWithoutWishlistProductNestedInput: { // input type
+    connect?: NexusGenInputs['ProductWhereUniqueInput'] | null; // ProductWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ProductCreateOrConnectWithoutWishlistProductInput'] | null; // ProductCreateOrConnectWithoutWishlistProductInput
+    create?: NexusGenInputs['ProductUncheckedCreateWithoutWishlistProductInput'] | null; // ProductUncheckedCreateWithoutWishlistProductInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['ProductUncheckedUpdateWithoutWishlistProductInput'] | null; // ProductUncheckedUpdateWithoutWishlistProductInput
+    upsert?: NexusGenInputs['ProductUpsertWithoutWishlistProductInput'] | null; // ProductUpsertWithoutWishlistProductInput
+  }
   ProductUpdateWithoutReviewsInput: { // input type
     ShoppingProduct?: NexusGenInputs['ShoppingProductUpdateManyWithoutProductNestedInput'] | null; // ShoppingProductUpdateManyWithoutProductNestedInput
+    WishlistProduct?: NexusGenInputs['WishlistProductUpdateManyWithoutProductNestedInput'] | null; // WishlistProductUpdateManyWithoutProductNestedInput
     category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -1959,6 +2105,26 @@ export interface NexusGenInputs {
     storage?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
   }
   ProductUpdateWithoutShoppingProductInput: { // input type
+    WishlistProduct?: NexusGenInputs['WishlistProductUpdateManyWithoutProductNestedInput'] | null; // WishlistProductUpdateManyWithoutProductNestedInput
+    category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    gpu?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    img?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    likes?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    manufacturer?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    memory?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    os?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    price?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    processor?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    reviews?: NexusGenInputs['ReviewUpdateManyWithoutProductNestedInput'] | null; // ReviewUpdateManyWithoutProductNestedInput
+    screen?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    stock?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    storage?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  ProductUpdateWithoutWishlistProductInput: { // input type
+    ShoppingProduct?: NexusGenInputs['ShoppingProductUpdateManyWithoutProductNestedInput'] | null; // ShoppingProductUpdateManyWithoutProductNestedInput
     category?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     description?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     discount?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -1984,11 +2150,16 @@ export interface NexusGenInputs {
     create: NexusGenInputs['ProductUncheckedCreateWithoutShoppingProductInput']; // ProductUncheckedCreateWithoutShoppingProductInput!
     update: NexusGenInputs['ProductUncheckedUpdateWithoutShoppingProductInput']; // ProductUncheckedUpdateWithoutShoppingProductInput!
   }
+  ProductUpsertWithoutWishlistProductInput: { // input type
+    create: NexusGenInputs['ProductUncheckedCreateWithoutWishlistProductInput']; // ProductUncheckedCreateWithoutWishlistProductInput!
+    update: NexusGenInputs['ProductUncheckedUpdateWithoutWishlistProductInput']; // ProductUncheckedUpdateWithoutWishlistProductInput!
+  }
   ProductWhereInput: { // input type
     AND?: Array<NexusGenInputs['ProductWhereInput'] | null> | null; // [ProductWhereInput]
     NOT?: Array<NexusGenInputs['ProductWhereInput'] | null> | null; // [ProductWhereInput]
     OR?: Array<NexusGenInputs['ProductWhereInput'] | null> | null; // [ProductWhereInput]
     ShoppingProduct?: NexusGenInputs['ShoppingProductListRelationFilter'] | null; // ShoppingProductListRelationFilter
+    WishlistProduct?: NexusGenInputs['WishlistProductListRelationFilter'] | null; // WishlistProductListRelationFilter
     category?: NexusGenInputs['StringFilter'] | null; // StringFilter
     description?: NexusGenInputs['StringFilter'] | null; // StringFilter
     discount?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
@@ -2663,6 +2834,10 @@ export interface NexusGenInputs {
     cartProduct?: NexusGenInputs['ShoppingProductCartProductCompoundUniqueInput'] | null; // ShoppingProductCartProductCompoundUniqueInput
     id?: number | null; // Int
   }
+  SortOrderInput: { // input type
+    nulls?: NexusGenEnums['NullsOrder'] | null; // NullsOrder
+    sort: NexusGenEnums['SortOrder']; // SortOrder!
+  }
   StringFieldUpdateOperationsInput: { // input type
     set?: string | null; // String
   }
@@ -2743,6 +2918,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserCreateInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistCreateNestedOneWithoutUserInput'] | null; // WishlistCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressCreateNestedOneWithoutUserInput'] | null; // AddressCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutUserInput'] | null; // ShoppingProductCreateNestedManyWithoutUserInput
@@ -2787,6 +2963,11 @@ export interface NexusGenInputs {
     connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutReviewsInput'] | null; // UserCreateOrConnectWithoutReviewsInput
     create?: NexusGenInputs['UserUncheckedCreateWithoutReviewsInput'] | null; // UserUncheckedCreateWithoutReviewsInput
   }
+  UserCreateNestedOneWithoutWishlistInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutWishlistInput'] | null; // UserCreateOrConnectWithoutWishlistInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutWishlistInput'] | null; // UserUncheckedCreateWithoutWishlistInput
+  }
   UserCreateOrConnectWithoutAddressInput: { // input type
     create: NexusGenInputs['UserUncheckedCreateWithoutAddressInput']; // UserUncheckedCreateWithoutAddressInput!
     where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
@@ -2803,7 +2984,12 @@ export interface NexusGenInputs {
     create: NexusGenInputs['UserUncheckedCreateWithoutReviewsInput']; // UserUncheckedCreateWithoutReviewsInput!
     where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
   }
+  UserCreateOrConnectWithoutWishlistInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutWishlistInput']; // UserUncheckedCreateWithoutWishlistInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
   UserCreateWithoutAddressInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistCreateNestedOneWithoutUserInput'] | null; // WishlistCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutUserInput'] | null; // ShoppingProductCreateNestedManyWithoutUserInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -2817,6 +3003,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserCreateWithoutCartInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistCreateNestedOneWithoutUserInput'] | null; // WishlistCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressCreateNestedOneWithoutUserInput'] | null; // AddressCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -2830,6 +3017,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserCreateWithoutOrdersInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistCreateNestedOneWithoutUserInput'] | null; // WishlistCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressCreateNestedOneWithoutUserInput'] | null; // AddressCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutUserInput'] | null; // ShoppingProductCreateNestedManyWithoutUserInput
@@ -2843,6 +3031,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserCreateWithoutReviewsInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistCreateNestedOneWithoutUserInput'] | null; // WishlistCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressCreateNestedOneWithoutUserInput'] | null; // AddressCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutUserInput'] | null; // ShoppingProductCreateNestedManyWithoutUserInput
@@ -2853,6 +3042,20 @@ export interface NexusGenInputs {
     lastName: string; // String!
     orders?: NexusGenInputs['OrderCreateNestedManyWithoutUserInput'] | null; // OrderCreateNestedManyWithoutUserInput
     password: string; // String!
+    role?: NexusGenEnums['Role'] | null; // Role
+  }
+  UserCreateWithoutWishlistInput: { // input type
+    address?: NexusGenInputs['AddressCreateNestedOneWithoutUserInput'] | null; // AddressCreateNestedOneWithoutUserInput
+    birthday?: NexusGenScalars['DateTime'] | null; // DateTime
+    cart?: NexusGenInputs['ShoppingProductCreateNestedManyWithoutUserInput'] | null; // ShoppingProductCreateNestedManyWithoutUserInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    firstName: string; // String!
+    gender?: string | null; // String
+    lastName: string; // String!
+    orders?: NexusGenInputs['OrderCreateNestedManyWithoutUserInput'] | null; // OrderCreateNestedManyWithoutUserInput
+    password: string; // String!
+    reviews?: NexusGenInputs['ReviewCreateNestedManyWithoutUserInput'] | null; // ReviewCreateNestedManyWithoutUserInput
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserMaxOrderByAggregateInput: { // input type
@@ -2883,24 +3086,25 @@ export interface NexusGenInputs {
     _max?: NexusGenInputs['UserMaxOrderByAggregateInput'] | null; // UserMaxOrderByAggregateInput
     _min?: NexusGenInputs['UserMinOrderByAggregateInput'] | null; // UserMinOrderByAggregateInput
     _sum?: NexusGenInputs['UserSumOrderByAggregateInput'] | null; // UserSumOrderByAggregateInput
-    birthday?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    birthday?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    gender?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    gender?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     password?: NexusGenEnums['SortOrder'] | null; // SortOrder
     role?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserOrderByWithRelationInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistOrderByWithRelationInput'] | null; // WishlistOrderByWithRelationInput
     address?: NexusGenInputs['AddressOrderByWithRelationInput'] | null; // AddressOrderByWithRelationInput
-    birthday?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    birthday?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     cart?: NexusGenInputs['ShoppingProductOrderByRelationAggregateInput'] | null; // ShoppingProductOrderByRelationAggregateInput
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    gender?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    gender?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     orders?: NexusGenInputs['OrderOrderByRelationAggregateInput'] | null; // OrderOrderByRelationAggregateInput
@@ -2930,6 +3134,7 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserUncheckedCreateInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedCreateNestedOneWithoutUserInput'] | null; // WishlistUncheckedCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressUncheckedCreateNestedOneWithoutUserInput'] | null; // AddressUncheckedCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutUserInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutUserInput
@@ -2945,6 +3150,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserUncheckedCreateWithoutAddressInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedCreateNestedOneWithoutUserInput'] | null; // WishlistUncheckedCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutUserInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutUserInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -2959,6 +3165,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserUncheckedCreateWithoutCartInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedCreateNestedOneWithoutUserInput'] | null; // WishlistUncheckedCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressUncheckedCreateNestedOneWithoutUserInput'] | null; // AddressUncheckedCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -2973,6 +3180,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserUncheckedCreateWithoutOrdersInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedCreateNestedOneWithoutUserInput'] | null; // WishlistUncheckedCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressUncheckedCreateNestedOneWithoutUserInput'] | null; // AddressUncheckedCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutUserInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutUserInput
@@ -2987,6 +3195,7 @@ export interface NexusGenInputs {
     role?: NexusGenEnums['Role'] | null; // Role
   }
   UserUncheckedCreateWithoutReviewsInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedCreateNestedOneWithoutUserInput'] | null; // WishlistUncheckedCreateNestedOneWithoutUserInput
     address?: NexusGenInputs['AddressUncheckedCreateNestedOneWithoutUserInput'] | null; // AddressUncheckedCreateNestedOneWithoutUserInput
     birthday?: NexusGenScalars['DateTime'] | null; // DateTime
     cart?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutUserInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutUserInput
@@ -3000,7 +3209,23 @@ export interface NexusGenInputs {
     password: string; // String!
     role?: NexusGenEnums['Role'] | null; // Role
   }
+  UserUncheckedCreateWithoutWishlistInput: { // input type
+    address?: NexusGenInputs['AddressUncheckedCreateNestedOneWithoutUserInput'] | null; // AddressUncheckedCreateNestedOneWithoutUserInput
+    birthday?: NexusGenScalars['DateTime'] | null; // DateTime
+    cart?: NexusGenInputs['ShoppingProductUncheckedCreateNestedManyWithoutUserInput'] | null; // ShoppingProductUncheckedCreateNestedManyWithoutUserInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    firstName: string; // String!
+    gender?: string | null; // String
+    id?: number | null; // Int
+    lastName: string; // String!
+    orders?: NexusGenInputs['OrderUncheckedCreateNestedManyWithoutUserInput'] | null; // OrderUncheckedCreateNestedManyWithoutUserInput
+    password: string; // String!
+    reviews?: NexusGenInputs['ReviewUncheckedCreateNestedManyWithoutUserInput'] | null; // ReviewUncheckedCreateNestedManyWithoutUserInput
+    role?: NexusGenEnums['Role'] | null; // Role
+  }
   UserUncheckedUpdateInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedUpdateOneWithoutUserNestedInput'] | null; // WishlistUncheckedUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUncheckedUpdateOneWithoutUserNestedInput'] | null; // AddressUncheckedUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
@@ -3027,6 +3252,7 @@ export interface NexusGenInputs {
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUncheckedUpdateWithoutAddressInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedUpdateOneWithoutUserNestedInput'] | null; // WishlistUncheckedUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -3041,6 +3267,7 @@ export interface NexusGenInputs {
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUncheckedUpdateWithoutCartInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedUpdateOneWithoutUserNestedInput'] | null; // WishlistUncheckedUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUncheckedUpdateOneWithoutUserNestedInput'] | null; // AddressUncheckedUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -3055,6 +3282,7 @@ export interface NexusGenInputs {
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUncheckedUpdateWithoutOrdersInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedUpdateOneWithoutUserNestedInput'] | null; // WishlistUncheckedUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUncheckedUpdateOneWithoutUserNestedInput'] | null; // AddressUncheckedUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
@@ -3069,6 +3297,7 @@ export interface NexusGenInputs {
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUncheckedUpdateWithoutReviewsInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUncheckedUpdateOneWithoutUserNestedInput'] | null; // WishlistUncheckedUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUncheckedUpdateOneWithoutUserNestedInput'] | null; // AddressUncheckedUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
@@ -3082,7 +3311,23 @@ export interface NexusGenInputs {
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
+  UserUncheckedUpdateWithoutWishlistInput: { // input type
+    address?: NexusGenInputs['AddressUncheckedUpdateOneWithoutUserNestedInput'] | null; // AddressUncheckedUpdateOneWithoutUserNestedInput
+    birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    cart?: NexusGenInputs['ShoppingProductUncheckedUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUncheckedUpdateManyWithoutUserNestedInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    firstName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    gender?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    lastName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrderUncheckedUpdateManyWithoutUserNestedInput'] | null; // OrderUncheckedUpdateManyWithoutUserNestedInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reviews?: NexusGenInputs['ReviewUncheckedUpdateManyWithoutUserNestedInput'] | null; // ReviewUncheckedUpdateManyWithoutUserNestedInput
+    role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
+  }
   UserUpdateInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUpdateOneWithoutUserNestedInput'] | null; // WishlistUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUpdateOneWithoutUserNestedInput'] | null; // AddressUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUpdateManyWithoutUserNestedInput
@@ -3134,7 +3379,17 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['UserUncheckedUpdateWithoutReviewsInput'] | null; // UserUncheckedUpdateWithoutReviewsInput
     upsert?: NexusGenInputs['UserUpsertWithoutReviewsInput'] | null; // UserUpsertWithoutReviewsInput
   }
+  UserUpdateOneWithoutWishlistNestedInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutWishlistInput'] | null; // UserCreateOrConnectWithoutWishlistInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutWishlistInput'] | null; // UserUncheckedCreateWithoutWishlistInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['UserUncheckedUpdateWithoutWishlistInput'] | null; // UserUncheckedUpdateWithoutWishlistInput
+    upsert?: NexusGenInputs['UserUpsertWithoutWishlistInput'] | null; // UserUpsertWithoutWishlistInput
+  }
   UserUpdateWithoutAddressInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUpdateOneWithoutUserNestedInput'] | null; // WishlistUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUpdateManyWithoutUserNestedInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -3148,6 +3403,7 @@ export interface NexusGenInputs {
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUpdateWithoutCartInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUpdateOneWithoutUserNestedInput'] | null; // WishlistUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUpdateOneWithoutUserNestedInput'] | null; // AddressUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -3161,6 +3417,7 @@ export interface NexusGenInputs {
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUpdateWithoutOrdersInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUpdateOneWithoutUserNestedInput'] | null; // WishlistUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUpdateOneWithoutUserNestedInput'] | null; // AddressUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUpdateManyWithoutUserNestedInput
@@ -3174,6 +3431,7 @@ export interface NexusGenInputs {
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUpdateWithoutReviewsInput: { // input type
+    Wishlist?: NexusGenInputs['WishlistUpdateOneWithoutUserNestedInput'] | null; // WishlistUpdateOneWithoutUserNestedInput
     address?: NexusGenInputs['AddressUpdateOneWithoutUserNestedInput'] | null; // AddressUpdateOneWithoutUserNestedInput
     birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
     cart?: NexusGenInputs['ShoppingProductUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUpdateManyWithoutUserNestedInput
@@ -3184,6 +3442,20 @@ export interface NexusGenInputs {
     lastName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     orders?: NexusGenInputs['OrderUpdateManyWithoutUserNestedInput'] | null; // OrderUpdateManyWithoutUserNestedInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
+  }
+  UserUpdateWithoutWishlistInput: { // input type
+    address?: NexusGenInputs['AddressUpdateOneWithoutUserNestedInput'] | null; // AddressUpdateOneWithoutUserNestedInput
+    birthday?: NexusGenInputs['NullableDateTimeFieldUpdateOperationsInput'] | null; // NullableDateTimeFieldUpdateOperationsInput
+    cart?: NexusGenInputs['ShoppingProductUpdateManyWithoutUserNestedInput'] | null; // ShoppingProductUpdateManyWithoutUserNestedInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    firstName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    gender?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    lastName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    orders?: NexusGenInputs['OrderUpdateManyWithoutUserNestedInput'] | null; // OrderUpdateManyWithoutUserNestedInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reviews?: NexusGenInputs['ReviewUpdateManyWithoutUserNestedInput'] | null; // ReviewUpdateManyWithoutUserNestedInput
     role?: NexusGenInputs['EnumRoleFieldUpdateOperationsInput'] | null; // EnumRoleFieldUpdateOperationsInput
   }
   UserUpsertWithoutAddressInput: { // input type
@@ -3202,10 +3474,15 @@ export interface NexusGenInputs {
     create: NexusGenInputs['UserUncheckedCreateWithoutReviewsInput']; // UserUncheckedCreateWithoutReviewsInput!
     update: NexusGenInputs['UserUncheckedUpdateWithoutReviewsInput']; // UserUncheckedUpdateWithoutReviewsInput!
   }
+  UserUpsertWithoutWishlistInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutWishlistInput']; // UserUncheckedCreateWithoutWishlistInput!
+    update: NexusGenInputs['UserUncheckedUpdateWithoutWishlistInput']; // UserUncheckedUpdateWithoutWishlistInput!
+  }
   UserWhereInput: { // input type
     AND?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
     NOT?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
     OR?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
+    Wishlist?: NexusGenInputs['WishlistWhereInput'] | null; // WishlistWhereInput
     address?: NexusGenInputs['AddressWhereInput'] | null; // AddressWhereInput
     birthday?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
     cart?: NexusGenInputs['ShoppingProductListRelationFilter'] | null; // ShoppingProductListRelationFilter
@@ -3224,10 +3501,451 @@ export interface NexusGenInputs {
     email?: string | null; // String
     id?: number | null; // Int
   }
+  WishlistAvgOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistCountOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistCreateInput: { // input type
+    products?: NexusGenInputs['WishlistProductCreateNestedManyWithoutWishlistInput'] | null; // WishlistProductCreateNestedManyWithoutWishlistInput
+    user?: NexusGenInputs['UserCreateNestedOneWithoutWishlistInput'] | null; // UserCreateNestedOneWithoutWishlistInput
+  }
+  WishlistCreateManyInput: { // input type
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
+  WishlistCreateNestedOneWithoutProductsInput: { // input type
+    connect?: NexusGenInputs['WishlistWhereUniqueInput'] | null; // WishlistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['WishlistCreateOrConnectWithoutProductsInput'] | null; // WishlistCreateOrConnectWithoutProductsInput
+    create?: NexusGenInputs['WishlistUncheckedCreateWithoutProductsInput'] | null; // WishlistUncheckedCreateWithoutProductsInput
+  }
+  WishlistCreateNestedOneWithoutUserInput: { // input type
+    connect?: NexusGenInputs['WishlistWhereUniqueInput'] | null; // WishlistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['WishlistCreateOrConnectWithoutUserInput'] | null; // WishlistCreateOrConnectWithoutUserInput
+    create?: NexusGenInputs['WishlistUncheckedCreateWithoutUserInput'] | null; // WishlistUncheckedCreateWithoutUserInput
+  }
+  WishlistCreateOrConnectWithoutProductsInput: { // input type
+    create: NexusGenInputs['WishlistUncheckedCreateWithoutProductsInput']; // WishlistUncheckedCreateWithoutProductsInput!
+    where: NexusGenInputs['WishlistWhereUniqueInput']; // WishlistWhereUniqueInput!
+  }
+  WishlistCreateOrConnectWithoutUserInput: { // input type
+    create: NexusGenInputs['WishlistUncheckedCreateWithoutUserInput']; // WishlistUncheckedCreateWithoutUserInput!
+    where: NexusGenInputs['WishlistWhereUniqueInput']; // WishlistWhereUniqueInput!
+  }
+  WishlistCreateWithoutProductsInput: { // input type
+    user?: NexusGenInputs['UserCreateNestedOneWithoutWishlistInput'] | null; // UserCreateNestedOneWithoutWishlistInput
+  }
+  WishlistCreateWithoutUserInput: { // input type
+    products?: NexusGenInputs['WishlistProductCreateNestedManyWithoutWishlistInput'] | null; // WishlistProductCreateNestedManyWithoutWishlistInput
+  }
+  WishlistMaxOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistMinOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['WishlistAvgOrderByAggregateInput'] | null; // WishlistAvgOrderByAggregateInput
+    _count?: NexusGenInputs['WishlistCountOrderByAggregateInput'] | null; // WishlistCountOrderByAggregateInput
+    _max?: NexusGenInputs['WishlistMaxOrderByAggregateInput'] | null; // WishlistMaxOrderByAggregateInput
+    _min?: NexusGenInputs['WishlistMinOrderByAggregateInput'] | null; // WishlistMinOrderByAggregateInput
+    _sum?: NexusGenInputs['WishlistSumOrderByAggregateInput'] | null; // WishlistSumOrderByAggregateInput
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+  }
+  WishlistOrderByWithRelationInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    products?: NexusGenInputs['WishlistProductOrderByRelationAggregateInput'] | null; // WishlistProductOrderByRelationAggregateInput
+    user?: NexusGenInputs['UserOrderByWithRelationInput'] | null; // UserOrderByWithRelationInput
+    userId?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+  }
+  WishlistProductAvgOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    productId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    wishlistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductCountOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    productId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    wishlistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductCreateInput: { // input type
+    product?: NexusGenInputs['ProductCreateNestedOneWithoutWishlistProductInput'] | null; // ProductCreateNestedOneWithoutWishlistProductInput
+    wishlist?: NexusGenInputs['WishlistCreateNestedOneWithoutProductsInput'] | null; // WishlistCreateNestedOneWithoutProductsInput
+  }
+  WishlistProductCreateManyInput: { // input type
+    id?: number | null; // Int
+    productId: number; // Int!
+    wishlistId: number; // Int!
+  }
+  WishlistProductCreateManyProductInput: { // input type
+    id?: number | null; // Int
+    wishlistId: number; // Int!
+  }
+  WishlistProductCreateManyProductInputEnvelope: { // input type
+    data: NexusGenInputs['WishlistProductCreateManyProductInput']; // WishlistProductCreateManyProductInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  WishlistProductCreateManyWishlistInput: { // input type
+    id?: number | null; // Int
+    productId: number; // Int!
+  }
+  WishlistProductCreateManyWishlistInputEnvelope: { // input type
+    data: NexusGenInputs['WishlistProductCreateManyWishlistInput']; // WishlistProductCreateManyWishlistInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  WishlistProductCreateNestedManyWithoutProductInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutProductInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutProductInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutProductInput'] | null> | null; // [WishlistProductCreateWithoutProductInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyProductInputEnvelope'] | null; // WishlistProductCreateManyProductInputEnvelope
+  }
+  WishlistProductCreateNestedManyWithoutWishlistInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutWishlistInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutWishlistInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutWishlistInput'] | null> | null; // [WishlistProductCreateWithoutWishlistInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyWishlistInputEnvelope'] | null; // WishlistProductCreateManyWishlistInputEnvelope
+  }
+  WishlistProductCreateOrConnectWithoutProductInput: { // input type
+    create: NexusGenInputs['WishlistProductUncheckedCreateWithoutProductInput']; // WishlistProductUncheckedCreateWithoutProductInput!
+    where: NexusGenInputs['WishlistProductWhereUniqueInput']; // WishlistProductWhereUniqueInput!
+  }
+  WishlistProductCreateOrConnectWithoutWishlistInput: { // input type
+    create: NexusGenInputs['WishlistProductUncheckedCreateWithoutWishlistInput']; // WishlistProductUncheckedCreateWithoutWishlistInput!
+    where: NexusGenInputs['WishlistProductWhereUniqueInput']; // WishlistProductWhereUniqueInput!
+  }
+  WishlistProductCreateWithoutProductInput: { // input type
+    wishlist?: NexusGenInputs['WishlistCreateNestedOneWithoutProductsInput'] | null; // WishlistCreateNestedOneWithoutProductsInput
+  }
+  WishlistProductCreateWithoutWishlistInput: { // input type
+    product?: NexusGenInputs['ProductCreateNestedOneWithoutWishlistProductInput'] | null; // ProductCreateNestedOneWithoutWishlistProductInput
+  }
+  WishlistProductListRelationFilter: { // input type
+    every?: NexusGenInputs['WishlistProductWhereInput'] | null; // WishlistProductWhereInput
+    none?: NexusGenInputs['WishlistProductWhereInput'] | null; // WishlistProductWhereInput
+    some?: NexusGenInputs['WishlistProductWhereInput'] | null; // WishlistProductWhereInput
+  }
+  WishlistProductMaxOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    productId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    wishlistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductMinOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    productId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    wishlistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductOrderByRelationAggregateInput: { // input type
+    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['WishlistProductAvgOrderByAggregateInput'] | null; // WishlistProductAvgOrderByAggregateInput
+    _count?: NexusGenInputs['WishlistProductCountOrderByAggregateInput'] | null; // WishlistProductCountOrderByAggregateInput
+    _max?: NexusGenInputs['WishlistProductMaxOrderByAggregateInput'] | null; // WishlistProductMaxOrderByAggregateInput
+    _min?: NexusGenInputs['WishlistProductMinOrderByAggregateInput'] | null; // WishlistProductMinOrderByAggregateInput
+    _sum?: NexusGenInputs['WishlistProductSumOrderByAggregateInput'] | null; // WishlistProductSumOrderByAggregateInput
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    productId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    wishlistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductOrderByWithRelationInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    product?: NexusGenInputs['ProductOrderByWithRelationInput'] | null; // ProductOrderByWithRelationInput
+    productId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    wishlist?: NexusGenInputs['WishlistOrderByWithRelationInput'] | null; // WishlistOrderByWithRelationInput
+    wishlistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductScalarWhereInput: { // input type
+    AND?: Array<NexusGenInputs['WishlistProductScalarWhereInput'] | null> | null; // [WishlistProductScalarWhereInput]
+    NOT?: Array<NexusGenInputs['WishlistProductScalarWhereInput'] | null> | null; // [WishlistProductScalarWhereInput]
+    OR?: Array<NexusGenInputs['WishlistProductScalarWhereInput'] | null> | null; // [WishlistProductScalarWhereInput]
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    productId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    wishlistId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  WishlistProductScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['WishlistProductScalarWhereWithAggregatesInput'] | null> | null; // [WishlistProductScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['WishlistProductScalarWhereWithAggregatesInput'] | null> | null; // [WishlistProductScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['WishlistProductScalarWhereWithAggregatesInput'] | null> | null; // [WishlistProductScalarWhereWithAggregatesInput]
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    productId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    wishlistId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+  }
+  WishlistProductSumOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    productId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    wishlistId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistProductUncheckedCreateInput: { // input type
+    id?: number | null; // Int
+    productId: number; // Int!
+    wishlistId: number; // Int!
+  }
+  WishlistProductUncheckedCreateNestedManyWithoutProductInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutProductInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutProductInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutProductInput'] | null> | null; // [WishlistProductCreateWithoutProductInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyProductInputEnvelope'] | null; // WishlistProductCreateManyProductInputEnvelope
+  }
+  WishlistProductUncheckedCreateNestedManyWithoutWishlistInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutWishlistInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutWishlistInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutWishlistInput'] | null> | null; // [WishlistProductCreateWithoutWishlistInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyWishlistInputEnvelope'] | null; // WishlistProductCreateManyWishlistInputEnvelope
+  }
+  WishlistProductUncheckedCreateWithoutProductInput: { // input type
+    id?: number | null; // Int
+    wishlistId: number; // Int!
+  }
+  WishlistProductUncheckedCreateWithoutWishlistInput: { // input type
+    id?: number | null; // Int
+    productId: number; // Int!
+  }
+  WishlistProductUncheckedUpdateInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    productId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    wishlistId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  WishlistProductUncheckedUpdateManyInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    productId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    wishlistId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  WishlistProductUncheckedUpdateManyWithoutProductNestedInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutProductInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutProductInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutProductInput'] | null> | null; // [WishlistProductCreateWithoutProductInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyProductInputEnvelope'] | null; // WishlistProductCreateManyProductInputEnvelope
+    delete?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['WishlistProductScalarWhereInput'] | null> | null; // [WishlistProductScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    set?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    update?: Array<NexusGenInputs['WishlistProductUpdateWithWhereUniqueWithoutProductInput'] | null> | null; // [WishlistProductUpdateWithWhereUniqueWithoutProductInput]
+    updateMany?: Array<NexusGenInputs['WishlistProductUpdateManyWithWhereWithoutProductInput'] | null> | null; // [WishlistProductUpdateManyWithWhereWithoutProductInput]
+    upsert?: Array<NexusGenInputs['WishlistProductUpsertWithWhereUniqueWithoutProductInput'] | null> | null; // [WishlistProductUpsertWithWhereUniqueWithoutProductInput]
+  }
+  WishlistProductUncheckedUpdateManyWithoutProductsInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    productId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutWishlistInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutWishlistInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutWishlistInput'] | null> | null; // [WishlistProductCreateWithoutWishlistInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyWishlistInputEnvelope'] | null; // WishlistProductCreateManyWishlistInputEnvelope
+    delete?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['WishlistProductScalarWhereInput'] | null> | null; // [WishlistProductScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    set?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    update?: Array<NexusGenInputs['WishlistProductUpdateWithWhereUniqueWithoutWishlistInput'] | null> | null; // [WishlistProductUpdateWithWhereUniqueWithoutWishlistInput]
+    updateMany?: Array<NexusGenInputs['WishlistProductUpdateManyWithWhereWithoutWishlistInput'] | null> | null; // [WishlistProductUpdateManyWithWhereWithoutWishlistInput]
+    upsert?: Array<NexusGenInputs['WishlistProductUpsertWithWhereUniqueWithoutWishlistInput'] | null> | null; // [WishlistProductUpsertWithWhereUniqueWithoutWishlistInput]
+  }
+  WishlistProductUncheckedUpdateManyWithoutWishlistProductInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    wishlistId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  WishlistProductUncheckedUpdateWithoutProductInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    wishlistId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  WishlistProductUncheckedUpdateWithoutWishlistInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    productId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  WishlistProductUpdateInput: { // input type
+    product?: NexusGenInputs['ProductUpdateOneWithoutWishlistProductNestedInput'] | null; // ProductUpdateOneWithoutWishlistProductNestedInput
+    wishlist?: NexusGenInputs['WishlistUpdateOneWithoutProductsNestedInput'] | null; // WishlistUpdateOneWithoutProductsNestedInput
+  }
+  WishlistProductUpdateManyWithWhereWithoutProductInput: { // input type
+    data: NexusGenInputs['WishlistProductUncheckedUpdateManyWithoutWishlistProductInput']; // WishlistProductUncheckedUpdateManyWithoutWishlistProductInput!
+    where: NexusGenInputs['WishlistProductScalarWhereInput']; // WishlistProductScalarWhereInput!
+  }
+  WishlistProductUpdateManyWithWhereWithoutWishlistInput: { // input type
+    data: NexusGenInputs['WishlistProductUncheckedUpdateManyWithoutProductsInput']; // WishlistProductUncheckedUpdateManyWithoutProductsInput!
+    where: NexusGenInputs['WishlistProductScalarWhereInput']; // WishlistProductScalarWhereInput!
+  }
+  WishlistProductUpdateManyWithoutProductNestedInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutProductInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutProductInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutProductInput'] | null> | null; // [WishlistProductCreateWithoutProductInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyProductInputEnvelope'] | null; // WishlistProductCreateManyProductInputEnvelope
+    delete?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['WishlistProductScalarWhereInput'] | null> | null; // [WishlistProductScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    set?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    update?: Array<NexusGenInputs['WishlistProductUpdateWithWhereUniqueWithoutProductInput'] | null> | null; // [WishlistProductUpdateWithWhereUniqueWithoutProductInput]
+    updateMany?: Array<NexusGenInputs['WishlistProductUpdateManyWithWhereWithoutProductInput'] | null> | null; // [WishlistProductUpdateManyWithWhereWithoutProductInput]
+    upsert?: Array<NexusGenInputs['WishlistProductUpsertWithWhereUniqueWithoutProductInput'] | null> | null; // [WishlistProductUpsertWithWhereUniqueWithoutProductInput]
+  }
+  WishlistProductUpdateManyWithoutWishlistNestedInput: { // input type
+    connect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['WishlistProductCreateOrConnectWithoutWishlistInput'] | null> | null; // [WishlistProductCreateOrConnectWithoutWishlistInput]
+    create?: Array<NexusGenInputs['WishlistProductCreateWithoutWishlistInput'] | null> | null; // [WishlistProductCreateWithoutWishlistInput]
+    createMany?: NexusGenInputs['WishlistProductCreateManyWishlistInputEnvelope'] | null; // WishlistProductCreateManyWishlistInputEnvelope
+    delete?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['WishlistProductScalarWhereInput'] | null> | null; // [WishlistProductScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    set?: Array<NexusGenInputs['WishlistProductWhereUniqueInput'] | null> | null; // [WishlistProductWhereUniqueInput]
+    update?: Array<NexusGenInputs['WishlistProductUpdateWithWhereUniqueWithoutWishlistInput'] | null> | null; // [WishlistProductUpdateWithWhereUniqueWithoutWishlistInput]
+    updateMany?: Array<NexusGenInputs['WishlistProductUpdateManyWithWhereWithoutWishlistInput'] | null> | null; // [WishlistProductUpdateManyWithWhereWithoutWishlistInput]
+    upsert?: Array<NexusGenInputs['WishlistProductUpsertWithWhereUniqueWithoutWishlistInput'] | null> | null; // [WishlistProductUpsertWithWhereUniqueWithoutWishlistInput]
+  }
+  WishlistProductUpdateWithWhereUniqueWithoutProductInput: { // input type
+    data: NexusGenInputs['WishlistProductUncheckedUpdateWithoutProductInput']; // WishlistProductUncheckedUpdateWithoutProductInput!
+    where: NexusGenInputs['WishlistProductWhereUniqueInput']; // WishlistProductWhereUniqueInput!
+  }
+  WishlistProductUpdateWithWhereUniqueWithoutWishlistInput: { // input type
+    data: NexusGenInputs['WishlistProductUncheckedUpdateWithoutWishlistInput']; // WishlistProductUncheckedUpdateWithoutWishlistInput!
+    where: NexusGenInputs['WishlistProductWhereUniqueInput']; // WishlistProductWhereUniqueInput!
+  }
+  WishlistProductUpdateWithoutProductInput: { // input type
+    wishlist?: NexusGenInputs['WishlistUpdateOneWithoutProductsNestedInput'] | null; // WishlistUpdateOneWithoutProductsNestedInput
+  }
+  WishlistProductUpdateWithoutWishlistInput: { // input type
+    product?: NexusGenInputs['ProductUpdateOneWithoutWishlistProductNestedInput'] | null; // ProductUpdateOneWithoutWishlistProductNestedInput
+  }
+  WishlistProductUpsertWithWhereUniqueWithoutProductInput: { // input type
+    create: NexusGenInputs['WishlistProductUncheckedCreateWithoutProductInput']; // WishlistProductUncheckedCreateWithoutProductInput!
+    update: NexusGenInputs['WishlistProductUncheckedUpdateWithoutProductInput']; // WishlistProductUncheckedUpdateWithoutProductInput!
+    where: NexusGenInputs['WishlistProductWhereUniqueInput']; // WishlistProductWhereUniqueInput!
+  }
+  WishlistProductUpsertWithWhereUniqueWithoutWishlistInput: { // input type
+    create: NexusGenInputs['WishlistProductUncheckedCreateWithoutWishlistInput']; // WishlistProductUncheckedCreateWithoutWishlistInput!
+    update: NexusGenInputs['WishlistProductUncheckedUpdateWithoutWishlistInput']; // WishlistProductUncheckedUpdateWithoutWishlistInput!
+    where: NexusGenInputs['WishlistProductWhereUniqueInput']; // WishlistProductWhereUniqueInput!
+  }
+  WishlistProductWhereInput: { // input type
+    AND?: Array<NexusGenInputs['WishlistProductWhereInput'] | null> | null; // [WishlistProductWhereInput]
+    NOT?: Array<NexusGenInputs['WishlistProductWhereInput'] | null> | null; // [WishlistProductWhereInput]
+    OR?: Array<NexusGenInputs['WishlistProductWhereInput'] | null> | null; // [WishlistProductWhereInput]
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    product?: NexusGenInputs['ProductWhereInput'] | null; // ProductWhereInput
+    productId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    wishlist?: NexusGenInputs['WishlistWhereInput'] | null; // WishlistWhereInput
+    wishlistId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  WishlistProductWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
+  WishlistRelationFilter: { // input type
+    is?: NexusGenInputs['WishlistWhereInput'] | null; // WishlistWhereInput
+    isNot?: NexusGenInputs['WishlistWhereInput'] | null; // WishlistWhereInput
+  }
+  WishlistScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['WishlistScalarWhereWithAggregatesInput'] | null> | null; // [WishlistScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['WishlistScalarWhereWithAggregatesInput'] | null> | null; // [WishlistScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['WishlistScalarWhereWithAggregatesInput'] | null> | null; // [WishlistScalarWhereWithAggregatesInput]
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    userId?: NexusGenInputs['IntNullableWithAggregatesFilter'] | null; // IntNullableWithAggregatesFilter
+  }
+  WishlistSumOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  WishlistUncheckedCreateInput: { // input type
+    id?: number | null; // Int
+    products?: NexusGenInputs['WishlistProductUncheckedCreateNestedManyWithoutWishlistInput'] | null; // WishlistProductUncheckedCreateNestedManyWithoutWishlistInput
+    userId?: number | null; // Int
+  }
+  WishlistUncheckedCreateNestedOneWithoutUserInput: { // input type
+    connect?: NexusGenInputs['WishlistWhereUniqueInput'] | null; // WishlistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['WishlistCreateOrConnectWithoutUserInput'] | null; // WishlistCreateOrConnectWithoutUserInput
+    create?: NexusGenInputs['WishlistUncheckedCreateWithoutUserInput'] | null; // WishlistUncheckedCreateWithoutUserInput
+  }
+  WishlistUncheckedCreateWithoutProductsInput: { // input type
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
+  WishlistUncheckedCreateWithoutUserInput: { // input type
+    id?: number | null; // Int
+    products?: NexusGenInputs['WishlistProductUncheckedCreateNestedManyWithoutWishlistInput'] | null; // WishlistProductUncheckedCreateNestedManyWithoutWishlistInput
+  }
+  WishlistUncheckedUpdateInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    products?: NexusGenInputs['WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput'] | null; // WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput
+    userId?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+  }
+  WishlistUncheckedUpdateManyInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    userId?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+  }
+  WishlistUncheckedUpdateOneWithoutUserNestedInput: { // input type
+    connect?: NexusGenInputs['WishlistWhereUniqueInput'] | null; // WishlistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['WishlistCreateOrConnectWithoutUserInput'] | null; // WishlistCreateOrConnectWithoutUserInput
+    create?: NexusGenInputs['WishlistUncheckedCreateWithoutUserInput'] | null; // WishlistUncheckedCreateWithoutUserInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['WishlistUncheckedUpdateWithoutUserInput'] | null; // WishlistUncheckedUpdateWithoutUserInput
+    upsert?: NexusGenInputs['WishlistUpsertWithoutUserInput'] | null; // WishlistUpsertWithoutUserInput
+  }
+  WishlistUncheckedUpdateWithoutProductsInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    userId?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+  }
+  WishlistUncheckedUpdateWithoutUserInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    products?: NexusGenInputs['WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput'] | null; // WishlistProductUncheckedUpdateManyWithoutWishlistNestedInput
+  }
+  WishlistUpdateInput: { // input type
+    products?: NexusGenInputs['WishlistProductUpdateManyWithoutWishlistNestedInput'] | null; // WishlistProductUpdateManyWithoutWishlistNestedInput
+    user?: NexusGenInputs['UserUpdateOneWithoutWishlistNestedInput'] | null; // UserUpdateOneWithoutWishlistNestedInput
+  }
+  WishlistUpdateOneWithoutProductsNestedInput: { // input type
+    connect?: NexusGenInputs['WishlistWhereUniqueInput'] | null; // WishlistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['WishlistCreateOrConnectWithoutProductsInput'] | null; // WishlistCreateOrConnectWithoutProductsInput
+    create?: NexusGenInputs['WishlistUncheckedCreateWithoutProductsInput'] | null; // WishlistUncheckedCreateWithoutProductsInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['WishlistUncheckedUpdateWithoutProductsInput'] | null; // WishlistUncheckedUpdateWithoutProductsInput
+    upsert?: NexusGenInputs['WishlistUpsertWithoutProductsInput'] | null; // WishlistUpsertWithoutProductsInput
+  }
+  WishlistUpdateOneWithoutUserNestedInput: { // input type
+    connect?: NexusGenInputs['WishlistWhereUniqueInput'] | null; // WishlistWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['WishlistCreateOrConnectWithoutUserInput'] | null; // WishlistCreateOrConnectWithoutUserInput
+    create?: NexusGenInputs['WishlistUncheckedCreateWithoutUserInput'] | null; // WishlistUncheckedCreateWithoutUserInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['WishlistUncheckedUpdateWithoutUserInput'] | null; // WishlistUncheckedUpdateWithoutUserInput
+    upsert?: NexusGenInputs['WishlistUpsertWithoutUserInput'] | null; // WishlistUpsertWithoutUserInput
+  }
+  WishlistUpdateWithoutProductsInput: { // input type
+    user?: NexusGenInputs['UserUpdateOneWithoutWishlistNestedInput'] | null; // UserUpdateOneWithoutWishlistNestedInput
+  }
+  WishlistUpdateWithoutUserInput: { // input type
+    products?: NexusGenInputs['WishlistProductUpdateManyWithoutWishlistNestedInput'] | null; // WishlistProductUpdateManyWithoutWishlistNestedInput
+  }
+  WishlistUpsertWithoutProductsInput: { // input type
+    create: NexusGenInputs['WishlistUncheckedCreateWithoutProductsInput']; // WishlistUncheckedCreateWithoutProductsInput!
+    update: NexusGenInputs['WishlistUncheckedUpdateWithoutProductsInput']; // WishlistUncheckedUpdateWithoutProductsInput!
+  }
+  WishlistUpsertWithoutUserInput: { // input type
+    create: NexusGenInputs['WishlistUncheckedCreateWithoutUserInput']; // WishlistUncheckedCreateWithoutUserInput!
+    update: NexusGenInputs['WishlistUncheckedUpdateWithoutUserInput']; // WishlistUncheckedUpdateWithoutUserInput!
+  }
+  WishlistWhereInput: { // input type
+    AND?: Array<NexusGenInputs['WishlistWhereInput'] | null> | null; // [WishlistWhereInput]
+    NOT?: Array<NexusGenInputs['WishlistWhereInput'] | null> | null; // [WishlistWhereInput]
+    OR?: Array<NexusGenInputs['WishlistWhereInput'] | null> | null; // [WishlistWhereInput]
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    products?: NexusGenInputs['WishlistProductListRelationFilter'] | null; // WishlistProductListRelationFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+  }
+  WishlistWhereUniqueInput: { // input type
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
 }
 
 export interface NexusGenEnums {
   AddressScalarFieldEnum: "city" | "country" | "id" | "phoneNumber" | "street" | "userId" | "zipCode"
+  NullsOrder: "first" | "last"
   OrderAddressScalarFieldEnum: "city" | "country" | "fullName" | "id" | "orderId" | "phoneNumber" | "street" | "zipCode"
   OrderProductScalarFieldEnum: "discount" | "id" | "img" | "name" | "orderId" | "price" | "quantity"
   OrderScalarFieldEnum: "OrderStatus" | "date" | "id" | "subtotal" | "type" | "userId"
@@ -3240,6 +3958,8 @@ export interface NexusGenEnums {
   SortOrder: "asc" | "desc"
   TransactionIsolationLevel: "ReadCommitted" | "ReadUncommitted" | "RepeatableRead" | "Serializable"
   UserScalarFieldEnum: "birthday" | "createdAt" | "email" | "firstName" | "gender" | "id" | "lastName" | "password" | "role"
+  WishlistProductScalarFieldEnum: "id" | "productId" | "wishlistId"
+  WishlistScalarFieldEnum: "id" | "userId"
 }
 
 export interface NexusGenScalars {
@@ -3356,6 +4076,20 @@ export interface NexusGenObjects {
     _max?: NexusGenRootTypes['UserMaxAggregateOutputType'] | null; // UserMaxAggregateOutputType
     _min?: NexusGenRootTypes['UserMinAggregateOutputType'] | null; // UserMinAggregateOutputType
     _sum?: NexusGenRootTypes['UserSumAggregateOutputType'] | null; // UserSumAggregateOutputType
+  }
+  AggregateWishlist: { // root type
+    _avg?: NexusGenRootTypes['WishlistAvgAggregateOutputType'] | null; // WishlistAvgAggregateOutputType
+    _count?: NexusGenRootTypes['WishlistCountAggregateOutputType'] | null; // WishlistCountAggregateOutputType
+    _max?: NexusGenRootTypes['WishlistMaxAggregateOutputType'] | null; // WishlistMaxAggregateOutputType
+    _min?: NexusGenRootTypes['WishlistMinAggregateOutputType'] | null; // WishlistMinAggregateOutputType
+    _sum?: NexusGenRootTypes['WishlistSumAggregateOutputType'] | null; // WishlistSumAggregateOutputType
+  }
+  AggregateWishlistProduct: { // root type
+    _avg?: NexusGenRootTypes['WishlistProductAvgAggregateOutputType'] | null; // WishlistProductAvgAggregateOutputType
+    _count?: NexusGenRootTypes['WishlistProductCountAggregateOutputType'] | null; // WishlistProductCountAggregateOutputType
+    _max?: NexusGenRootTypes['WishlistProductMaxAggregateOutputType'] | null; // WishlistProductMaxAggregateOutputType
+    _min?: NexusGenRootTypes['WishlistProductMinAggregateOutputType'] | null; // WishlistProductMinAggregateOutputType
+    _sum?: NexusGenRootTypes['WishlistProductSumAggregateOutputType'] | null; // WishlistProductSumAggregateOutputType
   }
   AuthPayload: { // root type
     token?: string | null; // String
@@ -3564,6 +4298,7 @@ export interface NexusGenObjects {
   }
   ProductCountOutputType: { // root type
     ShoppingProduct: number; // Int!
+    WishlistProduct: number; // Int!
     reviews: number; // Int!
   }
   ProductMaxAggregateOutputType: { // root type
@@ -3748,6 +4483,65 @@ export interface NexusGenObjects {
   UserSumAggregateOutputType: { // root type
     id?: number | null; // Int
   }
+  Wishlist: { // root type
+    id: number; // Int!
+    userId?: number | null; // Int
+  }
+  WishlistAvgAggregateOutputType: { // root type
+    id?: number | null; // Float
+    userId?: number | null; // Float
+  }
+  WishlistCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    id: number; // Int!
+    userId: number; // Int!
+  }
+  WishlistCountOutputType: { // root type
+    products: number; // Int!
+  }
+  WishlistMaxAggregateOutputType: { // root type
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
+  WishlistMinAggregateOutputType: { // root type
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
+  WishlistProduct: { // root type
+    id: number; // Int!
+    productId: number; // Int!
+    wishlistId: number; // Int!
+  }
+  WishlistProductAvgAggregateOutputType: { // root type
+    id?: number | null; // Float
+    productId?: number | null; // Float
+    wishlistId?: number | null; // Float
+  }
+  WishlistProductCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    id: number; // Int!
+    productId: number; // Int!
+    wishlistId: number; // Int!
+  }
+  WishlistProductMaxAggregateOutputType: { // root type
+    id?: number | null; // Int
+    productId?: number | null; // Int
+    wishlistId?: number | null; // Int
+  }
+  WishlistProductMinAggregateOutputType: { // root type
+    id?: number | null; // Int
+    productId?: number | null; // Int
+    wishlistId?: number | null; // Int
+  }
+  WishlistProductSumAggregateOutputType: { // root type
+    id?: number | null; // Int
+    productId?: number | null; // Int
+    wishlistId?: number | null; // Int
+  }
+  WishlistSumAggregateOutputType: { // root type
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
   adminStats: { // root type
     ordersCount: number; // Int!
     ordersSum: number; // Int!
@@ -3870,6 +4664,20 @@ export interface NexusGenFieldTypes {
     _min: NexusGenRootTypes['UserMinAggregateOutputType'] | null; // UserMinAggregateOutputType
     _sum: NexusGenRootTypes['UserSumAggregateOutputType'] | null; // UserSumAggregateOutputType
   }
+  AggregateWishlist: { // field return type
+    _avg: NexusGenRootTypes['WishlistAvgAggregateOutputType'] | null; // WishlistAvgAggregateOutputType
+    _count: NexusGenRootTypes['WishlistCountAggregateOutputType'] | null; // WishlistCountAggregateOutputType
+    _max: NexusGenRootTypes['WishlistMaxAggregateOutputType'] | null; // WishlistMaxAggregateOutputType
+    _min: NexusGenRootTypes['WishlistMinAggregateOutputType'] | null; // WishlistMinAggregateOutputType
+    _sum: NexusGenRootTypes['WishlistSumAggregateOutputType'] | null; // WishlistSumAggregateOutputType
+  }
+  AggregateWishlistProduct: { // field return type
+    _avg: NexusGenRootTypes['WishlistProductAvgAggregateOutputType'] | null; // WishlistProductAvgAggregateOutputType
+    _count: NexusGenRootTypes['WishlistProductCountAggregateOutputType'] | null; // WishlistProductCountAggregateOutputType
+    _max: NexusGenRootTypes['WishlistProductMaxAggregateOutputType'] | null; // WishlistProductMaxAggregateOutputType
+    _min: NexusGenRootTypes['WishlistProductMinAggregateOutputType'] | null; // WishlistProductMinAggregateOutputType
+    _sum: NexusGenRootTypes['WishlistProductSumAggregateOutputType'] | null; // WishlistProductSumAggregateOutputType
+  }
   AuthPayload: { // field return type
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
@@ -3889,6 +4697,8 @@ export interface NexusGenFieldTypes {
     createOneProduct: NexusGenRootTypes['Product']; // Product!
     createOneReview: NexusGenRootTypes['Review']; // Review!
     createOneShoppingProduct: NexusGenRootTypes['ShoppingProduct']; // ShoppingProduct!
+    createOneWishlist: NexusGenRootTypes['Wishlist']; // Wishlist!
+    createOneWishlistProduct: NexusGenRootTypes['WishlistProduct']; // WishlistProduct!
     deleteManyShoppingProduct: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteOneOrder: NexusGenRootTypes['Order'] | null; // Order
     deleteOneProduct: NexusGenRootTypes['Product'] | null; // Product
@@ -4063,6 +4873,7 @@ export interface NexusGenFieldTypes {
   }
   Product: { // field return type
     ShoppingProduct: NexusGenRootTypes['ShoppingProduct'][]; // [ShoppingProduct!]!
+    WishlistProduct: NexusGenRootTypes['WishlistProduct'][]; // [WishlistProduct!]!
     _count: NexusGenRootTypes['ProductCountOutputType']; // ProductCountOutputType!
     avgRating: number; // Float!
     category: string; // String!
@@ -4111,6 +4922,7 @@ export interface NexusGenFieldTypes {
   }
   ProductCountOutputType: { // field return type
     ShoppingProduct: number; // Int!
+    WishlistProduct: number; // Int!
     reviews: number; // Int!
   }
   ProductMaxAggregateOutputType: { // field return type
@@ -4162,6 +4974,8 @@ export interface NexusGenFieldTypes {
     findFirstOrderAddress: NexusGenRootTypes['OrderAddress'] | null; // OrderAddress
     findFirstProduct: NexusGenRootTypes['Product'] | null; // Product
     findFirstUser: NexusGenRootTypes['User'] | null; // User
+    findFirstWishlist: NexusGenRootTypes['Wishlist'] | null; // Wishlist
+    findFirstWishlistProduct: NexusGenRootTypes['WishlistProduct'] | null; // WishlistProduct
     findManyOrder: NexusGenRootTypes['Order'][]; // [Order!]!
     findManyOrderCount: number; // Int!
     findManyOrderProduct: NexusGenRootTypes['OrderProduct'][]; // [OrderProduct!]!
@@ -4264,6 +5078,7 @@ export interface NexusGenFieldTypes {
     userId: number | null; // Int
   }
   User: { // field return type
+    Wishlist: NexusGenRootTypes['Wishlist'] | null; // Wishlist
     _count: NexusGenRootTypes['UserCountOutputType']; // UserCountOutputType!
     address: NexusGenRootTypes['Address'] | null; // Address
     birthday: NexusGenScalars['DateTime'] | null; // DateTime
@@ -4323,6 +5138,70 @@ export interface NexusGenFieldTypes {
   }
   UserSumAggregateOutputType: { // field return type
     id: number | null; // Int
+  }
+  Wishlist: { // field return type
+    _count: NexusGenRootTypes['WishlistCountOutputType']; // WishlistCountOutputType!
+    id: number; // Int!
+    products: NexusGenRootTypes['WishlistProduct'][]; // [WishlistProduct!]!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: number | null; // Int
+  }
+  WishlistAvgAggregateOutputType: { // field return type
+    id: number | null; // Float
+    userId: number | null; // Float
+  }
+  WishlistCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    id: number; // Int!
+    userId: number; // Int!
+  }
+  WishlistCountOutputType: { // field return type
+    products: number; // Int!
+  }
+  WishlistMaxAggregateOutputType: { // field return type
+    id: number | null; // Int
+    userId: number | null; // Int
+  }
+  WishlistMinAggregateOutputType: { // field return type
+    id: number | null; // Int
+    userId: number | null; // Int
+  }
+  WishlistProduct: { // field return type
+    id: number; // Int!
+    product: NexusGenRootTypes['Product'] | null; // Product
+    productId: number; // Int!
+    wishlist: NexusGenRootTypes['Wishlist'] | null; // Wishlist
+    wishlistId: number; // Int!
+  }
+  WishlistProductAvgAggregateOutputType: { // field return type
+    id: number | null; // Float
+    productId: number | null; // Float
+    wishlistId: number | null; // Float
+  }
+  WishlistProductCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    id: number; // Int!
+    productId: number; // Int!
+    wishlistId: number; // Int!
+  }
+  WishlistProductMaxAggregateOutputType: { // field return type
+    id: number | null; // Int
+    productId: number | null; // Int
+    wishlistId: number | null; // Int
+  }
+  WishlistProductMinAggregateOutputType: { // field return type
+    id: number | null; // Int
+    productId: number | null; // Int
+    wishlistId: number | null; // Int
+  }
+  WishlistProductSumAggregateOutputType: { // field return type
+    id: number | null; // Int
+    productId: number | null; // Int
+    wishlistId: number | null; // Int
+  }
+  WishlistSumAggregateOutputType: { // field return type
+    id: number | null; // Int
+    userId: number | null; // Int
   }
   adminStats: { // field return type
     ordersCount: number; // Int!
@@ -4436,6 +5315,20 @@ export interface NexusGenFieldTypeNames {
     _min: 'UserMinAggregateOutputType'
     _sum: 'UserSumAggregateOutputType'
   }
+  AggregateWishlist: { // field return type name
+    _avg: 'WishlistAvgAggregateOutputType'
+    _count: 'WishlistCountAggregateOutputType'
+    _max: 'WishlistMaxAggregateOutputType'
+    _min: 'WishlistMinAggregateOutputType'
+    _sum: 'WishlistSumAggregateOutputType'
+  }
+  AggregateWishlistProduct: { // field return type name
+    _avg: 'WishlistProductAvgAggregateOutputType'
+    _count: 'WishlistProductCountAggregateOutputType'
+    _max: 'WishlistProductMaxAggregateOutputType'
+    _min: 'WishlistProductMinAggregateOutputType'
+    _sum: 'WishlistProductSumAggregateOutputType'
+  }
   AuthPayload: { // field return type name
     token: 'String'
     user: 'User'
@@ -4455,6 +5348,8 @@ export interface NexusGenFieldTypeNames {
     createOneProduct: 'Product'
     createOneReview: 'Review'
     createOneShoppingProduct: 'ShoppingProduct'
+    createOneWishlist: 'Wishlist'
+    createOneWishlistProduct: 'WishlistProduct'
     deleteManyShoppingProduct: 'BatchPayload'
     deleteOneOrder: 'Order'
     deleteOneProduct: 'Product'
@@ -4629,6 +5524,7 @@ export interface NexusGenFieldTypeNames {
   }
   Product: { // field return type name
     ShoppingProduct: 'ShoppingProduct'
+    WishlistProduct: 'WishlistProduct'
     _count: 'ProductCountOutputType'
     avgRating: 'Float'
     category: 'String'
@@ -4677,6 +5573,7 @@ export interface NexusGenFieldTypeNames {
   }
   ProductCountOutputType: { // field return type name
     ShoppingProduct: 'Int'
+    WishlistProduct: 'Int'
     reviews: 'Int'
   }
   ProductMaxAggregateOutputType: { // field return type name
@@ -4728,6 +5625,8 @@ export interface NexusGenFieldTypeNames {
     findFirstOrderAddress: 'OrderAddress'
     findFirstProduct: 'Product'
     findFirstUser: 'User'
+    findFirstWishlist: 'Wishlist'
+    findFirstWishlistProduct: 'WishlistProduct'
     findManyOrder: 'Order'
     findManyOrderCount: 'Int'
     findManyOrderProduct: 'OrderProduct'
@@ -4830,6 +5729,7 @@ export interface NexusGenFieldTypeNames {
     userId: 'Int'
   }
   User: { // field return type name
+    Wishlist: 'Wishlist'
     _count: 'UserCountOutputType'
     address: 'Address'
     birthday: 'DateTime'
@@ -4890,6 +5790,70 @@ export interface NexusGenFieldTypeNames {
   UserSumAggregateOutputType: { // field return type name
     id: 'Int'
   }
+  Wishlist: { // field return type name
+    _count: 'WishlistCountOutputType'
+    id: 'Int'
+    products: 'WishlistProduct'
+    user: 'User'
+    userId: 'Int'
+  }
+  WishlistAvgAggregateOutputType: { // field return type name
+    id: 'Float'
+    userId: 'Float'
+  }
+  WishlistCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    id: 'Int'
+    userId: 'Int'
+  }
+  WishlistCountOutputType: { // field return type name
+    products: 'Int'
+  }
+  WishlistMaxAggregateOutputType: { // field return type name
+    id: 'Int'
+    userId: 'Int'
+  }
+  WishlistMinAggregateOutputType: { // field return type name
+    id: 'Int'
+    userId: 'Int'
+  }
+  WishlistProduct: { // field return type name
+    id: 'Int'
+    product: 'Product'
+    productId: 'Int'
+    wishlist: 'Wishlist'
+    wishlistId: 'Int'
+  }
+  WishlistProductAvgAggregateOutputType: { // field return type name
+    id: 'Float'
+    productId: 'Float'
+    wishlistId: 'Float'
+  }
+  WishlistProductCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    id: 'Int'
+    productId: 'Int'
+    wishlistId: 'Int'
+  }
+  WishlistProductMaxAggregateOutputType: { // field return type name
+    id: 'Int'
+    productId: 'Int'
+    wishlistId: 'Int'
+  }
+  WishlistProductMinAggregateOutputType: { // field return type name
+    id: 'Int'
+    productId: 'Int'
+    wishlistId: 'Int'
+  }
+  WishlistProductSumAggregateOutputType: { // field return type name
+    id: 'Int'
+    productId: 'Int'
+    wishlistId: 'Int'
+  }
+  WishlistSumAggregateOutputType: { // field return type name
+    id: 'Int'
+    userId: 'Int'
+  }
   adminStats: { // field return type name
     ordersCount: 'Int'
     ordersSum: 'Int'
@@ -4923,6 +5887,12 @@ export interface NexusGenArgTypes {
     }
     createOneShoppingProduct: { // args
       data: NexusGenInputs['ShoppingProductCreateInput']; // ShoppingProductCreateInput!
+    }
+    createOneWishlist: { // args
+      data?: NexusGenInputs['WishlistCreateInput'] | null; // WishlistCreateInput
+    }
+    createOneWishlistProduct: { // args
+      data: NexusGenInputs['WishlistProductCreateInput']; // WishlistProductCreateInput!
     }
     deleteManyShoppingProduct: { // args
       where?: NexusGenInputs['ShoppingProductWhereInput'] | null; // ShoppingProductWhereInput
@@ -5008,6 +5978,14 @@ export interface NexusGenArgTypes {
       take?: number | null; // Int
       where?: NexusGenInputs['ShoppingProductWhereInput'] | null; // ShoppingProductWhereInput
     }
+    WishlistProduct: { // args
+      cursor?: NexusGenInputs['WishlistProductWhereUniqueInput'] | null; // WishlistProductWhereUniqueInput
+      distinct?: NexusGenEnums['WishlistProductScalarFieldEnum'] | null; // WishlistProductScalarFieldEnum
+      orderBy?: NexusGenInputs['WishlistProductOrderByWithRelationInput'] | null; // WishlistProductOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['WishlistProductWhereInput'] | null; // WishlistProductWhereInput
+    }
     reviews: { // args
       cursor?: NexusGenInputs['ReviewWhereUniqueInput'] | null; // ReviewWhereUniqueInput
       distinct?: NexusGenEnums['ReviewScalarFieldEnum'] | null; // ReviewScalarFieldEnum
@@ -5057,6 +6035,22 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    }
+    findFirstWishlist: { // args
+      cursor?: NexusGenInputs['WishlistWhereUniqueInput'] | null; // WishlistWhereUniqueInput
+      distinct?: NexusGenEnums['WishlistScalarFieldEnum'] | null; // WishlistScalarFieldEnum
+      orderBy?: Array<NexusGenInputs['WishlistOrderByWithRelationInput'] | null> | null; // [WishlistOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['WishlistWhereInput'] | null; // WishlistWhereInput
+    }
+    findFirstWishlistProduct: { // args
+      cursor?: NexusGenInputs['WishlistProductWhereUniqueInput'] | null; // WishlistProductWhereUniqueInput
+      distinct?: NexusGenEnums['WishlistProductScalarFieldEnum'] | null; // WishlistProductScalarFieldEnum
+      orderBy?: Array<NexusGenInputs['WishlistProductOrderByWithRelationInput'] | null> | null; // [WishlistProductOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['WishlistProductWhereInput'] | null; // WishlistProductWhereInput
     }
     findManyOrder: { // args
       cursor?: NexusGenInputs['OrderWhereUniqueInput'] | null; // OrderWhereUniqueInput
@@ -5169,6 +6163,16 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['ReviewWhereInput'] | null; // ReviewWhereInput
+    }
+  }
+  Wishlist: {
+    products: { // args
+      cursor?: NexusGenInputs['WishlistProductWhereUniqueInput'] | null; // WishlistProductWhereUniqueInput
+      distinct?: NexusGenEnums['WishlistProductScalarFieldEnum'] | null; // WishlistProductScalarFieldEnum
+      orderBy?: NexusGenInputs['WishlistProductOrderByWithRelationInput'] | null; // WishlistProductOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['WishlistProductWhereInput'] | null; // WishlistProductWhereInput
     }
   }
 }
