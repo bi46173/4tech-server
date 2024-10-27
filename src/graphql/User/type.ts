@@ -18,9 +18,6 @@ export const User = objectType({
     t.field('createdAt', { type: 'DateTime' })
     t.nullable.field('address', {
       type: 'Address',
-      args: {
-        where: 'AddressWhereInput',
-      },
       resolve(root: any) {
         return root.address
       },

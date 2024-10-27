@@ -21,9 +21,6 @@ export const Order = objectType({
     })
     t.nullable.field('address', {
       type: 'OrderAddress',
-      args: {
-        where: 'OrderAddressWhereInput',
-      },
       resolve(root: any) {
         return root.address
       },
