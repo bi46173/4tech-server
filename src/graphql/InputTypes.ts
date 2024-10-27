@@ -132,7 +132,7 @@ export const UserWhereInput = inputObjectType({
     t.field('birthday', { type: 'DateTimeNullableFilter' })
     t.field('role', { type: 'EnumRoleFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
-    t.field('address', { type: 'AddressRelationFilter' })
+    t.field('address', { type: 'AddressWhereInput' })
     t.field('orders', { type: 'OrderListRelationFilter' })
     t.field('reviews', { type: 'ReviewListRelationFilter' })
     t.field('cart', { type: 'ShoppingProductListRelationFilter' })
@@ -232,7 +232,7 @@ export const AddressWhereInput = inputObjectType({
     t.field('country', { type: 'StringFilter' })
     t.field('phoneNumber', { type: 'StringFilter' })
     t.field('userId', { type: 'IntFilter' })
-    t.field('User', { type: 'UserRelationFilter' })
+    t.field('User', { type: 'UserWhereInput' })
   },
 })
 
@@ -447,8 +447,8 @@ export const OrderWhereInput = inputObjectType({
     t.field('date', { type: 'DateTimeFilter' })
     t.field('subtotal', { type: 'IntFilter' })
     t.field('type', { type: 'EnumOrderTypeFilter' })
-    t.field('User', { type: 'UserRelationFilter' })
-    t.field('address', { type: 'OrderAddressRelationFilter' })
+    t.field('User', { type: 'UserWhereInput' })
+    t.field('address', { type: 'OrderAddressWhereInput' })
     t.field('products', { type: 'OrderProductListRelationFilter' })
   },
 })
@@ -536,7 +536,7 @@ export const OrderAddressWhereInput = inputObjectType({
     t.field('zipCode', { type: 'StringFilter' })
     t.field('country', { type: 'StringFilter' })
     t.field('phoneNumber', { type: 'StringFilter' })
-    t.field('order', { type: 'OrderRelationFilter' })
+    t.field('order', { type: 'OrderWhereInput' })
   },
 })
 
@@ -627,7 +627,7 @@ export const OrderProductWhereInput = inputObjectType({
     t.field('img', { type: 'StringFilter' })
     t.field('discount', { type: 'FloatFilter' })
     t.field('quantity', { type: 'IntFilter' })
-    t.field('Order', { type: 'OrderRelationFilter' })
+    t.field('Order', { type: 'OrderWhereInput' })
   },
 })
 
@@ -711,8 +711,8 @@ export const ShoppingProductWhereInput = inputObjectType({
     t.field('quantity', { type: 'IntFilter' })
     t.field('userId', { type: 'IntFilter' })
     t.field('productId', { type: 'IntFilter' })
-    t.field('Product', { type: 'ProductRelationFilter' })
-    t.field('User', { type: 'UserRelationFilter' })
+    t.field('Product', { type: 'ProductWhereInput' })
+    t.field('User', { type: 'UserWhereInput' })
   },
 })
 
@@ -799,8 +799,8 @@ export const ReviewWhereInput = inputObjectType({
     t.field('comment', { type: 'StringFilter' })
     t.field('rating', { type: 'IntFilter' })
     t.field('date', { type: 'DateTimeFilter' })
-    t.field('Product', { type: 'ProductRelationFilter' })
-    t.field('User', { type: 'UserRelationFilter' })
+    t.field('Product', { type: 'ProductWhereInput' })
+    t.field('User', { type: 'UserWhereInput' })
   },
 })
 
@@ -2931,7 +2931,7 @@ export const AddressCreateNestedOneWithoutUserInput = inputObjectType({
   },
   name: 'AddressCreateNestedOneWithoutUserInput',
   definition(t) {
-    t.field('create', { type: 'AddressCreateWithoutUserInput' })
+    t.field('create', { type: 'AddressUncheckedCreateWithoutUserInput' })
     t.field('connectOrCreate', {
       type: 'AddressCreateOrConnectWithoutUserInput',
     })
@@ -2992,7 +2992,7 @@ export const AddressUncheckedCreateNestedOneWithoutUserInput = inputObjectType({
   },
   name: 'AddressUncheckedCreateNestedOneWithoutUserInput',
   definition(t) {
-    t.field('create', { type: 'AddressCreateWithoutUserInput' })
+    t.field('create', { type: 'AddressUncheckedCreateWithoutUserInput' })
     t.field('connectOrCreate', {
       type: 'AddressCreateOrConnectWithoutUserInput',
     })
@@ -3104,7 +3104,7 @@ export const AddressUpdateOneWithoutUserNestedInput = inputObjectType({
   },
   name: 'AddressUpdateOneWithoutUserNestedInput',
   definition(t) {
-    t.field('create', { type: 'AddressCreateWithoutUserInput' })
+    t.field('create', { type: 'AddressUncheckedCreateWithoutUserInput' })
     t.field('connectOrCreate', {
       type: 'AddressCreateOrConnectWithoutUserInput',
     })
@@ -3112,7 +3112,7 @@ export const AddressUpdateOneWithoutUserNestedInput = inputObjectType({
     t.field('disconnect', { type: 'Boolean' })
     t.field('delete', { type: 'Boolean' })
     t.field('connect', { type: 'AddressWhereUniqueInput' })
-    t.field('update', { type: 'AddressUpdateWithoutUserInput' })
+    t.field('update', { type: 'AddressUncheckedUpdateWithoutUserInput' })
   },
 })
 
@@ -3222,7 +3222,7 @@ export const AddressUncheckedUpdateOneWithoutUserNestedInput = inputObjectType({
   },
   name: 'AddressUncheckedUpdateOneWithoutUserNestedInput',
   definition(t) {
-    t.field('create', { type: 'AddressCreateWithoutUserInput' })
+    t.field('create', { type: 'AddressUncheckedCreateWithoutUserInput' })
     t.field('connectOrCreate', {
       type: 'AddressCreateOrConnectWithoutUserInput',
     })
@@ -3230,7 +3230,7 @@ export const AddressUncheckedUpdateOneWithoutUserNestedInput = inputObjectType({
     t.field('disconnect', { type: 'Boolean' })
     t.field('delete', { type: 'Boolean' })
     t.field('connect', { type: 'AddressWhereUniqueInput' })
-    t.field('update', { type: 'AddressUpdateWithoutUserInput' })
+    t.field('update', { type: 'AddressUncheckedUpdateWithoutUserInput' })
   },
 })
 
@@ -3327,7 +3327,7 @@ export const UserCreateNestedOneWithoutAddressInput = inputObjectType({
   },
   name: 'UserCreateNestedOneWithoutAddressInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutAddressInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutAddressInput' })
     t.field('connectOrCreate', {
       type: 'UserCreateOrConnectWithoutAddressInput',
     })
@@ -3341,13 +3341,13 @@ export const UserUpdateOneRequiredWithoutAddressNestedInput = inputObjectType({
   },
   name: 'UserUpdateOneRequiredWithoutAddressNestedInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutAddressInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutAddressInput' })
     t.field('connectOrCreate', {
       type: 'UserCreateOrConnectWithoutAddressInput',
     })
     t.field('upsert', { type: 'UserUpsertWithoutAddressInput' })
     t.field('connect', { type: 'UserWhereUniqueInput' })
-    t.field('update', { type: 'UserUpdateWithoutAddressInput' })
+    t.field('update', { type: 'UserUncheckedUpdateWithoutAddressInput' })
   },
 })
 
@@ -3565,7 +3565,7 @@ export const UserCreateNestedOneWithoutOrdersInput = inputObjectType({
   },
   name: 'UserCreateNestedOneWithoutOrdersInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutOrdersInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutOrdersInput' })
     t.field('connectOrCreate', {
       type: 'UserCreateOrConnectWithoutOrdersInput',
     })
@@ -3579,7 +3579,7 @@ export const OrderAddressCreateNestedOneWithoutOrderInput = inputObjectType({
   },
   name: 'OrderAddressCreateNestedOneWithoutOrderInput',
   definition(t) {
-    t.field('create', { type: 'OrderAddressCreateWithoutOrderInput' })
+    t.field('create', { type: 'OrderAddressUncheckedCreateWithoutOrderInput' })
     t.field('connectOrCreate', {
       type: 'OrderAddressCreateOrConnectWithoutOrderInput',
     })
@@ -3609,7 +3609,9 @@ export const OrderAddressUncheckedCreateNestedOneWithoutOrderInput =
     },
     name: 'OrderAddressUncheckedCreateNestedOneWithoutOrderInput',
     definition(t) {
-      t.field('create', { type: 'OrderAddressCreateWithoutOrderInput' })
+      t.field('create', {
+        type: 'OrderAddressUncheckedCreateWithoutOrderInput',
+      })
       t.field('connectOrCreate', {
         type: 'OrderAddressCreateOrConnectWithoutOrderInput',
       })
@@ -3651,13 +3653,13 @@ export const UserUpdateOneRequiredWithoutOrdersNestedInput = inputObjectType({
   },
   name: 'UserUpdateOneRequiredWithoutOrdersNestedInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutOrdersInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutOrdersInput' })
     t.field('connectOrCreate', {
       type: 'UserCreateOrConnectWithoutOrdersInput',
     })
     t.field('upsert', { type: 'UserUpsertWithoutOrdersInput' })
     t.field('connect', { type: 'UserWhereUniqueInput' })
-    t.field('update', { type: 'UserUpdateWithoutOrdersInput' })
+    t.field('update', { type: 'UserUncheckedUpdateWithoutOrdersInput' })
   },
 })
 
@@ -3667,7 +3669,7 @@ export const OrderAddressUpdateOneWithoutOrderNestedInput = inputObjectType({
   },
   name: 'OrderAddressUpdateOneWithoutOrderNestedInput',
   definition(t) {
-    t.field('create', { type: 'OrderAddressCreateWithoutOrderInput' })
+    t.field('create', { type: 'OrderAddressUncheckedCreateWithoutOrderInput' })
     t.field('connectOrCreate', {
       type: 'OrderAddressCreateOrConnectWithoutOrderInput',
     })
@@ -3675,7 +3677,7 @@ export const OrderAddressUpdateOneWithoutOrderNestedInput = inputObjectType({
     t.field('disconnect', { type: 'Boolean' })
     t.field('delete', { type: 'Boolean' })
     t.field('connect', { type: 'OrderAddressWhereUniqueInput' })
-    t.field('update', { type: 'OrderAddressUpdateWithoutOrderInput' })
+    t.field('update', { type: 'OrderAddressUncheckedUpdateWithoutOrderInput' })
   },
 })
 
@@ -3714,7 +3716,9 @@ export const OrderAddressUncheckedUpdateOneWithoutOrderNestedInput =
     },
     name: 'OrderAddressUncheckedUpdateOneWithoutOrderNestedInput',
     definition(t) {
-      t.field('create', { type: 'OrderAddressCreateWithoutOrderInput' })
+      t.field('create', {
+        type: 'OrderAddressUncheckedCreateWithoutOrderInput',
+      })
       t.field('connectOrCreate', {
         type: 'OrderAddressCreateOrConnectWithoutOrderInput',
       })
@@ -3722,7 +3726,9 @@ export const OrderAddressUncheckedUpdateOneWithoutOrderNestedInput =
       t.field('disconnect', { type: 'Boolean' })
       t.field('delete', { type: 'Boolean' })
       t.field('connect', { type: 'OrderAddressWhereUniqueInput' })
-      t.field('update', { type: 'OrderAddressUpdateWithoutOrderInput' })
+      t.field('update', {
+        type: 'OrderAddressUncheckedUpdateWithoutOrderInput',
+      })
     },
   })
 
@@ -3763,7 +3769,7 @@ export const OrderCreateNestedOneWithoutAddressInput = inputObjectType({
   },
   name: 'OrderCreateNestedOneWithoutAddressInput',
   definition(t) {
-    t.field('create', { type: 'OrderCreateWithoutAddressInput' })
+    t.field('create', { type: 'OrderUncheckedCreateWithoutAddressInput' })
     t.field('connectOrCreate', {
       type: 'OrderCreateOrConnectWithoutAddressInput',
     })
@@ -3777,13 +3783,13 @@ export const OrderUpdateOneRequiredWithoutAddressNestedInput = inputObjectType({
   },
   name: 'OrderUpdateOneRequiredWithoutAddressNestedInput',
   definition(t) {
-    t.field('create', { type: 'OrderCreateWithoutAddressInput' })
+    t.field('create', { type: 'OrderUncheckedCreateWithoutAddressInput' })
     t.field('connectOrCreate', {
       type: 'OrderCreateOrConnectWithoutAddressInput',
     })
     t.field('upsert', { type: 'OrderUpsertWithoutAddressInput' })
     t.field('connect', { type: 'OrderWhereUniqueInput' })
-    t.field('update', { type: 'OrderUpdateWithoutAddressInput' })
+    t.field('update', { type: 'OrderUncheckedUpdateWithoutAddressInput' })
   },
 })
 
@@ -3793,7 +3799,7 @@ export const OrderCreateNestedOneWithoutProductsInput = inputObjectType({
   },
   name: 'OrderCreateNestedOneWithoutProductsInput',
   definition(t) {
-    t.field('create', { type: 'OrderCreateWithoutProductsInput' })
+    t.field('create', { type: 'OrderUncheckedCreateWithoutProductsInput' })
     t.field('connectOrCreate', {
       type: 'OrderCreateOrConnectWithoutProductsInput',
     })
@@ -3808,13 +3814,13 @@ export const OrderUpdateOneRequiredWithoutProductsNestedInput = inputObjectType(
     },
     name: 'OrderUpdateOneRequiredWithoutProductsNestedInput',
     definition(t) {
-      t.field('create', { type: 'OrderCreateWithoutProductsInput' })
+      t.field('create', { type: 'OrderUncheckedCreateWithoutProductsInput' })
       t.field('connectOrCreate', {
         type: 'OrderCreateOrConnectWithoutProductsInput',
       })
       t.field('upsert', { type: 'OrderUpsertWithoutProductsInput' })
       t.field('connect', { type: 'OrderWhereUniqueInput' })
-      t.field('update', { type: 'OrderUpdateWithoutProductsInput' })
+      t.field('update', { type: 'OrderUncheckedUpdateWithoutProductsInput' })
     },
   },
 )
@@ -3826,7 +3832,9 @@ export const ProductCreateNestedOneWithoutShoppingProductInput =
     },
     name: 'ProductCreateNestedOneWithoutShoppingProductInput',
     definition(t) {
-      t.field('create', { type: 'ProductCreateWithoutShoppingProductInput' })
+      t.field('create', {
+        type: 'ProductUncheckedCreateWithoutShoppingProductInput',
+      })
       t.field('connectOrCreate', {
         type: 'ProductCreateOrConnectWithoutShoppingProductInput',
       })
@@ -3840,7 +3848,7 @@ export const UserCreateNestedOneWithoutCartInput = inputObjectType({
   },
   name: 'UserCreateNestedOneWithoutCartInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutCartInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutCartInput' })
     t.field('connectOrCreate', { type: 'UserCreateOrConnectWithoutCartInput' })
     t.field('connect', { type: 'UserWhereUniqueInput' })
   },
@@ -3853,13 +3861,17 @@ export const ProductUpdateOneRequiredWithoutShoppingProductNestedInput =
     },
     name: 'ProductUpdateOneRequiredWithoutShoppingProductNestedInput',
     definition(t) {
-      t.field('create', { type: 'ProductCreateWithoutShoppingProductInput' })
+      t.field('create', {
+        type: 'ProductUncheckedCreateWithoutShoppingProductInput',
+      })
       t.field('connectOrCreate', {
         type: 'ProductCreateOrConnectWithoutShoppingProductInput',
       })
       t.field('upsert', { type: 'ProductUpsertWithoutShoppingProductInput' })
       t.field('connect', { type: 'ProductWhereUniqueInput' })
-      t.field('update', { type: 'ProductUpdateWithoutShoppingProductInput' })
+      t.field('update', {
+        type: 'ProductUncheckedUpdateWithoutShoppingProductInput',
+      })
     },
   })
 
@@ -3869,11 +3881,11 @@ export const UserUpdateOneRequiredWithoutCartNestedInput = inputObjectType({
   },
   name: 'UserUpdateOneRequiredWithoutCartNestedInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutCartInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutCartInput' })
     t.field('connectOrCreate', { type: 'UserCreateOrConnectWithoutCartInput' })
     t.field('upsert', { type: 'UserUpsertWithoutCartInput' })
     t.field('connect', { type: 'UserWhereUniqueInput' })
-    t.field('update', { type: 'UserUpdateWithoutCartInput' })
+    t.field('update', { type: 'UserUncheckedUpdateWithoutCartInput' })
   },
 })
 
@@ -3883,7 +3895,7 @@ export const ProductCreateNestedOneWithoutReviewsInput = inputObjectType({
   },
   name: 'ProductCreateNestedOneWithoutReviewsInput',
   definition(t) {
-    t.field('create', { type: 'ProductCreateWithoutReviewsInput' })
+    t.field('create', { type: 'ProductUncheckedCreateWithoutReviewsInput' })
     t.field('connectOrCreate', {
       type: 'ProductCreateOrConnectWithoutReviewsInput',
     })
@@ -3897,7 +3909,7 @@ export const UserCreateNestedOneWithoutReviewsInput = inputObjectType({
   },
   name: 'UserCreateNestedOneWithoutReviewsInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutReviewsInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutReviewsInput' })
     t.field('connectOrCreate', {
       type: 'UserCreateOrConnectWithoutReviewsInput',
     })
@@ -3912,13 +3924,13 @@ export const ProductUpdateOneRequiredWithoutReviewsNestedInput =
     },
     name: 'ProductUpdateOneRequiredWithoutReviewsNestedInput',
     definition(t) {
-      t.field('create', { type: 'ProductCreateWithoutReviewsInput' })
+      t.field('create', { type: 'ProductUncheckedCreateWithoutReviewsInput' })
       t.field('connectOrCreate', {
         type: 'ProductCreateOrConnectWithoutReviewsInput',
       })
       t.field('upsert', { type: 'ProductUpsertWithoutReviewsInput' })
       t.field('connect', { type: 'ProductWhereUniqueInput' })
-      t.field('update', { type: 'ProductUpdateWithoutReviewsInput' })
+      t.field('update', { type: 'ProductUncheckedUpdateWithoutReviewsInput' })
     },
   })
 
@@ -3928,13 +3940,13 @@ export const UserUpdateOneRequiredWithoutReviewsNestedInput = inputObjectType({
   },
   name: 'UserUpdateOneRequiredWithoutReviewsNestedInput',
   definition(t) {
-    t.field('create', { type: 'UserCreateWithoutReviewsInput' })
+    t.field('create', { type: 'UserUncheckedCreateWithoutReviewsInput' })
     t.field('connectOrCreate', {
       type: 'UserCreateOrConnectWithoutReviewsInput',
     })
     t.field('upsert', { type: 'UserUpsertWithoutReviewsInput' })
     t.field('connect', { type: 'UserWhereUniqueInput' })
-    t.field('update', { type: 'UserUpdateWithoutReviewsInput' })
+    t.field('update', { type: 'UserUncheckedUpdateWithoutReviewsInput' })
   },
 })
 
@@ -4287,7 +4299,9 @@ export const AddressCreateOrConnectWithoutUserInput = inputObjectType({
   name: 'AddressCreateOrConnectWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'AddressWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'AddressCreateWithoutUserInput' })
+    t.nonNull.field('create', {
+      type: 'AddressUncheckedCreateWithoutUserInput',
+    })
   },
 })
 
@@ -4335,7 +4349,7 @@ export const OrderCreateOrConnectWithoutUserInput = inputObjectType({
   name: 'OrderCreateOrConnectWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'OrderCreateWithoutUserInput' })
+    t.nonNull.field('create', { type: 'OrderUncheckedCreateWithoutUserInput' })
   },
 })
 
@@ -4386,7 +4400,7 @@ export const ReviewCreateOrConnectWithoutUserInput = inputObjectType({
   name: 'ReviewCreateOrConnectWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'ReviewCreateWithoutUserInput' })
+    t.nonNull.field('create', { type: 'ReviewUncheckedCreateWithoutUserInput' })
   },
 })
 
@@ -4433,7 +4447,9 @@ export const ShoppingProductCreateOrConnectWithoutUserInput = inputObjectType({
   name: 'ShoppingProductCreateOrConnectWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ShoppingProductWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'ShoppingProductCreateWithoutUserInput' })
+    t.nonNull.field('create', {
+      type: 'ShoppingProductUncheckedCreateWithoutUserInput',
+    })
   },
 })
 
@@ -4454,8 +4470,12 @@ export const AddressUpsertWithoutUserInput = inputObjectType({
   },
   name: 'AddressUpsertWithoutUserInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'AddressUpdateWithoutUserInput' })
-    t.nonNull.field('create', { type: 'AddressCreateWithoutUserInput' })
+    t.nonNull.field('update', {
+      type: 'AddressUncheckedUpdateWithoutUserInput',
+    })
+    t.nonNull.field('create', {
+      type: 'AddressUncheckedCreateWithoutUserInput',
+    })
   },
 })
 
@@ -4495,8 +4515,8 @@ export const OrderUpsertWithWhereUniqueWithoutUserInput = inputObjectType({
   name: 'OrderUpsertWithWhereUniqueWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderWhereUniqueInput' })
-    t.nonNull.field('update', { type: 'OrderUpdateWithoutUserInput' })
-    t.nonNull.field('create', { type: 'OrderCreateWithoutUserInput' })
+    t.nonNull.field('update', { type: 'OrderUncheckedUpdateWithoutUserInput' })
+    t.nonNull.field('create', { type: 'OrderUncheckedCreateWithoutUserInput' })
   },
 })
 
@@ -4507,7 +4527,7 @@ export const OrderUpdateWithWhereUniqueWithoutUserInput = inputObjectType({
   name: 'OrderUpdateWithWhereUniqueWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderWhereUniqueInput' })
-    t.nonNull.field('data', { type: 'OrderUpdateWithoutUserInput' })
+    t.nonNull.field('data', { type: 'OrderUncheckedUpdateWithoutUserInput' })
   },
 })
 
@@ -4518,7 +4538,9 @@ export const OrderUpdateManyWithWhereWithoutUserInput = inputObjectType({
   name: 'OrderUpdateManyWithWhereWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderScalarWhereInput' })
-    t.nonNull.field('data', { type: 'OrderUpdateManyMutationInput' })
+    t.nonNull.field('data', {
+      type: 'OrderUncheckedUpdateManyWithoutOrdersInput',
+    })
   },
 })
 
@@ -4547,8 +4569,8 @@ export const ReviewUpsertWithWhereUniqueWithoutUserInput = inputObjectType({
   name: 'ReviewUpsertWithWhereUniqueWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewWhereUniqueInput' })
-    t.nonNull.field('update', { type: 'ReviewUpdateWithoutUserInput' })
-    t.nonNull.field('create', { type: 'ReviewCreateWithoutUserInput' })
+    t.nonNull.field('update', { type: 'ReviewUncheckedUpdateWithoutUserInput' })
+    t.nonNull.field('create', { type: 'ReviewUncheckedCreateWithoutUserInput' })
   },
 })
 
@@ -4559,7 +4581,7 @@ export const ReviewUpdateWithWhereUniqueWithoutUserInput = inputObjectType({
   name: 'ReviewUpdateWithWhereUniqueWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewWhereUniqueInput' })
-    t.nonNull.field('data', { type: 'ReviewUpdateWithoutUserInput' })
+    t.nonNull.field('data', { type: 'ReviewUncheckedUpdateWithoutUserInput' })
   },
 })
 
@@ -4570,7 +4592,9 @@ export const ReviewUpdateManyWithWhereWithoutUserInput = inputObjectType({
   name: 'ReviewUpdateManyWithWhereWithoutUserInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewScalarWhereInput' })
-    t.nonNull.field('data', { type: 'ReviewUpdateManyMutationInput' })
+    t.nonNull.field('data', {
+      type: 'ReviewUncheckedUpdateManyWithoutReviewsInput',
+    })
   },
 })
 
@@ -4601,10 +4625,10 @@ export const ShoppingProductUpsertWithWhereUniqueWithoutUserInput =
     definition(t) {
       t.nonNull.field('where', { type: 'ShoppingProductWhereUniqueInput' })
       t.nonNull.field('update', {
-        type: 'ShoppingProductUpdateWithoutUserInput',
+        type: 'ShoppingProductUncheckedUpdateWithoutUserInput',
       })
       t.nonNull.field('create', {
-        type: 'ShoppingProductCreateWithoutUserInput',
+        type: 'ShoppingProductUncheckedCreateWithoutUserInput',
       })
     },
   })
@@ -4617,7 +4641,9 @@ export const ShoppingProductUpdateWithWhereUniqueWithoutUserInput =
     name: 'ShoppingProductUpdateWithWhereUniqueWithoutUserInput',
     definition(t) {
       t.nonNull.field('where', { type: 'ShoppingProductWhereUniqueInput' })
-      t.nonNull.field('data', { type: 'ShoppingProductUpdateWithoutUserInput' })
+      t.nonNull.field('data', {
+        type: 'ShoppingProductUncheckedUpdateWithoutUserInput',
+      })
     },
   })
 
@@ -4630,7 +4656,7 @@ export const ShoppingProductUpdateManyWithWhereWithoutUserInput =
     definition(t) {
       t.nonNull.field('where', { type: 'ShoppingProductScalarWhereInput' })
       t.nonNull.field('data', {
-        type: 'ShoppingProductUpdateManyMutationInput',
+        type: 'ShoppingProductUncheckedUpdateManyWithoutCartInput',
       })
     },
   })
@@ -4705,7 +4731,9 @@ export const UserCreateOrConnectWithoutAddressInput = inputObjectType({
   name: 'UserCreateOrConnectWithoutAddressInput',
   definition(t) {
     t.nonNull.field('where', { type: 'UserWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutAddressInput' })
+    t.nonNull.field('create', {
+      type: 'UserUncheckedCreateWithoutAddressInput',
+    })
   },
 })
 
@@ -4715,8 +4743,12 @@ export const UserUpsertWithoutAddressInput = inputObjectType({
   },
   name: 'UserUpsertWithoutAddressInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'UserUpdateWithoutAddressInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutAddressInput' })
+    t.nonNull.field('update', {
+      type: 'UserUncheckedUpdateWithoutAddressInput',
+    })
+    t.nonNull.field('create', {
+      type: 'UserUncheckedCreateWithoutAddressInput',
+    })
   },
 })
 
@@ -4801,7 +4833,9 @@ export const ReviewCreateOrConnectWithoutProductInput = inputObjectType({
   name: 'ReviewCreateOrConnectWithoutProductInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'ReviewCreateWithoutProductInput' })
+    t.nonNull.field('create', {
+      type: 'ReviewUncheckedCreateWithoutProductInput',
+    })
   },
 })
 
@@ -4849,7 +4883,7 @@ export const ShoppingProductCreateOrConnectWithoutProductInput =
     definition(t) {
       t.nonNull.field('where', { type: 'ShoppingProductWhereUniqueInput' })
       t.nonNull.field('create', {
-        type: 'ShoppingProductCreateWithoutProductInput',
+        type: 'ShoppingProductUncheckedCreateWithoutProductInput',
       })
     },
   })
@@ -4872,8 +4906,12 @@ export const ReviewUpsertWithWhereUniqueWithoutProductInput = inputObjectType({
   name: 'ReviewUpsertWithWhereUniqueWithoutProductInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewWhereUniqueInput' })
-    t.nonNull.field('update', { type: 'ReviewUpdateWithoutProductInput' })
-    t.nonNull.field('create', { type: 'ReviewCreateWithoutProductInput' })
+    t.nonNull.field('update', {
+      type: 'ReviewUncheckedUpdateWithoutProductInput',
+    })
+    t.nonNull.field('create', {
+      type: 'ReviewUncheckedCreateWithoutProductInput',
+    })
   },
 })
 
@@ -4884,7 +4922,9 @@ export const ReviewUpdateWithWhereUniqueWithoutProductInput = inputObjectType({
   name: 'ReviewUpdateWithWhereUniqueWithoutProductInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewWhereUniqueInput' })
-    t.nonNull.field('data', { type: 'ReviewUpdateWithoutProductInput' })
+    t.nonNull.field('data', {
+      type: 'ReviewUncheckedUpdateWithoutProductInput',
+    })
   },
 })
 
@@ -4895,7 +4935,9 @@ export const ReviewUpdateManyWithWhereWithoutProductInput = inputObjectType({
   name: 'ReviewUpdateManyWithWhereWithoutProductInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ReviewScalarWhereInput' })
-    t.nonNull.field('data', { type: 'ReviewUpdateManyMutationInput' })
+    t.nonNull.field('data', {
+      type: 'ReviewUncheckedUpdateManyWithoutReviewsInput',
+    })
   },
 })
 
@@ -4908,10 +4950,10 @@ export const ShoppingProductUpsertWithWhereUniqueWithoutProductInput =
     definition(t) {
       t.nonNull.field('where', { type: 'ShoppingProductWhereUniqueInput' })
       t.nonNull.field('update', {
-        type: 'ShoppingProductUpdateWithoutProductInput',
+        type: 'ShoppingProductUncheckedUpdateWithoutProductInput',
       })
       t.nonNull.field('create', {
-        type: 'ShoppingProductCreateWithoutProductInput',
+        type: 'ShoppingProductUncheckedCreateWithoutProductInput',
       })
     },
   })
@@ -4925,7 +4967,7 @@ export const ShoppingProductUpdateWithWhereUniqueWithoutProductInput =
     definition(t) {
       t.nonNull.field('where', { type: 'ShoppingProductWhereUniqueInput' })
       t.nonNull.field('data', {
-        type: 'ShoppingProductUpdateWithoutProductInput',
+        type: 'ShoppingProductUncheckedUpdateWithoutProductInput',
       })
     },
   })
@@ -4939,7 +4981,7 @@ export const ShoppingProductUpdateManyWithWhereWithoutProductInput =
     definition(t) {
       t.nonNull.field('where', { type: 'ShoppingProductScalarWhereInput' })
       t.nonNull.field('data', {
-        type: 'ShoppingProductUpdateManyMutationInput',
+        type: 'ShoppingProductUncheckedUpdateManyWithoutShoppingProductInput',
       })
     },
   })
@@ -4998,7 +5040,7 @@ export const UserCreateOrConnectWithoutOrdersInput = inputObjectType({
   name: 'UserCreateOrConnectWithoutOrdersInput',
   definition(t) {
     t.nonNull.field('where', { type: 'UserWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutOrdersInput' })
+    t.nonNull.field('create', { type: 'UserUncheckedCreateWithoutOrdersInput' })
   },
 })
 
@@ -5040,7 +5082,9 @@ export const OrderAddressCreateOrConnectWithoutOrderInput = inputObjectType({
   name: 'OrderAddressCreateOrConnectWithoutOrderInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderAddressWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'OrderAddressCreateWithoutOrderInput' })
+    t.nonNull.field('create', {
+      type: 'OrderAddressUncheckedCreateWithoutOrderInput',
+    })
   },
 })
 
@@ -5080,7 +5124,9 @@ export const OrderProductCreateOrConnectWithoutOrderInput = inputObjectType({
   name: 'OrderProductCreateOrConnectWithoutOrderInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderProductWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'OrderProductCreateWithoutOrderInput' })
+    t.nonNull.field('create', {
+      type: 'OrderProductUncheckedCreateWithoutOrderInput',
+    })
   },
 })
 
@@ -5101,8 +5147,8 @@ export const UserUpsertWithoutOrdersInput = inputObjectType({
   },
   name: 'UserUpsertWithoutOrdersInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'UserUpdateWithoutOrdersInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutOrdersInput' })
+    t.nonNull.field('update', { type: 'UserUncheckedUpdateWithoutOrdersInput' })
+    t.nonNull.field('create', { type: 'UserUncheckedCreateWithoutOrdersInput' })
   },
 })
 
@@ -5159,8 +5205,12 @@ export const OrderAddressUpsertWithoutOrderInput = inputObjectType({
   },
   name: 'OrderAddressUpsertWithoutOrderInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'OrderAddressUpdateWithoutOrderInput' })
-    t.nonNull.field('create', { type: 'OrderAddressCreateWithoutOrderInput' })
+    t.nonNull.field('update', {
+      type: 'OrderAddressUncheckedUpdateWithoutOrderInput',
+    })
+    t.nonNull.field('create', {
+      type: 'OrderAddressUncheckedCreateWithoutOrderInput',
+    })
   },
 })
 
@@ -5203,8 +5253,12 @@ export const OrderProductUpsertWithWhereUniqueWithoutOrderInput =
     name: 'OrderProductUpsertWithWhereUniqueWithoutOrderInput',
     definition(t) {
       t.nonNull.field('where', { type: 'OrderProductWhereUniqueInput' })
-      t.nonNull.field('update', { type: 'OrderProductUpdateWithoutOrderInput' })
-      t.nonNull.field('create', { type: 'OrderProductCreateWithoutOrderInput' })
+      t.nonNull.field('update', {
+        type: 'OrderProductUncheckedUpdateWithoutOrderInput',
+      })
+      t.nonNull.field('create', {
+        type: 'OrderProductUncheckedCreateWithoutOrderInput',
+      })
     },
   })
 
@@ -5216,7 +5270,9 @@ export const OrderProductUpdateWithWhereUniqueWithoutOrderInput =
     name: 'OrderProductUpdateWithWhereUniqueWithoutOrderInput',
     definition(t) {
       t.nonNull.field('where', { type: 'OrderProductWhereUniqueInput' })
-      t.nonNull.field('data', { type: 'OrderProductUpdateWithoutOrderInput' })
+      t.nonNull.field('data', {
+        type: 'OrderProductUncheckedUpdateWithoutOrderInput',
+      })
     },
   })
 
@@ -5228,7 +5284,9 @@ export const OrderProductUpdateManyWithWhereWithoutOrderInput = inputObjectType(
     name: 'OrderProductUpdateManyWithWhereWithoutOrderInput',
     definition(t) {
       t.nonNull.field('where', { type: 'OrderProductScalarWhereInput' })
-      t.nonNull.field('data', { type: 'OrderProductUpdateManyMutationInput' })
+      t.nonNull.field('data', {
+        type: 'OrderProductUncheckedUpdateManyWithoutProductsInput',
+      })
     },
   },
 )
@@ -5294,7 +5352,9 @@ export const OrderCreateOrConnectWithoutAddressInput = inputObjectType({
   name: 'OrderCreateOrConnectWithoutAddressInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'OrderCreateWithoutAddressInput' })
+    t.nonNull.field('create', {
+      type: 'OrderUncheckedCreateWithoutAddressInput',
+    })
   },
 })
 
@@ -5304,8 +5364,12 @@ export const OrderUpsertWithoutAddressInput = inputObjectType({
   },
   name: 'OrderUpsertWithoutAddressInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'OrderUpdateWithoutAddressInput' })
-    t.nonNull.field('create', { type: 'OrderCreateWithoutAddressInput' })
+    t.nonNull.field('update', {
+      type: 'OrderUncheckedUpdateWithoutAddressInput',
+    })
+    t.nonNull.field('create', {
+      type: 'OrderUncheckedCreateWithoutAddressInput',
+    })
   },
 })
 
@@ -5384,7 +5448,9 @@ export const OrderCreateOrConnectWithoutProductsInput = inputObjectType({
   name: 'OrderCreateOrConnectWithoutProductsInput',
   definition(t) {
     t.nonNull.field('where', { type: 'OrderWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'OrderCreateWithoutProductsInput' })
+    t.nonNull.field('create', {
+      type: 'OrderUncheckedCreateWithoutProductsInput',
+    })
   },
 })
 
@@ -5394,8 +5460,12 @@ export const OrderUpsertWithoutProductsInput = inputObjectType({
   },
   name: 'OrderUpsertWithoutProductsInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'OrderUpdateWithoutProductsInput' })
-    t.nonNull.field('create', { type: 'OrderCreateWithoutProductsInput' })
+    t.nonNull.field('update', {
+      type: 'OrderUncheckedUpdateWithoutProductsInput',
+    })
+    t.nonNull.field('create', {
+      type: 'OrderUncheckedCreateWithoutProductsInput',
+    })
   },
 })
 
@@ -5495,7 +5565,7 @@ export const ProductCreateOrConnectWithoutShoppingProductInput =
     definition(t) {
       t.nonNull.field('where', { type: 'ProductWhereUniqueInput' })
       t.nonNull.field('create', {
-        type: 'ProductCreateWithoutShoppingProductInput',
+        type: 'ProductUncheckedCreateWithoutShoppingProductInput',
       })
     },
   })
@@ -5554,7 +5624,7 @@ export const UserCreateOrConnectWithoutCartInput = inputObjectType({
   name: 'UserCreateOrConnectWithoutCartInput',
   definition(t) {
     t.nonNull.field('where', { type: 'UserWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutCartInput' })
+    t.nonNull.field('create', { type: 'UserUncheckedCreateWithoutCartInput' })
   },
 })
 
@@ -5565,10 +5635,10 @@ export const ProductUpsertWithoutShoppingProductInput = inputObjectType({
   name: 'ProductUpsertWithoutShoppingProductInput',
   definition(t) {
     t.nonNull.field('update', {
-      type: 'ProductUpdateWithoutShoppingProductInput',
+      type: 'ProductUncheckedUpdateWithoutShoppingProductInput',
     })
     t.nonNull.field('create', {
-      type: 'ProductCreateWithoutShoppingProductInput',
+      type: 'ProductUncheckedCreateWithoutShoppingProductInput',
     })
   },
 })
@@ -5633,8 +5703,8 @@ export const UserUpsertWithoutCartInput = inputObjectType({
   },
   name: 'UserUpsertWithoutCartInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'UserUpdateWithoutCartInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutCartInput' })
+    t.nonNull.field('update', { type: 'UserUncheckedUpdateWithoutCartInput' })
+    t.nonNull.field('create', { type: 'UserUncheckedCreateWithoutCartInput' })
   },
 })
 
@@ -5747,7 +5817,9 @@ export const ProductCreateOrConnectWithoutReviewsInput = inputObjectType({
   name: 'ProductCreateOrConnectWithoutReviewsInput',
   definition(t) {
     t.nonNull.field('where', { type: 'ProductWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'ProductCreateWithoutReviewsInput' })
+    t.nonNull.field('create', {
+      type: 'ProductUncheckedCreateWithoutReviewsInput',
+    })
   },
 })
 
@@ -5805,7 +5877,9 @@ export const UserCreateOrConnectWithoutReviewsInput = inputObjectType({
   name: 'UserCreateOrConnectWithoutReviewsInput',
   definition(t) {
     t.nonNull.field('where', { type: 'UserWhereUniqueInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutReviewsInput' })
+    t.nonNull.field('create', {
+      type: 'UserUncheckedCreateWithoutReviewsInput',
+    })
   },
 })
 
@@ -5815,8 +5889,12 @@ export const ProductUpsertWithoutReviewsInput = inputObjectType({
   },
   name: 'ProductUpsertWithoutReviewsInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'ProductUpdateWithoutReviewsInput' })
-    t.nonNull.field('create', { type: 'ProductCreateWithoutReviewsInput' })
+    t.nonNull.field('update', {
+      type: 'ProductUncheckedUpdateWithoutReviewsInput',
+    })
+    t.nonNull.field('create', {
+      type: 'ProductUncheckedCreateWithoutReviewsInput',
+    })
   },
 })
 
@@ -5881,8 +5959,12 @@ export const UserUpsertWithoutReviewsInput = inputObjectType({
   },
   name: 'UserUpsertWithoutReviewsInput',
   definition(t) {
-    t.nonNull.field('update', { type: 'UserUpdateWithoutReviewsInput' })
-    t.nonNull.field('create', { type: 'UserCreateWithoutReviewsInput' })
+    t.nonNull.field('update', {
+      type: 'UserUncheckedUpdateWithoutReviewsInput',
+    })
+    t.nonNull.field('create', {
+      type: 'UserUncheckedCreateWithoutReviewsInput',
+    })
   },
 })
 

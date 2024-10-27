@@ -1,4 +1,4 @@
-import { objectType, list } from 'nexus'
+import { objectType } from 'nexus'
 
 export const User = objectType({
   nonNullDefaults: {
@@ -26,11 +26,11 @@ export const User = objectType({
       type: 'Order',
       args: {
         where: 'OrderWhereInput',
-        orderBy: list('OrderOrderByWithRelationInput'),
+        orderBy: 'OrderOrderByWithRelationInput',
         cursor: 'OrderWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: list('OrderScalarFieldEnum'),
+        distinct: 'OrderScalarFieldEnum',
       },
       resolve(root: any) {
         return root.orders
@@ -40,11 +40,11 @@ export const User = objectType({
       type: 'Review',
       args: {
         where: 'ReviewWhereInput',
-        orderBy: list('ReviewOrderByWithRelationInput'),
+        orderBy: 'ReviewOrderByWithRelationInput',
         cursor: 'ReviewWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: list('ReviewScalarFieldEnum'),
+        distinct: 'ReviewScalarFieldEnum',
       },
       resolve(root: any) {
         return root.reviews
@@ -54,11 +54,11 @@ export const User = objectType({
       type: 'ShoppingProduct',
       args: {
         where: 'ShoppingProductWhereInput',
-        orderBy: list('ShoppingProductOrderByWithRelationInput'),
+        orderBy: 'ShoppingProductOrderByWithRelationInput',
         cursor: 'ShoppingProductWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: list('ShoppingProductScalarFieldEnum'),
+        distinct: 'ShoppingProductScalarFieldEnum',
       },
       resolve(root: any) {
         return root.cart

@@ -66,11 +66,11 @@ input AddressCreateManyInput {
 input AddressCreateNestedOneWithoutUserInput {
   connect: AddressWhereUniqueInput
   connectOrCreate: AddressCreateOrConnectWithoutUserInput
-  create: AddressCreateWithoutUserInput
+  create: AddressUncheckedCreateWithoutUserInput
 }
 
 input AddressCreateOrConnectWithoutUserInput {
-  create: AddressCreateWithoutUserInput!
+  create: AddressUncheckedCreateWithoutUserInput!
   where: AddressWhereUniqueInput!
 }
 
@@ -199,7 +199,7 @@ input AddressUncheckedCreateInput {
 input AddressUncheckedCreateNestedOneWithoutUserInput {
   connect: AddressWhereUniqueInput
   connectOrCreate: AddressCreateOrConnectWithoutUserInput
-  create: AddressCreateWithoutUserInput
+  create: AddressUncheckedCreateWithoutUserInput
 }
 
 input AddressUncheckedCreateWithoutUserInput {
@@ -234,10 +234,10 @@ input AddressUncheckedUpdateManyInput {
 input AddressUncheckedUpdateOneWithoutUserNestedInput {
   connect: AddressWhereUniqueInput
   connectOrCreate: AddressCreateOrConnectWithoutUserInput
-  create: AddressCreateWithoutUserInput
+  create: AddressUncheckedCreateWithoutUserInput
   delete: Boolean
   disconnect: Boolean
-  update: AddressUpdateWithoutUserInput
+  update: AddressUncheckedUpdateWithoutUserInput
   upsert: AddressUpsertWithoutUserInput
 }
 
@@ -270,10 +270,10 @@ input AddressUpdateManyMutationInput {
 input AddressUpdateOneWithoutUserNestedInput {
   connect: AddressWhereUniqueInput
   connectOrCreate: AddressCreateOrConnectWithoutUserInput
-  create: AddressCreateWithoutUserInput
+  create: AddressUncheckedCreateWithoutUserInput
   delete: Boolean
   disconnect: Boolean
-  update: AddressUpdateWithoutUserInput
+  update: AddressUncheckedUpdateWithoutUserInput
   upsert: AddressUpsertWithoutUserInput
 }
 
@@ -286,15 +286,15 @@ input AddressUpdateWithoutUserInput {
 }
 
 input AddressUpsertWithoutUserInput {
-  create: AddressCreateWithoutUserInput!
-  update: AddressUpdateWithoutUserInput!
+  create: AddressUncheckedCreateWithoutUserInput!
+  update: AddressUncheckedUpdateWithoutUserInput!
 }
 
 input AddressWhereInput {
   AND: [AddressWhereInput]
   NOT: [AddressWhereInput]
   OR: [AddressWhereInput]
-  User: UserRelationFilter
+  User: UserWhereInput
   city: StringFilter
   country: StringFilter
   id: IntFilter
@@ -832,7 +832,7 @@ type Order {
   address: OrderAddress
   date: DateTime!
   id: Int!
-  products(cursor: OrderProductWhereUniqueInput, distinct: [OrderProductScalarFieldEnum], orderBy: [OrderProductOrderByWithRelationInput], skip: Int, take: Int, where: OrderProductWhereInput): [OrderProduct!]!
+  products(cursor: OrderProductWhereUniqueInput, distinct: OrderProductScalarFieldEnum, orderBy: OrderProductOrderByWithRelationInput, skip: Int, take: Int, where: OrderProductWhereInput): [OrderProduct!]!
   subtotal: Int!
   type: OrderType!
   userId: Int!
@@ -907,11 +907,11 @@ input OrderAddressCreateManyInput {
 input OrderAddressCreateNestedOneWithoutOrderInput {
   connect: OrderAddressWhereUniqueInput
   connectOrCreate: OrderAddressCreateOrConnectWithoutOrderInput
-  create: OrderAddressCreateWithoutOrderInput
+  create: OrderAddressUncheckedCreateWithoutOrderInput
 }
 
 input OrderAddressCreateOrConnectWithoutOrderInput {
-  create: OrderAddressCreateWithoutOrderInput!
+  create: OrderAddressUncheckedCreateWithoutOrderInput!
   where: OrderAddressWhereUniqueInput!
 }
 
@@ -1050,7 +1050,7 @@ input OrderAddressUncheckedCreateInput {
 input OrderAddressUncheckedCreateNestedOneWithoutOrderInput {
   connect: OrderAddressWhereUniqueInput
   connectOrCreate: OrderAddressCreateOrConnectWithoutOrderInput
-  create: OrderAddressCreateWithoutOrderInput
+  create: OrderAddressUncheckedCreateWithoutOrderInput
 }
 
 input OrderAddressUncheckedCreateWithoutOrderInput {
@@ -1088,10 +1088,10 @@ input OrderAddressUncheckedUpdateManyInput {
 input OrderAddressUncheckedUpdateOneWithoutOrderNestedInput {
   connect: OrderAddressWhereUniqueInput
   connectOrCreate: OrderAddressCreateOrConnectWithoutOrderInput
-  create: OrderAddressCreateWithoutOrderInput
+  create: OrderAddressUncheckedCreateWithoutOrderInput
   delete: Boolean
   disconnect: Boolean
-  update: OrderAddressUpdateWithoutOrderInput
+  update: OrderAddressUncheckedUpdateWithoutOrderInput
   upsert: OrderAddressUpsertWithoutOrderInput
 }
 
@@ -1127,10 +1127,10 @@ input OrderAddressUpdateManyMutationInput {
 input OrderAddressUpdateOneWithoutOrderNestedInput {
   connect: OrderAddressWhereUniqueInput
   connectOrCreate: OrderAddressCreateOrConnectWithoutOrderInput
-  create: OrderAddressCreateWithoutOrderInput
+  create: OrderAddressUncheckedCreateWithoutOrderInput
   delete: Boolean
   disconnect: Boolean
-  update: OrderAddressUpdateWithoutOrderInput
+  update: OrderAddressUncheckedUpdateWithoutOrderInput
   upsert: OrderAddressUpsertWithoutOrderInput
 }
 
@@ -1144,8 +1144,8 @@ input OrderAddressUpdateWithoutOrderInput {
 }
 
 input OrderAddressUpsertWithoutOrderInput {
-  create: OrderAddressCreateWithoutOrderInput!
-  update: OrderAddressUpdateWithoutOrderInput!
+  create: OrderAddressUncheckedCreateWithoutOrderInput!
+  update: OrderAddressUncheckedUpdateWithoutOrderInput!
 }
 
 input OrderAddressWhereInput {
@@ -1156,7 +1156,7 @@ input OrderAddressWhereInput {
   country: StringFilter
   fullName: StringFilter
   id: IntFilter
-  order: OrderRelationFilter
+  order: OrderWhereInput
   orderId: IntFilter
   phoneNumber: StringFilter
   street: StringFilter
@@ -1245,27 +1245,27 @@ input OrderCreateNestedManyWithoutUserInput {
 input OrderCreateNestedOneWithoutAddressInput {
   connect: OrderWhereUniqueInput
   connectOrCreate: OrderCreateOrConnectWithoutAddressInput
-  create: OrderCreateWithoutAddressInput
+  create: OrderUncheckedCreateWithoutAddressInput
 }
 
 input OrderCreateNestedOneWithoutProductsInput {
   connect: OrderWhereUniqueInput
   connectOrCreate: OrderCreateOrConnectWithoutProductsInput
-  create: OrderCreateWithoutProductsInput
+  create: OrderUncheckedCreateWithoutProductsInput
 }
 
 input OrderCreateOrConnectWithoutAddressInput {
-  create: OrderCreateWithoutAddressInput!
+  create: OrderUncheckedCreateWithoutAddressInput!
   where: OrderWhereUniqueInput!
 }
 
 input OrderCreateOrConnectWithoutProductsInput {
-  create: OrderCreateWithoutProductsInput!
+  create: OrderUncheckedCreateWithoutProductsInput!
   where: OrderWhereUniqueInput!
 }
 
 input OrderCreateOrConnectWithoutUserInput {
-  create: OrderCreateWithoutUserInput!
+  create: OrderUncheckedCreateWithoutUserInput!
   where: OrderWhereUniqueInput!
 }
 
@@ -1457,7 +1457,7 @@ input OrderProductCreateNestedManyWithoutOrderInput {
 }
 
 input OrderProductCreateOrConnectWithoutOrderInput {
-  create: OrderProductCreateWithoutOrderInput!
+  create: OrderProductUncheckedCreateWithoutOrderInput!
   where: OrderProductWhereUniqueInput!
 }
 
@@ -1693,7 +1693,7 @@ input OrderProductUpdateManyMutationInput {
 }
 
 input OrderProductUpdateManyWithWhereWithoutOrderInput {
-  data: OrderProductUpdateManyMutationInput!
+  data: OrderProductUncheckedUpdateManyWithoutProductsInput!
   where: OrderProductScalarWhereInput!
 }
 
@@ -1712,7 +1712,7 @@ input OrderProductUpdateManyWithoutOrderNestedInput {
 }
 
 input OrderProductUpdateWithWhereUniqueWithoutOrderInput {
-  data: OrderProductUpdateWithoutOrderInput!
+  data: OrderProductUncheckedUpdateWithoutOrderInput!
   where: OrderProductWhereUniqueInput!
 }
 
@@ -1725,8 +1725,8 @@ input OrderProductUpdateWithoutOrderInput {
 }
 
 input OrderProductUpsertWithWhereUniqueWithoutOrderInput {
-  create: OrderProductCreateWithoutOrderInput!
-  update: OrderProductUpdateWithoutOrderInput!
+  create: OrderProductUncheckedCreateWithoutOrderInput!
+  update: OrderProductUncheckedUpdateWithoutOrderInput!
   where: OrderProductWhereUniqueInput!
 }
 
@@ -1734,7 +1734,7 @@ input OrderProductWhereInput {
   AND: [OrderProductWhereInput]
   NOT: [OrderProductWhereInput]
   OR: [OrderProductWhereInput]
-  Order: OrderRelationFilter
+  Order: OrderWhereInput
   discount: FloatFilter
   id: IntFilter
   img: StringFilter
@@ -1941,7 +1941,7 @@ input OrderUpdateManyMutationInput {
 }
 
 input OrderUpdateManyWithWhereWithoutUserInput {
-  data: OrderUpdateManyMutationInput!
+  data: OrderUncheckedUpdateManyWithoutOrdersInput!
   where: OrderScalarWhereInput!
 }
 
@@ -1962,21 +1962,21 @@ input OrderUpdateManyWithoutUserNestedInput {
 input OrderUpdateOneRequiredWithoutAddressNestedInput {
   connect: OrderWhereUniqueInput
   connectOrCreate: OrderCreateOrConnectWithoutAddressInput
-  create: OrderCreateWithoutAddressInput
-  update: OrderUpdateWithoutAddressInput
+  create: OrderUncheckedCreateWithoutAddressInput
+  update: OrderUncheckedUpdateWithoutAddressInput
   upsert: OrderUpsertWithoutAddressInput
 }
 
 input OrderUpdateOneRequiredWithoutProductsNestedInput {
   connect: OrderWhereUniqueInput
   connectOrCreate: OrderCreateOrConnectWithoutProductsInput
-  create: OrderCreateWithoutProductsInput
-  update: OrderUpdateWithoutProductsInput
+  create: OrderUncheckedCreateWithoutProductsInput
+  update: OrderUncheckedUpdateWithoutProductsInput
   upsert: OrderUpsertWithoutProductsInput
 }
 
 input OrderUpdateWithWhereUniqueWithoutUserInput {
-  data: OrderUpdateWithoutUserInput!
+  data: OrderUncheckedUpdateWithoutUserInput!
   where: OrderWhereUniqueInput!
 }
 
@@ -2008,19 +2008,19 @@ input OrderUpdateWithoutUserInput {
 }
 
 input OrderUpsertWithWhereUniqueWithoutUserInput {
-  create: OrderCreateWithoutUserInput!
-  update: OrderUpdateWithoutUserInput!
+  create: OrderUncheckedCreateWithoutUserInput!
+  update: OrderUncheckedUpdateWithoutUserInput!
   where: OrderWhereUniqueInput!
 }
 
 input OrderUpsertWithoutAddressInput {
-  create: OrderCreateWithoutAddressInput!
-  update: OrderUpdateWithoutAddressInput!
+  create: OrderUncheckedCreateWithoutAddressInput!
+  update: OrderUncheckedUpdateWithoutAddressInput!
 }
 
 input OrderUpsertWithoutProductsInput {
-  create: OrderCreateWithoutProductsInput!
-  update: OrderUpdateWithoutProductsInput!
+  create: OrderUncheckedCreateWithoutProductsInput!
+  update: OrderUncheckedUpdateWithoutProductsInput!
 }
 
 input OrderWhereInput {
@@ -2028,8 +2028,8 @@ input OrderWhereInput {
   NOT: [OrderWhereInput]
   OR: [OrderWhereInput]
   OrderStatus: StringFilter
-  User: UserRelationFilter
-  address: OrderAddressRelationFilter
+  User: UserWhereInput
+  address: OrderAddressWhereInput
   date: DateTimeFilter
   id: IntFilter
   products: OrderProductListRelationFilter
@@ -2047,7 +2047,7 @@ type PaymentIntent {
 }
 
 type Product {
-  ShoppingProduct(cursor: ShoppingProductWhereUniqueInput, distinct: [ShoppingProductScalarFieldEnum], orderBy: [ShoppingProductOrderByWithRelationInput], skip: Int, take: Int, where: ShoppingProductWhereInput): [ShoppingProduct!]!
+  ShoppingProduct(cursor: ShoppingProductWhereUniqueInput, distinct: ShoppingProductScalarFieldEnum, orderBy: ShoppingProductOrderByWithRelationInput, skip: Int, take: Int, where: ShoppingProductWhereInput): [ShoppingProduct!]!
   _count: ProductCountOutputType!
   avgRating: Float!
   category: String!
@@ -2063,7 +2063,7 @@ type Product {
   os: String
   price: Int!
   processor: String
-  reviews(cursor: ReviewWhereUniqueInput, distinct: [ReviewScalarFieldEnum], orderBy: [ReviewOrderByWithRelationInput], skip: Int, take: Int, where: ReviewWhereInput): [Review!]!
+  reviews(cursor: ReviewWhereUniqueInput, distinct: ReviewScalarFieldEnum, orderBy: ReviewOrderByWithRelationInput, skip: Int, take: Int, where: ReviewWhereInput): [Review!]!
   screen: String
   stock: Int!
   storage: String
@@ -2171,22 +2171,22 @@ input ProductCreateManyInput {
 input ProductCreateNestedOneWithoutReviewsInput {
   connect: ProductWhereUniqueInput
   connectOrCreate: ProductCreateOrConnectWithoutReviewsInput
-  create: ProductCreateWithoutReviewsInput
+  create: ProductUncheckedCreateWithoutReviewsInput
 }
 
 input ProductCreateNestedOneWithoutShoppingProductInput {
   connect: ProductWhereUniqueInput
   connectOrCreate: ProductCreateOrConnectWithoutShoppingProductInput
-  create: ProductCreateWithoutShoppingProductInput
+  create: ProductUncheckedCreateWithoutShoppingProductInput
 }
 
 input ProductCreateOrConnectWithoutReviewsInput {
-  create: ProductCreateWithoutReviewsInput!
+  create: ProductUncheckedCreateWithoutReviewsInput!
   where: ProductWhereUniqueInput!
 }
 
 input ProductCreateOrConnectWithoutShoppingProductInput {
-  create: ProductCreateWithoutShoppingProductInput!
+  create: ProductUncheckedCreateWithoutShoppingProductInput!
   where: ProductWhereUniqueInput!
 }
 
@@ -2593,16 +2593,16 @@ input ProductUpdateManyMutationInput {
 input ProductUpdateOneRequiredWithoutReviewsNestedInput {
   connect: ProductWhereUniqueInput
   connectOrCreate: ProductCreateOrConnectWithoutReviewsInput
-  create: ProductCreateWithoutReviewsInput
-  update: ProductUpdateWithoutReviewsInput
+  create: ProductUncheckedCreateWithoutReviewsInput
+  update: ProductUncheckedUpdateWithoutReviewsInput
   upsert: ProductUpsertWithoutReviewsInput
 }
 
 input ProductUpdateOneRequiredWithoutShoppingProductNestedInput {
   connect: ProductWhereUniqueInput
   connectOrCreate: ProductCreateOrConnectWithoutShoppingProductInput
-  create: ProductCreateWithoutShoppingProductInput
-  update: ProductUpdateWithoutShoppingProductInput
+  create: ProductUncheckedCreateWithoutShoppingProductInput
+  update: ProductUncheckedUpdateWithoutShoppingProductInput
   upsert: ProductUpsertWithoutShoppingProductInput
 }
 
@@ -2645,13 +2645,13 @@ input ProductUpdateWithoutShoppingProductInput {
 }
 
 input ProductUpsertWithoutReviewsInput {
-  create: ProductCreateWithoutReviewsInput!
-  update: ProductUpdateWithoutReviewsInput!
+  create: ProductUncheckedCreateWithoutReviewsInput!
+  update: ProductUncheckedUpdateWithoutReviewsInput!
 }
 
 input ProductUpsertWithoutShoppingProductInput {
-  create: ProductCreateWithoutShoppingProductInput!
-  update: ProductUpdateWithoutShoppingProductInput!
+  create: ProductUncheckedCreateWithoutShoppingProductInput!
+  update: ProductUncheckedUpdateWithoutShoppingProductInput!
 }
 
 input ProductWhereInput {
@@ -2812,12 +2812,12 @@ input ReviewCreateNestedManyWithoutUserInput {
 }
 
 input ReviewCreateOrConnectWithoutProductInput {
-  create: ReviewCreateWithoutProductInput!
+  create: ReviewUncheckedCreateWithoutProductInput!
   where: ReviewWhereUniqueInput!
 }
 
 input ReviewCreateOrConnectWithoutUserInput {
-  create: ReviewCreateWithoutUserInput!
+  create: ReviewUncheckedCreateWithoutUserInput!
   where: ReviewWhereUniqueInput!
 }
 
@@ -3077,12 +3077,12 @@ input ReviewUpdateManyMutationInput {
 }
 
 input ReviewUpdateManyWithWhereWithoutProductInput {
-  data: ReviewUpdateManyMutationInput!
+  data: ReviewUncheckedUpdateManyWithoutReviewsInput!
   where: ReviewScalarWhereInput!
 }
 
 input ReviewUpdateManyWithWhereWithoutUserInput {
-  data: ReviewUpdateManyMutationInput!
+  data: ReviewUncheckedUpdateManyWithoutReviewsInput!
   where: ReviewScalarWhereInput!
 }
 
@@ -3115,12 +3115,12 @@ input ReviewUpdateManyWithoutUserNestedInput {
 }
 
 input ReviewUpdateWithWhereUniqueWithoutProductInput {
-  data: ReviewUpdateWithoutProductInput!
+  data: ReviewUncheckedUpdateWithoutProductInput!
   where: ReviewWhereUniqueInput!
 }
 
 input ReviewUpdateWithWhereUniqueWithoutUserInput {
-  data: ReviewUpdateWithoutUserInput!
+  data: ReviewUncheckedUpdateWithoutUserInput!
   where: ReviewWhereUniqueInput!
 }
 
@@ -3139,14 +3139,14 @@ input ReviewUpdateWithoutUserInput {
 }
 
 input ReviewUpsertWithWhereUniqueWithoutProductInput {
-  create: ReviewCreateWithoutProductInput!
-  update: ReviewUpdateWithoutProductInput!
+  create: ReviewUncheckedCreateWithoutProductInput!
+  update: ReviewUncheckedUpdateWithoutProductInput!
   where: ReviewWhereUniqueInput!
 }
 
 input ReviewUpsertWithWhereUniqueWithoutUserInput {
-  create: ReviewCreateWithoutUserInput!
-  update: ReviewUpdateWithoutUserInput!
+  create: ReviewUncheckedCreateWithoutUserInput!
+  update: ReviewUncheckedUpdateWithoutUserInput!
   where: ReviewWhereUniqueInput!
 }
 
@@ -3154,8 +3154,8 @@ input ReviewWhereInput {
   AND: [ReviewWhereInput]
   NOT: [ReviewWhereInput]
   OR: [ReviewWhereInput]
-  Product: ProductRelationFilter
-  User: UserRelationFilter
+  Product: ProductWhereInput
+  User: UserWhereInput
   comment: StringFilter
   date: DateTimeFilter
   id: IntFilter
@@ -3266,12 +3266,12 @@ input ShoppingProductCreateNestedManyWithoutUserInput {
 }
 
 input ShoppingProductCreateOrConnectWithoutProductInput {
-  create: ShoppingProductCreateWithoutProductInput!
+  create: ShoppingProductUncheckedCreateWithoutProductInput!
   where: ShoppingProductWhereUniqueInput!
 }
 
 input ShoppingProductCreateOrConnectWithoutUserInput {
-  create: ShoppingProductCreateWithoutUserInput!
+  create: ShoppingProductUncheckedCreateWithoutUserInput!
   where: ShoppingProductWhereUniqueInput!
 }
 
@@ -3495,12 +3495,12 @@ input ShoppingProductUpdateManyMutationInput {
 }
 
 input ShoppingProductUpdateManyWithWhereWithoutProductInput {
-  data: ShoppingProductUpdateManyMutationInput!
+  data: ShoppingProductUncheckedUpdateManyWithoutShoppingProductInput!
   where: ShoppingProductScalarWhereInput!
 }
 
 input ShoppingProductUpdateManyWithWhereWithoutUserInput {
-  data: ShoppingProductUpdateManyMutationInput!
+  data: ShoppingProductUncheckedUpdateManyWithoutCartInput!
   where: ShoppingProductScalarWhereInput!
 }
 
@@ -3533,12 +3533,12 @@ input ShoppingProductUpdateManyWithoutUserNestedInput {
 }
 
 input ShoppingProductUpdateWithWhereUniqueWithoutProductInput {
-  data: ShoppingProductUpdateWithoutProductInput!
+  data: ShoppingProductUncheckedUpdateWithoutProductInput!
   where: ShoppingProductWhereUniqueInput!
 }
 
 input ShoppingProductUpdateWithWhereUniqueWithoutUserInput {
-  data: ShoppingProductUpdateWithoutUserInput!
+  data: ShoppingProductUncheckedUpdateWithoutUserInput!
   where: ShoppingProductWhereUniqueInput!
 }
 
@@ -3553,14 +3553,14 @@ input ShoppingProductUpdateWithoutUserInput {
 }
 
 input ShoppingProductUpsertWithWhereUniqueWithoutProductInput {
-  create: ShoppingProductCreateWithoutProductInput!
-  update: ShoppingProductUpdateWithoutProductInput!
+  create: ShoppingProductUncheckedCreateWithoutProductInput!
+  update: ShoppingProductUncheckedUpdateWithoutProductInput!
   where: ShoppingProductWhereUniqueInput!
 }
 
 input ShoppingProductUpsertWithWhereUniqueWithoutUserInput {
-  create: ShoppingProductCreateWithoutUserInput!
-  update: ShoppingProductUpdateWithoutUserInput!
+  create: ShoppingProductUncheckedCreateWithoutUserInput!
+  update: ShoppingProductUncheckedUpdateWithoutUserInput!
   where: ShoppingProductWhereUniqueInput!
 }
 
@@ -3568,8 +3568,8 @@ input ShoppingProductWhereInput {
   AND: [ShoppingProductWhereInput]
   NOT: [ShoppingProductWhereInput]
   OR: [ShoppingProductWhereInput]
-  Product: ProductRelationFilter
-  User: UserRelationFilter
+  Product: ProductWhereInput
+  User: UserWhereInput
   id: IntFilter
   productId: IntFilter
   quantity: IntFilter
@@ -3667,16 +3667,16 @@ type User {
   _count: UserCountOutputType!
   address: Address
   birthday: DateTime
-  cart(cursor: ShoppingProductWhereUniqueInput, distinct: [ShoppingProductScalarFieldEnum], orderBy: [ShoppingProductOrderByWithRelationInput], skip: Int, take: Int, where: ShoppingProductWhereInput): [ShoppingProduct!]!
+  cart(cursor: ShoppingProductWhereUniqueInput, distinct: ShoppingProductScalarFieldEnum, orderBy: ShoppingProductOrderByWithRelationInput, skip: Int, take: Int, where: ShoppingProductWhereInput): [ShoppingProduct!]!
   createdAt: DateTime!
   email: String!
   firstName: String!
   gender: String
   id: Int!
   lastName: String!
-  orders(cursor: OrderWhereUniqueInput, distinct: [OrderScalarFieldEnum], orderBy: [OrderOrderByWithRelationInput], skip: Int, take: Int, where: OrderWhereInput): [Order!]!
+  orders(cursor: OrderWhereUniqueInput, distinct: OrderScalarFieldEnum, orderBy: OrderOrderByWithRelationInput, skip: Int, take: Int, where: OrderWhereInput): [Order!]!
   password: String!
-  reviews(cursor: ReviewWhereUniqueInput, distinct: [ReviewScalarFieldEnum], orderBy: [ReviewOrderByWithRelationInput], skip: Int, take: Int, where: ReviewWhereInput): [Review!]!
+  reviews(cursor: ReviewWhereUniqueInput, distinct: ReviewScalarFieldEnum, orderBy: ReviewOrderByWithRelationInput, skip: Int, take: Int, where: ReviewWhereInput): [Review!]!
   role: Role!
 }
 
@@ -3749,44 +3749,44 @@ input UserCreateManyInput {
 input UserCreateNestedOneWithoutAddressInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutAddressInput
-  create: UserCreateWithoutAddressInput
+  create: UserUncheckedCreateWithoutAddressInput
 }
 
 input UserCreateNestedOneWithoutCartInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutCartInput
-  create: UserCreateWithoutCartInput
+  create: UserUncheckedCreateWithoutCartInput
 }
 
 input UserCreateNestedOneWithoutOrdersInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutOrdersInput
-  create: UserCreateWithoutOrdersInput
+  create: UserUncheckedCreateWithoutOrdersInput
 }
 
 input UserCreateNestedOneWithoutReviewsInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutReviewsInput
-  create: UserCreateWithoutReviewsInput
+  create: UserUncheckedCreateWithoutReviewsInput
 }
 
 input UserCreateOrConnectWithoutAddressInput {
-  create: UserCreateWithoutAddressInput!
+  create: UserUncheckedCreateWithoutAddressInput!
   where: UserWhereUniqueInput!
 }
 
 input UserCreateOrConnectWithoutCartInput {
-  create: UserCreateWithoutCartInput!
+  create: UserUncheckedCreateWithoutCartInput!
   where: UserWhereUniqueInput!
 }
 
 input UserCreateOrConnectWithoutOrdersInput {
-  create: UserCreateWithoutOrdersInput!
+  create: UserUncheckedCreateWithoutOrdersInput!
   where: UserWhereUniqueInput!
 }
 
 input UserCreateOrConnectWithoutReviewsInput {
-  create: UserCreateWithoutReviewsInput!
+  create: UserUncheckedCreateWithoutReviewsInput!
   where: UserWhereUniqueInput!
 }
 
@@ -4160,32 +4160,32 @@ input UserUpdateManyMutationInput {
 input UserUpdateOneRequiredWithoutAddressNestedInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutAddressInput
-  create: UserCreateWithoutAddressInput
-  update: UserUpdateWithoutAddressInput
+  create: UserUncheckedCreateWithoutAddressInput
+  update: UserUncheckedUpdateWithoutAddressInput
   upsert: UserUpsertWithoutAddressInput
 }
 
 input UserUpdateOneRequiredWithoutCartNestedInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutCartInput
-  create: UserCreateWithoutCartInput
-  update: UserUpdateWithoutCartInput
+  create: UserUncheckedCreateWithoutCartInput
+  update: UserUncheckedUpdateWithoutCartInput
   upsert: UserUpsertWithoutCartInput
 }
 
 input UserUpdateOneRequiredWithoutOrdersNestedInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutOrdersInput
-  create: UserCreateWithoutOrdersInput
-  update: UserUpdateWithoutOrdersInput
+  create: UserUncheckedCreateWithoutOrdersInput
+  update: UserUncheckedUpdateWithoutOrdersInput
   upsert: UserUpsertWithoutOrdersInput
 }
 
 input UserUpdateOneRequiredWithoutReviewsNestedInput {
   connect: UserWhereUniqueInput
   connectOrCreate: UserCreateOrConnectWithoutReviewsInput
-  create: UserCreateWithoutReviewsInput
-  update: UserUpdateWithoutReviewsInput
+  create: UserUncheckedCreateWithoutReviewsInput
+  update: UserUncheckedUpdateWithoutReviewsInput
   upsert: UserUpsertWithoutReviewsInput
 }
 
@@ -4246,30 +4246,30 @@ input UserUpdateWithoutReviewsInput {
 }
 
 input UserUpsertWithoutAddressInput {
-  create: UserCreateWithoutAddressInput!
-  update: UserUpdateWithoutAddressInput!
+  create: UserUncheckedCreateWithoutAddressInput!
+  update: UserUncheckedUpdateWithoutAddressInput!
 }
 
 input UserUpsertWithoutCartInput {
-  create: UserCreateWithoutCartInput!
-  update: UserUpdateWithoutCartInput!
+  create: UserUncheckedCreateWithoutCartInput!
+  update: UserUncheckedUpdateWithoutCartInput!
 }
 
 input UserUpsertWithoutOrdersInput {
-  create: UserCreateWithoutOrdersInput!
-  update: UserUpdateWithoutOrdersInput!
+  create: UserUncheckedCreateWithoutOrdersInput!
+  update: UserUncheckedUpdateWithoutOrdersInput!
 }
 
 input UserUpsertWithoutReviewsInput {
-  create: UserCreateWithoutReviewsInput!
-  update: UserUpdateWithoutReviewsInput!
+  create: UserUncheckedCreateWithoutReviewsInput!
+  update: UserUncheckedUpdateWithoutReviewsInput!
 }
 
 input UserWhereInput {
   AND: [UserWhereInput]
   NOT: [UserWhereInput]
   OR: [UserWhereInput]
-  address: AddressRelationFilter
+  address: AddressWhereInput
   birthday: DateTimeNullableFilter
   cart: ShoppingProductListRelationFilter
   createdAt: DateTimeFilter

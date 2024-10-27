@@ -1,4 +1,4 @@
-import { objectType, list } from 'nexus'
+import { objectType } from 'nexus'
 
 export const Order = objectType({
   nonNullDefaults: {
@@ -29,11 +29,11 @@ export const Order = objectType({
       type: 'OrderProduct',
       args: {
         where: 'OrderProductWhereInput',
-        orderBy: list('OrderProductOrderByWithRelationInput'),
+        orderBy: 'OrderProductOrderByWithRelationInput',
         cursor: 'OrderProductWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: list('OrderProductScalarFieldEnum'),
+        distinct: 'OrderProductScalarFieldEnum',
       },
       resolve(root: any) {
         return root.products
